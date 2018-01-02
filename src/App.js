@@ -1,8 +1,33 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import XMLContainer from "./components/XMLContainer";
+import InputContainer from "./components/InputContainer";
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      content: [
+        {
+          modules: [
+            {
+              module: [
+                { title: "INPUT" },
+                { image: "" },
+                { igUrl: "" },
+                { sgUrl: "" },
+                {
+                  categories: [{ category: "*INPUT*" }]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    };
+  }
+
   render() {
     return (
       <div className="App">
@@ -13,6 +38,8 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
+        <InputContainer content={this.state.content} />
+        <XMLContainer content={this.state.content} />
       </div>
     );
   }
