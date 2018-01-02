@@ -26,13 +26,13 @@ const styles = theme => ({
   }
 });
 
-function Title(props) {
+function InputField(props) {
   const { classes } = props;
   return (
     <div className={classes.root}>
       {/* On change update title */}
       <Input
-        placeholder="Add Title"
+        placeholder={this.props}
         className={classes.input}
         inputProps={{
           "aria-label": "Add Title"
@@ -42,8 +42,8 @@ function Title(props) {
   );
 }
 
-Title.propTypes = {
+InputField.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(Title);
+export default withStyles(styles)(InputField);

@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 import { withStyles } from "material-ui/styles";
 import Paper from "material-ui/Paper";
 import Grid from "material-ui/Grid";
-import Title from "./Title";
 
 const styles = theme => ({
   root: {
@@ -25,9 +24,7 @@ function InputContainer(props) {
       <Grid container spacing={24}>
         <Grid item xs />
         <Grid item xs={8} md={6}>
-          <Paper className={classes.paper}>
-            <Title />
-          </Paper>
+          <Paper className={classes.paper} />
         </Grid>
         <Grid item xs />
       </Grid>

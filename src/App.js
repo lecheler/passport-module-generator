@@ -4,6 +4,7 @@ import "./App.css";
 import XMLContainer from "./components/XMLContainer";
 import InputContainer from "./components/InputContainer";
 import sample from "./data/sample.js";
+import InputField from "./components/InputField";
 class App extends Component {
   constructor(props) {
     super(props);
@@ -29,6 +30,11 @@ class App extends Component {
   }
 
   render() {
+    const updateTitle = () => {
+      console.log("updateTitle");
+    };
+    updateTitle();
+
     return (
       <div className="App">
         <header className="App-header">
@@ -36,7 +42,11 @@ class App extends Component {
           <h1 className="App-title">Welcome to React</h1>
         </header>
 
-        <InputContainer content={this.state.content} />
+        <InputContainer content={this.state.content}>
+          <InputField>
+            <input placeholder="placeholder" />
+          </InputField>
+        </InputContainer>
         {/*<XMLContainer content={this.state.content} />*/}
         <XMLContainer content={sample} />
       </div>
