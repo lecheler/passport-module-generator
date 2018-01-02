@@ -30,18 +30,8 @@ class App extends Component {
           <h1 className="App-title">Welcome to React</h1>
         </header>
 
-<<<<<<< HEAD
-        <InputContainer content={this.state.content}>
-          <InputField>
-            <input placeholder="placeholder" />
-          </InputField>
-        </InputContainer>
-        {/*<XMLContainer content={this.state.content} />*/}
-        <XMLContainer content={sample} />
-=======
         <InputContainer content={this.state} />
         <XMLContainer content={this.state} />
->>>>>>> e163b8ca9b1d5f6d0dda242cc45b0b671db66202
       </div>
     );
   }
