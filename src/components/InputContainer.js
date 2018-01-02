@@ -8,11 +8,11 @@ import Title from "./Title";
 
 const styles = theme => ({
   root: {
-    flexGrow: 1,
+    // flexGrow: 1,
     marginTop: 30
   },
   paper: {
-    padding: 16,
+    padding: 10,
     textAlign: "center",
     color: theme.palette.text.secondary
   }
@@ -23,11 +23,13 @@ function InputContainer(props) {
   return (
     <div className={classes.root}>
       <Grid container spacing={24}>
-        <Grid item xs={12}>
+        <Grid item xs />
+        <Grid item xs={8} md={6}>
           <Paper className={classes.paper}>
             <Title />
           </Paper>
         </Grid>
+        <Grid item xs />
       </Grid>
     </div>
   );
