@@ -19,9 +19,32 @@ import fileDownload from "js-file-download";
 // console.log(xmlString);
 
 function XMLContainer(props) {
-  let { content } = props;
-  let xmlContent = XML(content);
-  let title = props.content[0].modules[0].module[0].title;
+  console.log(props);
+  let contentToFormat = [
+    {
+      modules: [
+        {
+          module: [
+            { _attr: { languageID: props.content.language_ID } },
+            { _attr: { level: props.content.level } },
+            { title: props.content.title },
+            { direction: props.content.direction },
+            { banner: "" },
+            { image: "" },
+            { igUrl: "" },
+            { sgUrl: "" },
+            {
+              categories: props.content.categories
+            }
+          ]
+        }
+      ]
+    }
+  ];
+
+  let xmlContent = XML(contentToFormat);
+  let title = props.title;
+
   const downloadXMLFile = () => fileDownload(xmlContent, `${title}.xml`);
   return (
     <div className="xmlContainer">

@@ -8,23 +8,11 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      content: [
-        {
-          modules: [
-            {
-              module: [
-                { title: "" },
-                { image: "" },
-                { igUrl: "" },
-                { sgUrl: "" },
-                {
-                  categories: [{ category: "*INPUT*" }]
-                }
-              ]
-            }
-          ]
-        }
-      ]
+      title: "Temp Title",
+      direction: "Temp Directions",
+      language_ID: "Temp Language Id",
+      level: "Temp Level",
+      categories: []
     };
   }
 
@@ -36,9 +24,8 @@ class App extends Component {
           <h1 className="App-title">Welcome to React</h1>
         </header>
 
-        <InputContainer content={this.state.content} />
-        {/*<XMLContainer content={this.state.content} />*/}
-        <XMLContainer content={sample} />
+        <InputContainer content={this.state} />
+        <XMLContainer content={this.state} />
       </div>
     );
   }
