@@ -7,6 +7,8 @@ import Grid from "material-ui/Grid";
 
 import InputField from "./InputField";
 
+// import Title from "./Title";
+import Category from "./Category";
 const styles = theme => ({
   root: {
     // flexGrow: 1,
