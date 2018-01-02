@@ -4,7 +4,6 @@ import "./App.css";
 import XMLContainer from "./components/XMLContainer";
 import InputContainer from "./components/InputContainer";
 import sample from "./data/sample.js";
-import InputField from "./components/InputField";
 class App extends Component {
   constructor(props) {
     super(props);

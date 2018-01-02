@@ -30,9 +30,8 @@ function InputField(props) {
   const { classes } = props;
   return (
     <div className={classes.root}>
-      {/* On change update title */}
       <Input
-        placeholder={this.props}
+        placeholder={props.placeholder}
         className={classes.input}
         inputProps={{
           "aria-label": "Add Title"
