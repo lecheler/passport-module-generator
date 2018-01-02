@@ -5,7 +5,7 @@ import { withStyles } from "material-ui/styles";
 import Paper from "material-ui/Paper";
 import Grid from "material-ui/Grid";
 import Title from "./Title";
-
+import Category from "./Category";
 const styles = theme => ({
   root: {
     // flexGrow: 1,
@@ -31,6 +31,9 @@ function InputContainer(props) {
         </Grid>
         <Grid item xs />
       </Grid>
+      <Category type="stimulus" />
+      <Category type="flipgrid" />
+      <Category type="avenue" />
     </div>
   );
 }
