@@ -2,37 +2,28 @@
     <module languageID="{Language_ID}" level="{Level}">
         <title>            {Module_Title}        </title>
         <direction>           {Module_Directions}        </direction>
-        <!-- image banner igUrl sgUrl (always empty but essential, no form input -->
         <image></image>
         <banner></banner>
         <igUrl></igUrl>
         <sgUrl></sgUrl>
         <categories>
-            <!-- {category repeater} {Limit 4} -->
             <category order="{Order}">
                 <title>                    {Category_Title}                </title>
                 <scoring>
                     <score max="{Max_Score}">{Label}</score>
-                    <!-- {Repeater} {Limit 5} -->
                 </scoring>
                 <tasks>
-                    <!-- If {Task_Type} == 'stimulus' -->
                     <task type="stimulus" responseType="{Response_Type}">
                         <direction>                            {Task_Directions}                        </direction>
                         <shortDirection>                            {Task_Short_Direction}                        </shortDirection>
                         <resources type="{HTTP_Protocol}">
                             <resource url="{Resource_URL}">{Resource_Label}</resource>
-                            <!-- {Repeater} -->
                         </resources>
                     </task>
-                    <!-- End If -->
-                    <!-- If {Task_Type} == 'flipgrid' -->
                     <task type="flipgrid">
                         <direction>                            {Task_Directions}                        </direction>
                         <question>                            {Flipgrid_}                        </question>
                     </task>
-                    <!-- End If -->
-                    <!-- If {Task_Type} == 'avenue' -->
                     <task type="avenue">
                         <name>                            {Avenue_Title}                        </name>
                         <instructions>                            {Avenue_Instructions}                        </instructions>
@@ -41,12 +32,9 @@
                         <views>                            {Views}                        </views>
                         <mediaTime>                            {Media_Time}                        </mediaTime>
                         <mediaWhileRecording>{Media_While_Recording}</mediaWhileRecording>
-                        <!-- 0 or 1 -->
                         <allowMobile>{Allow_Mobile}</allowMobile>
-                        <!-- 0 or 1 -->
                         <sliders>
                             <slider max="{Slider_Max_Score}">{Slider_Title}</slider>
-                            <!-- {Repeater} Limit 4 -->
                         </sliders>
                         <assets>
                             <asset type="{Avenue_File_Type}" extension="{Avenue_Asset_Extension}">
@@ -58,8 +46,6 @@
                         <level>                            {Avenue_Level}                        </level>
                         <unit>                            {Avenue_Unit}                        </unit>
                     </task>
-                    <!-- End If -->
-                    <!-- {Repeater} -->
                 </tasks>
             </category>
         </categories>

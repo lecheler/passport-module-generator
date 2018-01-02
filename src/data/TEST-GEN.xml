@@ -1,0 +1,53 @@
+<modules>
+    <module languageID="Language_ID" level="Level">
+        <title>            Module_Title        </title>
+        <direction>            Module_Directions        </direction>
+        <banner></banner>
+        <image></image>
+        <igUrl></igUrl>
+        <sgUrl></sgUrl>
+        <categories>
+            <category order="INT">
+                <title>                    my category title                </title>
+                <scoring>
+                    <score max="INT">                        STRING                    </score>
+                </scoring>
+                <tasks>
+                    <task type="stimulus" responseType="file, text, or both">
+                        <direction>                            STRING                        </direction>
+                        <shortDirection>                            STRING                        </shortDirection>
+                        <resorces type="HTTP">
+                            <resource url="STRING">                                LABEL                            </resource>
+                        </resorces>
+                    </task>
+                    <task type="flipgrid">
+                        <direction>                            STRING                        </direction>
+                        <question>                            STRING                        </question>
+                    </task>
+                    <task type="avenue">
+                        <name>                            STRING                        </name>
+                        <instructions>                            STRING                        </instructions>
+                        <recordingTries>                            INT                        </recordingTries>
+                        <recordTime>                            INT 30 sec intervals                        </recordTime>
+                        <views>                            1 - 5 and unlimited (6?)                        </views>
+                        <mediaTime>                            INT seconds                        </mediaTime>
+                        <mediaWhileRecording>                            0 or 1                        </mediaWhileRecording>
+                        <allowMobile>                            0 or 1                        </allowMobile>
+                        <sliders>
+                            <slider max="INT">                                STRING Slider_Title                            </slider>
+                        </sliders>
+                        <assets>
+                            <asset type="Avenue_File_Type" extension="Avenue_Asset_Extension">
+                                <file>                                    Avenue_File_Name                                </file>
+                                <title>                                    Avenue_Title                                </title>
+                                <text>                                    Avenue_Text                                </text>
+                            </asset>
+                        </assets>
+                        <level>                            INT                        </level>
+                        <unit>                            INT                        </unit>
+                    </task>
+                </tasks>
+            </category>
+        </categories>
+    </module>
+</modules>
