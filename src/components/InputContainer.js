@@ -4,14 +4,11 @@ import PropTypes from "prop-types";
 import { withStyles } from "material-ui/styles";
 import Paper from "material-ui/Paper";
 import Grid from "material-ui/Grid";
-<<<<<<< HEAD
 
 import InputField from "./InputField";
 
-=======
 import Title from "./Title";
 import Category from "./Category";
->>>>>>> 0cc7863e8346eba97ead2bbc0c5649da60f7264d
 const styles = theme => ({
   root: {
     // flexGrow: 1,
