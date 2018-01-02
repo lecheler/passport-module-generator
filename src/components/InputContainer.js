@@ -1,12 +1,40 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const propTypes = {};
+import { withStyles } from "material-ui/styles";
+import Paper from "material-ui/Paper";
+import Grid from "material-ui/Grid";
+import Title from "./Title";
+
+const styles = theme => ({
+  root: {
+    flexGrow: 1,
+    marginTop: 30
+  },
+  paper: {
+    padding: 16,
+    textAlign: "center",
+    color: theme.palette.text.secondary
+  }
+});
 
 function InputContainer(props) {
-  return <div>I'm the input container</div>;
+  const { classes } = props;
+  return (
+    <div className={classes.root}>
+      <Grid container spacing={24}>
+        <Grid item xs={12}>
+          <Paper className={classes.paper}>
+            <Title />
+          </Paper>
+        </Grid>
+      </Grid>
+    </div>
+  );
 }
 
-InputContainer.propTypes = propTypes;
+InputContainer.propTypes = {
+  classes: PropTypes.object.isRequired
+};
 
-export default InputContainer;
+export default withStyles(styles)(InputContainer);

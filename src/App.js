@@ -13,7 +13,7 @@ class App extends Component {
           modules: [
             {
               module: [
-                { title: "INPUT" },
+                { title: "" },
                 { image: "" },
                 { igUrl: "" },
                 { sgUrl: "" },
@@ -35,9 +35,7 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
         </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+
         <InputContainer content={this.state.content} />
         <XMLContainer content={this.state.content} />
       </div>
