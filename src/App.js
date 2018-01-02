@@ -3,7 +3,7 @@ import logo from "./logo.svg";
 import "./App.css";
 import XMLContainer from "./components/XMLContainer";
 import InputContainer from "./components/InputContainer";
-
+import sample from "./data/sample.js";
 class App extends Component {
   constructor(props) {
     super(props);
@@ -37,7 +37,8 @@ class App extends Component {
         </header>
 
         <InputContainer content={this.state.content} />
-        <XMLContainer content={this.state.content} />
+        {/*<XMLContainer content={this.state.content} />*/}
+        <XMLContainer content={sample} />
       </div>
     );
   }
