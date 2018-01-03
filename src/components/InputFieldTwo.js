@@ -26,26 +26,24 @@ const styles = theme => ({
   }
 });
 
-class InputField extends Component {
-  handleInputChange = e => {
-    this.props.handleChange({ value: e.target.value });
+function InputField(props) {
+  const handleInputChange = e => {
+    props.handleChange({ value: e.target.value });
   };
 
-  render() {
-    const { classes } = this.props;
-    return (
-      <div className={classes.root}>
-        <Input
-          onChange={e => this.handleInputChange(e)}
-          placeholder={this.props.placeholder}
-          className={classes.input}
-          inputProps={{
-            "aria-label": "Add Title"
-          }}
-        />
-      </div>
-    );
-  }
+  const { classes } = props;
+  return (
+    <div className={classes.root}>
+      <Input
+        onChange={e => handleInputChange(e)}
+        placeholder={props.placeholder}
+        className={classes.input}
+        inputProps={{
+          "aria-label": "Add Title"
+        }}
+      />
+    </div>
+  );
 }
 
 InputField.propTypes = {

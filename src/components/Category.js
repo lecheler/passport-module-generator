@@ -36,6 +36,7 @@ class Category extends Component {
   }
 
   updateCatTitle = obj => {
+    // setState callback waits for state to update
     this.setState({ title: obj.value }, () =>
       this.props.updateCategory(this.state)
     );
