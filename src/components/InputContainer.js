@@ -46,6 +46,17 @@ function InputContainer(props) {
           <Paper className={classes.paper}>
             <h2>section 4</h2>
           </Paper>
+          {content.categories.map((category, index) => {
+            return (
+              <Grid item xs={24}>
+                <Category
+                  type="stimulus"
+                  index={index}
+                  updateCategory={props.updateCategory}
+                />
+              </Grid>
+            );
+          })}
         </Grid>
         <Grid item xs />
       </Grid>
@@ -53,9 +64,6 @@ function InputContainer(props) {
         categoryCount={content.categories.length}
         addCategory={props.addCategory}
       />
-      <Category type="stimulus" />
-      <Category type="flipgrid" />
-      <Category type="avenue" />
     </div>
   );
 }

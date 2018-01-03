@@ -24,6 +24,10 @@ class App extends Component {
     });
   };
 
+  updateCategory = e => {
+    console.log("I'm updating category now");
+  };
+
   render() {
     const updateTitle = () => {
       console.log("updateTitle");
@@ -37,7 +41,11 @@ class App extends Component {
           <h1 className="App-title">Welcome to React</h1>
         </header>
 
-        <InputContainer content={this.state} addCategory={this.addCategory} />
+        <InputContainer
+          content={this.state}
+          addCategory={this.addCategory}
+          updateCategory={this.updateCategory}
+        />
         <XMLContainer content={this.state} />
       </div>
     );
