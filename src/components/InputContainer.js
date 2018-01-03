@@ -6,6 +6,7 @@ import Paper from "material-ui/Paper";
 import Grid from "material-ui/Grid";
 
 import InputField from "./InputField";
+import AddCategory from "./AddCategory";
 
 // import Title from "./Title";
 import Category from "./Category";
@@ -23,7 +24,7 @@ const styles = theme => ({
 });
 
 function InputContainer(props) {
-  const { classes } = props;
+  const { classes, content } = props;
   return (
     <div className={classes.root}>
       <Grid container spacing={24}>
@@ -48,6 +49,10 @@ function InputContainer(props) {
         </Grid>
         <Grid item xs />
       </Grid>
+      <AddCategory
+        categoryCount={content.categories.length}
+        addCategory={props.addCategory}
+      />
       <Category type="stimulus" />
       <Category type="flipgrid" />
       <Category type="avenue" />
