@@ -24,17 +24,15 @@ class App extends Component {
     });
   };
 
+  delete;
+
   updateCategory = newCategory => {
     this.setState(prevState => {
-      console.log(">>>>>", newCategory);
       let index = newCategory.order;
       let newCategories = prevState.categories;
       newCategories.splice(index, 1, newCategory);
-      console.log("halp", prevState.categories);
-      console.log("new categories", newCategories);
       return { categories: newCategories };
     });
-    // console.log(newCategory);
   };
   updateTitle = e => {
     this.setState({ title: e });

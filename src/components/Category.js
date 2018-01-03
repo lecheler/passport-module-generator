@@ -35,11 +35,21 @@ class Category extends Component {
     };
   }
 
+  updateCategory = () => {
+    let formatedCategory = {
+      category: [
+        { _attr: { order: this.state.order } },
+        { title: this.state.title },
+        { scoring: this.state.scoring },
+        { tasks: this.state.tasks }
+      ]
+    };
+    console.log(this.state);
+    this.props.updateCategory(formatedCategory);
+  };
+
   updateCatTitle = obj => {
-    // setState callback waits for state to update
-    this.setState({ title: obj.value }, () =>
-      this.props.updateCategory(this.state)
-    );
+    this.setState({ title: obj.value }, () => this.updateCategory());
   };
 
   render() {
