@@ -8,6 +8,7 @@ import InputDropdown from "./InputDropdown";
 import { withStyles } from "material-ui/styles";
 import Paper from "material-ui/Paper";
 import Grid from "material-ui/Grid";
+import InputField from "./InputField";
 
 const styles = theme => ({
   root: {
@@ -29,6 +30,7 @@ class Category extends Component {
       <div className={classes.root}>
         <Paper className={classes.paper}>
           <h2>Category {index + 1}</h2>
+          <InputField placeholder="Category Title" />
         </Paper>
       </div>
     );

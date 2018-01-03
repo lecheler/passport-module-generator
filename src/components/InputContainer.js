@@ -37,18 +37,9 @@ function InputContainer(props) {
             <InputField placeholder="add title" />
             <InputField placeholder="add title" />
           </Paper>
-          <Paper className={classes.paper}>
-            <h2>section 2</h2>
-          </Paper>
-          <Paper className={classes.paper}>
-            <h2>section 3</h2>
-          </Paper>
-          <Paper className={classes.paper}>
-            <h2>section 4</h2>
-          </Paper>
           {content.categories.map((category, index) => {
             return (
-              <Grid item xs={24}>
+              <Grid item xs={12}>
                 <Category
                   type="stimulus"
                   index={index}
