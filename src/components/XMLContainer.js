@@ -19,6 +19,18 @@ import fileDownload from "js-file-download";
 // console.log(xmlString);
 
 function XMLContainer(props) {
+  let formattedCategories = props.content.categories.map(category => {
+    let formattedCategory = {
+      category: [
+        { _attr: { order: props.content.order } },
+        { title: props.content.title },
+        { scoring: props.content.scoring },
+        { tasks: props.content.tasks }
+      ]
+    };
+    return formattedCategory;
+  });
+
   let contentToFormat = [
     {
       modules: [
@@ -33,7 +45,7 @@ function XMLContainer(props) {
             { igUrl: "" },
             { sgUrl: "" },
             {
-              categories: props.content.categories
+              categories: formattedCategories
             }
           ]
         }

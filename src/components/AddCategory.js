@@ -1,12 +1,18 @@
 import React, { Component } from "react";
 
-export default class componentName extends Component {
+export default class AddCategory extends Component {
   handleAddCategory = () => {
     if (this.props.categoryCount >= 4) {
       alert(
         "Whoa there partner! Our supreme leader has set a limit of 4 categories."
       );
-    } else this.props.addCategory({ test: "whooo" });
+    } else
+      this.props.addCategory({
+        order: this.props.categoryCount,
+        title: "",
+        scoring: [],
+        taks: []
+      });
   };
 
   render() {

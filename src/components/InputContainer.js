@@ -7,6 +7,7 @@ import Grid from "material-ui/Grid";
 
 import InputField from "./InputField";
 import AddCategory from "./AddCategory";
+import FlipMove from "react-flip-move";
 
 // import Title from "./Title";
 import Category from "./Category";
@@ -37,18 +38,30 @@ function InputContainer(props) {
               handleChange={props.updateTitle}
             />
           </Paper>
-          {content.categories.map((category, index) => {
-            return (
-              <Grid item xs={12}>
-                <Category
-                  type="stimulus"
-                  index={index}
-                  updateCategory={props.updateCategory}
-                  updateValidCategory={props.updateValidCategory}
-                />
-              </Grid>
-            );
-          })}
+          <FlipMove
+            duration={300}
+            easing="ease-out"
+            enterAnimation="elevator"
+            maintainContainerHeight={true}
+          >
+            {content.categories.map((category, index) => {
+              {
+                /*console.log("bananas", category);*/
+              }
+              return (
+                <Grid item xs={12}>
+                  <Category
+                    type="stimulus"
+                    index={index}
+                    updateCategory={props.updateCategory}
+                    updateValidCategory={props.updateValidCategory}
+                    deleteCategory={props.deleteCategory}
+                    catContent={category}
+                  />
+                </Grid>
+              );
+            })}
+          </FlipMove>
         </Grid>
         <Grid item xs />
       </Grid>

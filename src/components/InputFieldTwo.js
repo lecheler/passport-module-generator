@@ -38,6 +38,7 @@ function InputField(props) {
         onChange={e => handleInputChange(e)}
         placeholder={props.placeholder}
         className={classes.input}
+        value={props.value}
         inputProps={{
           "aria-label": "Add Title"
         }}

@@ -24,12 +24,21 @@ class App extends Component {
     });
   };
 
-  updateCategory = newCategory => {
+  deleteCategory = index => {
+    console.log("DELETE", index);
     this.setState(prevState => {
-      console.log("new cat>>> ", newCategory);
-      let index = newCategory.index;
       let newCategories = [...prevState.categories];
-      newCategories.splice(index, 1, newCategory.content);
+      newCategories.splice(index, 1);
+      console.log(newCategories);
+      return { categories: newCategories };
+    });
+  };
+
+  updateCategory = (index, newCategory) => {
+    this.setState(prevState => {
+      console.log("new cat >>> ", newCategory);
+      let newCategories = [...prevState.categories];
+      newCategories.splice(index, 1, newCategory);
       return { categories: newCategories };
     });
   };
@@ -49,6 +58,7 @@ class App extends Component {
         <InputContainer
           content={this.state}
           addCategory={this.addCategory}
+          deleteCategory={this.deleteCategory}
           updateCategory={this.updateCategory}
           updateTitle={this.updateTitle}
           updateCategory={this.updateCategory}
