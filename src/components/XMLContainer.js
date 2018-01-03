@@ -19,7 +19,6 @@ import fileDownload from "js-file-download";
 // console.log(xmlString);
 
 function XMLContainer(props) {
-  console.log(props);
   let contentToFormat = [
     {
       modules: [

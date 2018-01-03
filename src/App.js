@@ -25,20 +25,19 @@ class App extends Component {
   };
 
   updateCategory = e => {
-    console.log("I'm updating category now");
+    // console.log("I'm updating category now");
+  };
+  updateTitle = e => {
+    this.setState({ title: e });
   };
 
   render() {
-    const updateTitle = e => {
-      this.setState({ title: e });
-    };
-
-    const handleChange = event => {
-      // let fieldName = event.target.name;
-      // let fleldVal = event.target.value;
-      // this.setState({form: {...this.state.form, [fieldName]: fleldVal}})
-      console.log("change happened");
-    };
+    // const handleChange = event => {
+    //   // let fieldName = event.target.name;
+    //   // let fleldVal = event.target.value;
+    //   // this.setState({form: {...this.state.form, [fieldName]: fleldVal}})
+    //   console.log("change happened");
+    // };
 
     return (
       <div className="App">
