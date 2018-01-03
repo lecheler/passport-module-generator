@@ -49,7 +49,7 @@ function InputContainer(props) {
                 /*console.log("bananas", category);*/
               }
               return (
-                <Grid item xs={12}>
+                <Grid item xs={12} key={index}>
                   <Category
                     type="stimulus"
                     index={index}
@@ -57,6 +57,8 @@ function InputContainer(props) {
                     updateValidCategory={props.updateValidCategory}
                     deleteCategory={props.deleteCategory}
                     catContent={category}
+                    addScore={props.addScore}
+                    removeScore={props.removeScore}
                   />
                 </Grid>
               );

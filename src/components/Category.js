@@ -8,9 +8,11 @@ import InputDropdown from "./InputDropdown";
 import { withStyles } from "material-ui/styles";
 import Paper from "material-ui/Paper";
 import Grid from "material-ui/Grid";
+import Divider from "material-ui/Divider";
 import InputField from "./InputField";
 import InputFieldTwo from "./InputFieldTwo";
 import DeleteCategory from "./DeleteCategory";
+import AddScore from "./AddScore";
 
 const styles = theme => ({
   root: {
@@ -26,7 +28,8 @@ const styles = theme => ({
   deleteBar: {
     // backgroundColor: "red",
     display: "flex",
-    justifyContent: "flex-end"
+    justifyContent: "space-between",
+    marginBottom: "10px"
   }
 });
 
@@ -45,18 +48,20 @@ class Category extends Component {
       <div className={classes.root}>
         <Paper className={classes.paper}>
           <div className={classes.deleteBar}>
+            <div>Category: {catContent.order + 1}</div>
             <DeleteCategory
               index={index}
               deleteCategory={this.props.deleteCategory}
             />
           </div>
-          <h2>Category {index + 1}</h2>
-          <h4>State Title: {catContent.title}</h4>
+          <Divider />
+          {/*<h2>Category {index + 1}</h2>*/}
           <InputFieldTwo
             handleChange={this.updateCatTitle}
             placeholder="Category Title"
             value={catContent.title}
           />
+          <AddScore index={index} addScore={this.props.addScore} />
         </Paper>
       </div>
     );

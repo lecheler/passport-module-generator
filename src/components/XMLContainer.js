@@ -22,10 +22,10 @@ function XMLContainer(props) {
   let formattedCategories = props.content.categories.map(category => {
     let formattedCategory = {
       category: [
-        { _attr: { order: props.content.order } },
-        { title: props.content.title },
-        { scoring: props.content.scoring },
-        { tasks: props.content.tasks }
+        { _attr: { order: category.order + 1 } },
+        { title: category.title },
+        { scoring: category.scoring },
+        { tasks: category.tasks }
       ]
     };
     return formattedCategory;

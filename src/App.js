@@ -25,22 +25,33 @@ class App extends Component {
   };
 
   deleteCategory = index => {
-    console.log("DELETE", index);
+    // console.log("DELETE", index);
     this.setState(prevState => {
       let newCategories = [...prevState.categories];
       newCategories.splice(index, 1);
-      console.log(newCategories);
-      return { categories: newCategories };
+
+      let reorderedCategories = newCategories.map((category, index) => {
+        return { ...category, order: index };
+      });
+      return { categories: reorderedCategories };
     });
   };
 
   updateCategory = (index, newCategory) => {
     this.setState(prevState => {
-      console.log("new cat >>> ", newCategory);
+      // console.log("new cat >>> ", newCategory);
       let newCategories = [...prevState.categories];
       newCategories.splice(index, 1, newCategory);
       return { categories: newCategories };
     });
+  };
+
+  addScore = catIndex => {
+    console.log("ADD SCORE", catIndex);
+  };
+
+  removeScore = (catIndex, scoreIndex) => {
+    console.log("REMOVING SCORE", scoreIndex, "from category", catIndex);
   };
 
   updateTitle = e => {
@@ -58,6 +69,8 @@ class App extends Component {
         <InputContainer
           content={this.state}
           addCategory={this.addCategory}
+          removeScore={this.removeScore}
+          addScore={this.addScore}
           deleteCategory={this.deleteCategory}
           updateCategory={this.updateCategory}
           updateTitle={this.updateTitle}
