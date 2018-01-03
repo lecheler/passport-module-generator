@@ -17,10 +17,16 @@ class App extends Component {
   }
 
   render() {
-    const updateTitle = () => {
-      console.log("updateTitle");
+    const updateTitle = e => {
+      this.setState({ title: e });
     };
-    updateTitle();
+
+    const handleChange = event => {
+      // let fieldName = event.target.name;
+      // let fleldVal = event.target.value;
+      // this.setState({form: {...this.state.form, [fieldName]: fleldVal}})
+      console.log("change happened");
+    };
 
     return (
       <div className="App">
@@ -29,7 +35,7 @@ class App extends Component {
           <h1 className="App-title">Welcome to React</h1>
         </header>
 
-        <InputContainer content={this.state} />
+        <InputContainer content={this.state} updateTitle={this.updateTitle} />
         <XMLContainer content={this.state} />
       </div>
     );

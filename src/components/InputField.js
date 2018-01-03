@@ -31,6 +31,7 @@ function InputField(props) {
   return (
     <div className={classes.root}>
       <Input
+        value={props.value}
         placeholder={props.placeholder}
         className={classes.input}
         inputProps={{

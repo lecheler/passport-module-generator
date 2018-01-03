@@ -31,10 +31,10 @@ function InputContainer(props) {
         <Grid item xs={8} md={10}>
           <Paper className={classes.paper}>
             <h2>section 1</h2>
-            <InputField placeholder="add title" />
-            <InputField placeholder="add title" />
-            <InputField placeholder="add title" />
-            <InputField placeholder="add title" />
+            <InputField
+              placeholder="add title"
+              handleChange={props.updateTitle}
+            />
           </Paper>
           <Paper className={classes.paper}>
             <h2>section 2</h2>
