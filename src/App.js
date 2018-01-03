@@ -24,28 +24,21 @@ class App extends Component {
     });
   };
 
-  delete;
-
   updateCategory = newCategory => {
     this.setState(prevState => {
-      let index = newCategory.order;
-      let newCategories = prevState.categories;
-      newCategories.splice(index, 1, newCategory);
+      console.log("new cat>>> ", newCategory);
+      let index = newCategory.index;
+      let newCategories = [...prevState.categories];
+      newCategories.splice(index, 1, newCategory.content);
       return { categories: newCategories };
     });
   };
+
   updateTitle = e => {
     this.setState({ title: e });
   };
 
   render() {
-    // const handleChange = event => {
-    //   // let fieldName = event.target.name;
-    //   // let fleldVal = event.target.value;
-    //   // this.setState({form: {...this.state.form, [fieldName]: fleldVal}})
-    //   console.log("change happened");
-    // };
-
     return (
       <div className="App">
         <header className="App-header">

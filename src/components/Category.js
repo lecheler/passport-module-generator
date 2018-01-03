@@ -35,16 +35,22 @@ class Category extends Component {
     };
   }
 
+  componentDidMount() {
+    this.updateCategory();
+  }
+
   updateCategory = () => {
     let formatedCategory = {
-      category: [
-        { _attr: { order: this.state.order } },
-        { title: this.state.title },
-        { scoring: this.state.scoring },
-        { tasks: this.state.tasks }
-      ]
+      index: this.state.order,
+      content: {
+        category: [
+          { _attr: { order: this.state.order } },
+          { title: this.state.title },
+          { scoring: this.state.scoring },
+          { tasks: this.state.tasks }
+        ]
+      }
     };
-    console.log(this.state);
     this.props.updateCategory(formatedCategory);
   };
 
@@ -58,6 +64,7 @@ class Category extends Component {
       <div className={classes.root}>
         <Paper className={classes.paper}>
           <h2>Category {index + 1}</h2>
+          <h4>State Title: {this.state.title}</h4>
           <InputFieldTwo
             handleChange={this.updateCatTitle}
             placeholder="Category Title"
