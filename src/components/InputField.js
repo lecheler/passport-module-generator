@@ -31,7 +31,7 @@ function InputField(props) {
   return (
     <div className={classes.root}>
       <Input
-        onChange={this.state.inputValue => props.handleChange(e)}
+        onChange={() => props.handleChange("state")}
         value={props.value}
         placeholder={props.placeholder}
         className={classes.input}
