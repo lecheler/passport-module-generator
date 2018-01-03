@@ -6,6 +6,7 @@ import Paper from "material-ui/Paper";
 import Grid from "material-ui/Grid";
 
 import InputField from "./InputField";
+import AddCategory from "./AddCategory";
 
 // import Title from "./Title";
 import Category from "./Category";
@@ -23,7 +24,7 @@ const styles = theme => ({
 });
 
 function InputContainer(props) {
-  const { classes } = props;
+  const { classes, content } = props;
   return (
     <div className={classes.root}>
       <Grid container spacing={24}>
@@ -36,21 +37,24 @@ function InputContainer(props) {
               handleChange={props.updateTitle}
             />
           </Paper>
-          <Paper className={classes.paper}>
-            <h2>section 2</h2>
-          </Paper>
-          <Paper className={classes.paper}>
-            <h2>section 3</h2>
-          </Paper>
-          <Paper className={classes.paper}>
-            <h2>section 4</h2>
-          </Paper>
+          {content.categories.map((category, index) => {
+            return (
+              <Grid item xs={12}>
+                <Category
+                  type="stimulus"
+                  index={index}
+                  updateCategory={props.updateCategory}
+                />
+              </Grid>
+            );
+          })}
         </Grid>
         <Grid item xs />
       </Grid>
-      <Category type="stimulus" />
-      <Category type="flipgrid" />
-      <Category type="avenue" />
+      <AddCategory
+        categoryCount={content.categories.length}
+        addCategory={props.addCategory}
+      />
     </div>
   );
 }

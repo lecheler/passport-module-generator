@@ -16,6 +16,18 @@ class App extends Component {
     };
   }
 
+  addCategory = e => {
+    this.setState(prevState => {
+      let prevCategories = prevState.categories;
+      let newCategories = [...prevCategories, e];
+      return { categories: newCategories };
+    });
+  };
+
+  updateCategory = e => {
+    console.log("I'm updating category now");
+  };
+
   render() {
     const updateTitle = e => {
       this.setState({ title: e });
@@ -35,7 +47,12 @@ class App extends Component {
           <h1 className="App-title">Welcome to React</h1>
         </header>
 
-        <InputContainer content={this.state} updateTitle={this.updateTitle} />
+        <InputContainer
+          content={this.state}
+          addCategory={this.addCategory}
+          updateCategory={this.updateCategory}
+          updateTitle={this.updateTitle}
+        />
         <XMLContainer content={this.state} />
       </div>
     );
