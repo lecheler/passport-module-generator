@@ -24,8 +24,17 @@ class App extends Component {
     });
   };
 
-  updateCategory = e => {
-    // console.log("I'm updating category now");
+  updateCategory = newCategory => {
+    this.setState(prevState => {
+      console.log(">>>>>", newCategory);
+      let index = newCategory.order;
+      let newCategories = prevState.categories;
+      newCategories.splice(index, 1, newCategory);
+      console.log("halp", prevState.categories);
+      console.log("new categories", newCategories);
+      return { categories: newCategories };
+    });
+    // console.log(newCategory);
   };
   updateTitle = e => {
     this.setState({ title: e });
@@ -51,6 +60,7 @@ class App extends Component {
           addCategory={this.addCategory}
           updateCategory={this.updateCategory}
           updateTitle={this.updateTitle}
+          updateCategory={this.updateCategory}
         />
         <XMLContainer content={this.state} />
       </div>

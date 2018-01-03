@@ -9,6 +9,7 @@ import { withStyles } from "material-ui/styles";
 import Paper from "material-ui/Paper";
 import Grid from "material-ui/Grid";
 import InputField from "./InputField";
+import InputFieldTwo from "./InputFieldTwo";
 
 const styles = theme => ({
   root: {
@@ -24,13 +25,32 @@ const styles = theme => ({
 });
 
 class Category extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      order: this.props.index,
+      title: "",
+      scoring: ["max 5"],
+      tasks: ["max tasks?"]
+    };
+  }
+
+  updateCatTitle = obj => {
+    this.setState({ title: obj.value }, () =>
+      this.props.updateCategory(this.state)
+    );
+  };
+
   render() {
     const { classes, index } = this.props;
     return (
       <div className={classes.root}>
         <Paper className={classes.paper}>
           <h2>Category {index + 1}</h2>
-          <InputField placeholder="Category Title" />
+          <InputFieldTwo
+            handleChange={this.updateCatTitle}
+            placeholder="Category Title"
+          />
         </Paper>
       </div>
     );

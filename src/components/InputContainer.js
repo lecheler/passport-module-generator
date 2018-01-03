@@ -44,6 +44,7 @@ function InputContainer(props) {
                   type="stimulus"
                   index={index}
                   updateCategory={props.updateCategory}
+                  updateValidCategory={props.updateValidCategory}
                 />
               </Grid>
             );
