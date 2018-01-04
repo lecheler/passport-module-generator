@@ -88,7 +88,7 @@ class App extends Component {
   };
 
   updateTitle = e => {
-    this.setState({ title: e });
+    this.setState({ title: e.target.value });
   };
 
   render() {

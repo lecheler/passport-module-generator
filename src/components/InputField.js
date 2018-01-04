@@ -1,6 +1,5 @@
-import React from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
-
 import { withStyles } from "material-ui/styles";
 
 import MenuItem from "material-ui/Menu/MenuItem";
@@ -25,22 +24,33 @@ const styles = theme => ({
     margin: theme.spacing.unit
   }
 });
+// Convert to class component. DONE
+// Add state constructor.
+// update local state of input field.
 
-function InputField(props) {
-  const { classes } = props;
-  return (
-    <div className={classes.root}>
-      <Input
-        onChange={() => props.handleChange("state")}
-        value={props.value}
-        placeholder={props.placeholder}
-        className={classes.input}
-        inputProps={{
-          "aria-label": "Add Title"
-        }}
-      />
-    </div>
-  );
+class InputField extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      inputValue: ""
+    };
+  }
+
+  render() {
+    return (
+      <div className={this.props.classes.root}>
+        <Input
+          onChange={this.props.handleChange}
+          defaultValue={this.props.title}
+          placeholder={this.props.placeholder}
+          className={this.props.classes.input}
+          inputProps={{
+            "aria-label": "Add Title"
+          }}
+        />
+      </div>
+    );
+  }
 }
 
 InputField.propTypes = {

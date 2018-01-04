@@ -36,6 +36,12 @@ function InputContainer(props) {
             <InputField
               placeholder="add title"
               handleChange={props.updateTitle}
+              title={props.content.title}
+            />
+            <InputField
+              placeholder="add desc"
+              handleChange={props.updateTitle}
+              title={props.content.title}
             />
           </Paper>
           <FlipMove
