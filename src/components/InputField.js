@@ -41,7 +41,7 @@ class InputField extends Component {
       <div className={this.props.classes.root}>
         <Input
           onChange={this.props.handleChange}
-          defaultValue={this.props.title}
+          defaultValue={this.props.inputValue}
           placeholder={this.props.placeholder}
           className={this.props.classes.input}
           inputProps={{
