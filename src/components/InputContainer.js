@@ -39,9 +39,9 @@ function InputContainer(props) {
               title={props.content.title}
             />
             <InputField
-              placeholder="add desc"
-              handleChange={props.updateTitle}
-              title={props.content.title}
+              placeholder="add directions"
+              handleChange={props.updateDirection}
+              description={props.content.direction}
             />
           </Paper>
           <FlipMove

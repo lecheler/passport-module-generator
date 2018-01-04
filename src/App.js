@@ -90,6 +90,9 @@ class App extends Component {
   updateTitle = e => {
     this.setState({ title: e.target.value });
   };
+  updateDirection = e => {
+    this.setState({ direction: e.target.value });
+  };
 
   render() {
     return (
@@ -106,6 +109,7 @@ class App extends Component {
           deleteCategory={this.deleteCategory}
           updateCategory={this.updateCategory}
           updateTitle={this.updateTitle}
+          updateDirection={this.updateDirection}
           updateCategory={this.updateCategory}
         />
         <XMLContainer content={this.state} />
