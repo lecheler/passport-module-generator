@@ -18,13 +18,23 @@ import fileDownload from "js-file-download";
 
 // console.log(xmlString);
 
+const formatScoring = scoringArray => {
+  const formattedScoringArray = scoringArray.map(score => {
+    let { max, label } = score;
+    return { score: [{ _attr: { max: max } }, label] };
+  });
+  return formattedScoringArray;
+};
+
 function XMLContainer(props) {
   let formattedCategories = props.content.categories.map(category => {
+    let formattedCategories = formatScoring(category.scoring);
+
     let formattedCategory = {
       category: [
         { _attr: { order: category.order + 1 } },
         { title: category.title },
-        { scoring: category.scoring },
+        { scoring: formattedCategories },
         { tasks: category.tasks }
       ]
     };

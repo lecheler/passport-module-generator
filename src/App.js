@@ -47,13 +47,14 @@ class App extends Component {
   };
 
   scoring = {
-    value: (catIndex, scoreIndex) =>
+    get: (catIndex, scoreIndex) =>
       this.state.categories[catIndex].scoring[scoreIndex],
     count: catIndex => this.state.categories[catIndex].scoring.length,
     countMax: 5,
     add: catIndex => {
       this.setState(prevState => {
-        const defaultScore = { score: [{ _attr: { max: 99 } }, "STRING"] };
+        // const defaultScore = { score: [{ _attr: { max: 99 } }, "STRING"] };
+        const defaultScore = { max: "", label: "" };
         let newCategories = [...prevState.categories];
         let newCategory = newCategories[catIndex];
         newCategory.scoring.push(defaultScore);
@@ -61,9 +62,29 @@ class App extends Component {
         return { categories: newCategories };
       });
     },
-    update: () => console.log("UPDATING SCORE"),
-    remove: (catIndex, scoreIndex) =>
-      console.log("REMOVING ", scoreIndex, " from ", catIndex)
+    update: (catIndex, scoreIndex, scoreUpdate) => {
+      this.setState(prevState => {
+        let newCategories = [...prevState.categories];
+        let newCategory = newCategories[catIndex];
+        const prevScore = this.state.categories[catIndex].scoring[scoreIndex];
+        const newScore = {
+          ...prevScore,
+          ...scoreUpdate
+        };
+        newCategory.scoring.splice(scoreIndex, 1, newScore);
+        newCategories.splice(catIndex, 1, newCategory);
+        return { categories: newCategories };
+      });
+    },
+    remove: (catIndex, scoreIndex) => {
+      this.setState(prevState => {
+        let newCategories = [...prevState.categories];
+        let newCategory = newCategories[catIndex];
+        newCategory.scoring.splice(scoreIndex, 1);
+        newCategories.splice(catIndex, 1, newCategory);
+        return { categories: newCategories };
+      });
+    }
   };
 
   updateTitle = e => {

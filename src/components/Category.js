@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import FlipMove from "react-flip-move";
 
 import TaskAvenue from "./TaskAvenue";
 import TaskFlipgrid from "./TaskFlipgrid";
@@ -9,10 +10,12 @@ import { withStyles } from "material-ui/styles";
 import Paper from "material-ui/Paper";
 import Grid from "material-ui/Grid";
 import Divider from "material-ui/Divider";
+
 import InputField from "./InputField";
 import InputFieldTwo from "./InputFieldTwo";
 import DeleteCategory from "./DeleteCategory";
 import AddScore from "./AddScore";
+import Score from "./Score";
 
 const styles = theme => ({
   root: {
@@ -42,13 +45,18 @@ class Category extends Component {
   };
 
   render() {
-    const { classes, index, catContent } = this.props;
+    const { classes, index, catContent, scoring } = this.props;
     // console.log("catContent", catContent);
     return (
       <div className={classes.root}>
         <Paper className={classes.paper}>
           <div className={classes.deleteBar}>
-            <div>Category: {catContent.order + 1}</div>
+            <InputFieldTwo
+              label={`Category ${catContent.order + 1} Title`}
+              handleChange={this.updateCatTitle}
+              placeholder="Category Title"
+              value={catContent.title}
+            />
             <DeleteCategory
               index={index}
               deleteCategory={this.props.deleteCategory}
@@ -56,12 +64,25 @@ class Category extends Component {
           </div>
           <Divider />
           {/*<h2>Category {index + 1}</h2>*/}
-          <InputFieldTwo
-            handleChange={this.updateCatTitle}
-            placeholder="Category Title"
-            value={catContent.title}
-          />
-          <AddScore catIndex={index} scoring={this.props.scoring} />
+
+          <FlipMove
+            duration={300}
+            easing="ease-out"
+            enterAnimation="elevator"
+            maintainContainerHeight={true}
+          >
+            {this.props.catContent.scoring.map((score, scoreIndex) => (
+              <Score
+                scoring={this.props.scoring}
+                scoreContent={this.props.scoring.get(index, scoreIndex)}
+                catIndex={index}
+                scoreIndex={scoreIndex}
+              />
+            ))}
+          </FlipMove>
+          {scoring.count(index) < scoring.countMax ? (
+            <AddScore catIndex={index} scoring={this.props.scoring} />
+          ) : null}
         </Paper>
       </div>
     );

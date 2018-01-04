@@ -11,11 +11,11 @@ const styles = theme => ({
   },
   textField: {
     marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
-    width: 400
+    marginRight: theme.spacing.unit
+    // width: 400
   },
   menu: {
-    width: 400
+    // width: 400
   },
   input: {
     margin: theme.spacing.unit
@@ -31,8 +31,7 @@ function InputField(props) {
   return (
     <div className={classes.root}>
       <TextField
-        id="category-title"
-        label="Category Title"
+        label={props.label}
         multiline
         rowsMax="4"
         value={props.value}

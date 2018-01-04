@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Button from "material-ui/Button";
 
 export default class AddScore extends Component {
   // handleAddScore = () => {
@@ -23,7 +24,9 @@ export default class AddScore extends Component {
   render() {
     return (
       <div>
-        <button onClick={this.handleAddScore}>Add Score</button>
+        <Button primary onClick={this.handleAddScore}>
+          Add Score
+        </Button>
       </div>
     );
   }
