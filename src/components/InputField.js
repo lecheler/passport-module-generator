@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-
 import { withStyles } from "material-ui/styles";
 
 import MenuItem from "material-ui/Menu/MenuItem";
@@ -37,19 +36,12 @@ class InputField extends Component {
     };
   }
 
-  componentDidUpdate(updateInputValue) {
-    updateInputValue = e => {
-      this.setState({
-        inputValue: e.target.value
-      });
-    };
-  }
   render() {
     return (
       <div className={this.props.classes.root}>
         <Input
-          onChange={() => this.props.handleChange(this.state.updateInputValue)}
-          value={this.state.inputValue}
+          onChange={this.props.handleChange}
+          defaultValue={this.props.title}
           placeholder={this.props.placeholder}
           className={this.props.classes.input}
           inputProps={{
