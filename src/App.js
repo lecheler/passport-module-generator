@@ -46,12 +46,24 @@ class App extends Component {
     });
   };
 
-  addScore = catIndex => {
-    console.log("ADD SCORE", catIndex);
-  };
-
-  removeScore = (catIndex, scoreIndex) => {
-    console.log("REMOVING SCORE", scoreIndex, "from category", catIndex);
+  scoring = {
+    value: (catIndex, scoreIndex) =>
+      this.state.categories[catIndex].scoring[scoreIndex],
+    count: catIndex => this.state.categories[catIndex].scoring.length,
+    countMax: 5,
+    add: catIndex => {
+      this.setState(prevState => {
+        const defaultScore = { score: [{ _attr: { max: 99 } }, "STRING"] };
+        let newCategories = [...prevState.categories];
+        let newCategory = newCategories[catIndex];
+        newCategory.scoring.push(defaultScore);
+        newCategories.splice(catIndex, 1, newCategory);
+        return { categories: newCategories };
+      });
+    },
+    update: () => console.log("UPDATING SCORE"),
+    remove: (catIndex, scoreIndex) =>
+      console.log("REMOVING ", scoreIndex, " from ", catIndex)
   };
 
   updateTitle = e => {
@@ -69,8 +81,7 @@ class App extends Component {
         <InputContainer
           content={this.state}
           addCategory={this.addCategory}
-          removeScore={this.removeScore}
-          addScore={this.addScore}
+          scoring={this.scoring}
           deleteCategory={this.deleteCategory}
           updateCategory={this.updateCategory}
           updateTitle={this.updateTitle}

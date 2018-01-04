@@ -61,7 +61,7 @@ class Category extends Component {
             placeholder="Category Title"
             value={catContent.title}
           />
-          <AddScore index={index} addScore={this.props.addScore} />
+          <AddScore catIndex={index} scoring={this.props.scoring} />
         </Paper>
       </div>
     );

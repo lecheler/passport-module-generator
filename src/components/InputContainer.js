@@ -57,8 +57,7 @@ function InputContainer(props) {
                     updateValidCategory={props.updateValidCategory}
                     deleteCategory={props.deleteCategory}
                     catContent={category}
-                    addScore={props.addScore}
-                    removeScore={props.removeScore}
+                    scoring={props.scoring}
                   />
                 </Grid>
               );
