@@ -5,6 +5,8 @@ import { withStyles } from "material-ui/styles";
 import Paper from "material-ui/Paper";
 import Grid from "material-ui/Grid";
 
+import SelectLanguageID from "./SelectLanguageID.js";
+
 import InputField from "./InputField";
 import AddCategory from "./AddCategory";
 import FlipMove from "react-flip-move";
@@ -31,6 +33,12 @@ function InputContainer(props) {
       <Grid container spacing={24}>
         <Grid item xs />
         <Grid item xs={8} md={10}>
+          <Paper className={classes.paper}>
+            <SelectLanguageID
+              handleChange={props.SelectLanguageID}
+              languageID={props.content.languageID}
+            />
+          </Paper>
           <Paper className={classes.paper}>
             <h2>section 1</h2>
             <InputField
