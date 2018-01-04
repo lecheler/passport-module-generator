@@ -1,12 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-
 import { withStyles } from "material-ui/styles";
-
 import MenuItem from "material-ui/Menu/MenuItem";
 import TextField from "material-ui/TextField";
-
-import Input from "material-ui/Input";
 
 const styles = theme => ({
   root: {
@@ -34,13 +30,15 @@ function InputField(props) {
   const { classes } = props;
   return (
     <div className={classes.root}>
-      <Input
+      <TextField
+        id="category-title"
+        label="Category Title"
+        multiline
+        rowsMax="4"
+        value={props.value}
         onChange={e => handleInputChange(e)}
-        placeholder={props.placeholder}
-        className={classes.input}
-        inputProps={{
-          "aria-label": "Add Title"
-        }}
+        className={classes.textField}
+        margin="normal"
       />
     </div>
   );

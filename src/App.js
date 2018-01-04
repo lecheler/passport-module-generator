@@ -24,14 +24,46 @@ class App extends Component {
     });
   };
 
-  updateCategory = newCategory => {
+  deleteCategory = index => {
+    // console.log("DELETE", index);
     this.setState(prevState => {
-      console.log("new cat>>> ", newCategory);
-      let index = newCategory.index;
       let newCategories = [...prevState.categories];
-      newCategories.splice(index, 1, newCategory.content);
+      newCategories.splice(index, 1);
+
+      let reorderedCategories = newCategories.map((category, index) => {
+        return { ...category, order: index };
+      });
+      return { categories: reorderedCategories };
+    });
+  };
+
+  updateCategory = (index, newCategory) => {
+    this.setState(prevState => {
+      // console.log("new cat >>> ", newCategory);
+      let newCategories = [...prevState.categories];
+      newCategories.splice(index, 1, newCategory);
       return { categories: newCategories };
     });
+  };
+
+  scoring = {
+    value: (catIndex, scoreIndex) =>
+      this.state.categories[catIndex].scoring[scoreIndex],
+    count: catIndex => this.state.categories[catIndex].scoring.length,
+    countMax: 5,
+    add: catIndex => {
+      this.setState(prevState => {
+        const defaultScore = { score: [{ _attr: { max: 99 } }, "STRING"] };
+        let newCategories = [...prevState.categories];
+        let newCategory = newCategories[catIndex];
+        newCategory.scoring.push(defaultScore);
+        newCategories.splice(catIndex, 1, newCategory);
+        return { categories: newCategories };
+      });
+    },
+    update: () => console.log("UPDATING SCORE"),
+    remove: (catIndex, scoreIndex) =>
+      console.log("REMOVING ", scoreIndex, " from ", catIndex)
   };
 
   updateTitle = e => {
@@ -49,6 +81,8 @@ class App extends Component {
         <InputContainer
           content={this.state}
           addCategory={this.addCategory}
+          scoring={this.scoring}
+          deleteCategory={this.deleteCategory}
           updateCategory={this.updateCategory}
           updateTitle={this.updateTitle}
           updateCategory={this.updateCategory}

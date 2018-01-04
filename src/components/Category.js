@@ -8,8 +8,11 @@ import InputDropdown from "./InputDropdown";
 import { withStyles } from "material-ui/styles";
 import Paper from "material-ui/Paper";
 import Grid from "material-ui/Grid";
+import Divider from "material-ui/Divider";
 import InputField from "./InputField";
 import InputFieldTwo from "./InputFieldTwo";
+import DeleteCategory from "./DeleteCategory";
+import AddScore from "./AddScore";
 
 const styles = theme => ({
   root: {
@@ -21,54 +24,44 @@ const styles = theme => ({
     marginBottom: 15,
     textAlign: "center",
     color: theme.palette.text.secondary
+  },
+  deleteBar: {
+    // backgroundColor: "red",
+    display: "flex",
+    justifyContent: "space-between",
+    marginBottom: "10px"
   }
 });
 
 class Category extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      order: this.props.index,
-      title: "",
-      scoring: ["max 5"],
-      tasks: ["max tasks?"]
-    };
-  }
-
-  componentDidMount() {
-    this.updateCategory();
-  }
-
-  updateCategory = () => {
-    let formatedCategory = {
-      index: this.state.order,
-      content: {
-        category: [
-          { _attr: { order: this.state.order } },
-          { title: this.state.title },
-          { scoring: this.state.scoring },
-          { tasks: this.state.tasks }
-        ]
-      }
-    };
-    this.props.updateCategory(formatedCategory);
-  };
-
-  updateCatTitle = obj => {
-    this.setState({ title: obj.value }, () => this.updateCategory());
+  updateCatTitle = e => {
+    // console.log(e);
+    let newCategory = { ...this.props.catContent };
+    newCategory.title = e.value;
+    this.props.updateCategory(this.props.index, newCategory);
   };
 
   render() {
-    const { classes, index } = this.props;
+    const { classes, index, catContent } = this.props;
+    // console.log("catContent", catContent);
     return (
       <div className={classes.root}>
         <Paper className={classes.paper}>
-          <h2>Category {index + 1}</h2>
-          <h4>State Title: {this.state.title}</h4>
+          <div className={classes.deleteBar}>
+            <div>Category: {catContent.order + 1}</div>
+            <DeleteCategory
+              index={index}
+              deleteCategory={this.props.deleteCategory}
+            />
+          </div>
+          <Divider />
+          {/*<h2>Category {index + 1}</h2>*/}
           <InputFieldTwo
             handleChange={this.updateCatTitle}
             placeholder="Category Title"
+            value={catContent.title}
           />
+          <AddScore catIndex={index} scoring={this.props.scoring} />
         </Paper>
       </div>
     );
