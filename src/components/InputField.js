@@ -29,12 +29,12 @@ const styles = theme => ({
 // update local state of input field.
 
 class InputField extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      inputValue: ""
-    };
-  }
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     // inputValue: ""
+  //   };
+  // }
 
   render() {
     return (
