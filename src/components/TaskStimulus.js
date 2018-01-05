@@ -11,13 +11,19 @@ const styles = theme => ({
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-    // background: "lightGray",
+    background: "lightGray",
     padding: 10
   },
   button: {
     margin: theme.spacing.unit
   }
 });
+
+const inputArray = [
+  { label: "responseType", type: "string" },
+  { label: "direction", type: "string" },
+  { label: "shortDirection", type: "string" }
+];
 
 function TaskStimulus(props) {
   const { taskIndex, catIndex, tasks, taskContent, classes } = props;
@@ -44,24 +50,19 @@ function TaskStimulus(props) {
           <DeleteIcon />
         </IconButton>
       </div>
-      <InputFieldTwo
-        label="responseType"
-        handleChange={handleUpdate}
-        placeholder="responseType"
-        value={taskContent.label}
-      />
-      <InputFieldTwo
-        label="direction"
-        handleChange={handleUpdate}
-        placeholder="direction"
-        value={taskContent.label}
-      />
-      <InputFieldTwo
-        label="shortDirection"
-        handleChange={handleUpdate}
-        placeholder="shortDirection"
-        value={taskContent.label}
-      />
+
+      {inputArray.map((item, index) => {
+        return (
+          <InputFieldTwo
+            label={item.label}
+            handleChange={handleUpdate}
+            placeholder={item.label}
+            value={taskContent.label}
+            key={index}
+          />
+        );
+      })}
+
       <h5>---RESOURCES GO HERE---</h5>
     </div>
   );

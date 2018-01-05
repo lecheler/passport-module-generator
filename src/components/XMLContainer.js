@@ -26,15 +26,34 @@ const formatScoring = scoringArray => {
   return formattedScoringArray;
 };
 
+const formatTasks = tasksArray => {
+  const formattedTasksArray = tasksArray.map(task => {
+    switch (task.type) {
+      case "stimulus":
+        return {};
+        break;
+      case "flipgrid":
+        return {};
+        break;
+      case "avenue":
+        return {};
+        break;
+      default:
+        return {};
+    }
+  });
+  return formattedTasksArray;
+};
+
 function XMLContainer(props) {
   let formattedCategories = props.content.categories.map(category => {
-    let formattedCategories = formatScoring(category.scoring);
+    let formattedScores = formatScoring(category.scoring);
 
     let formattedCategory = {
       category: [
         { _attr: { order: category.order + 1 } },
         { title: category.title },
-        { scoring: formattedCategories },
+        { scoring: formattedScores },
         { tasks: category.tasks }
       ]
     };

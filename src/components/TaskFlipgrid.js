@@ -11,7 +11,7 @@ const styles = theme => ({
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-    // background: "lightGray",
+    background: "lightGray",
     padding: 10
   },
   button: {
