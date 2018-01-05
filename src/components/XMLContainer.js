@@ -111,7 +111,7 @@ function XMLContainer(props) {
   ];
 
   let xmlContent = XML(contentToFormat);
-  let title = props.title;
+  let title = props.content.title;
 
   const downloadXMLFile = () => fileDownload(xmlContent, `${title}.xml`);
   return (
