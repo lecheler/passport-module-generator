@@ -15,7 +15,9 @@ import InputField from "./InputField";
 import InputFieldTwo from "./InputFieldTwo";
 import DeleteCategory from "./DeleteCategory";
 import AddScore from "./AddScore";
+import AddTask from "./AddTask";
 import Score from "./Score";
+import Task from "./Task";
 
 const styles = theme => ({
   root: {
@@ -45,7 +47,7 @@ class Category extends Component {
   };
 
   render() {
-    const { classes, index, catContent, scoring } = this.props;
+    const { classes, index, catContent, scoring, tasks } = this.props;
     // console.log("catContent", catContent);
     return (
       <div className={classes.root}>
@@ -64,24 +66,46 @@ class Category extends Component {
           </div>
           <Divider />
           {/*<h2>Category {index + 1}</h2>*/}
-
+          <h3>Scores</h3>
           <FlipMove
-            duration={300}
+            duration={100}
             easing="ease-out"
             enterAnimation="elevator"
             maintainContainerHeight={true}
           >
-            {this.props.catContent.scoring.map((score, scoreIndex) => (
+            {catContent.scoring.map((score, scoreIndex) => (
               <Score
                 scoring={this.props.scoring}
                 scoreContent={this.props.scoring.get(index, scoreIndex)}
                 catIndex={index}
                 scoreIndex={scoreIndex}
+                key={scoreIndex}
               />
             ))}
           </FlipMove>
           {scoring.count(index) < scoring.countMax ? (
             <AddScore catIndex={index} scoring={this.props.scoring} />
+          ) : null}
+          <Divider />
+          <h3>Tasks</h3>
+          <FlipMove
+            duration={100}
+            easing="ease-out"
+            enterAnimation="elevator"
+            maintainContainerHeight={true}
+          >
+            {catContent.tasks.map((score, taskIndex) => (
+              <Task
+                tasks={tasks}
+                taskContent={tasks.get(index, taskIndex)}
+                catIndex={index}
+                taskIndex={taskIndex}
+                key={taskIndex}
+              />
+            ))}
+          </FlipMove>
+          {tasks.count(index) < tasks.countMax ? (
+            <AddTask catIndex={index} tasks={this.props.tasks} />
           ) : null}
         </Paper>
       </div>

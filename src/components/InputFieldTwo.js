@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { withStyles } from "material-ui/styles";
 import MenuItem from "material-ui/Menu/MenuItem";
 import TextField from "material-ui/TextField";
+import InputFieldTwo from "./InputFieldTwo";
 
 const styles = theme => ({
   root: {
@@ -24,7 +25,7 @@ const styles = theme => ({
 
 function InputField(props) {
   const handleInputChange = e => {
-    props.handleChange({ value: e.target.value });
+    props.handleChange({ value: e.target.value, label: props.label });
   };
 
   const { classes } = props;

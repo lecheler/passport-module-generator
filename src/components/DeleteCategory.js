@@ -1,15 +1,34 @@
 import React, { Component } from "react";
+import Button from "material-ui/Button";
+import DeleteIcon from "material-ui-icons/Delete";
+import { withStyles } from "material-ui/styles";
 
-export default class DeleteCategory extends Component {
-  handleDelete = () => {
-    this.props.deleteCategory(this.props.index);
+const styles = theme => ({
+  root: {
+    // flexGrow: 1,
+    marginTop: 30
+  },
+  button: {}
+});
+
+function DeleteCategory(props) {
+  const { classes } = props;
+  const handleDelete = () => {
+    props.deleteCategory(props.index);
   };
 
-  render() {
-    return (
-      <div>
-        <button onClick={this.handleDelete}>Delete Category</button>
-      </div>
-    );
-  }
+  return (
+    <div>
+      <Button
+        className={classes.button}
+        onClick={handleDelete}
+        fab
+        aria-label="delete"
+      >
+        <DeleteIcon />
+      </Button>
+    </div>
+  );
 }
+
+export default withStyles(styles)(DeleteCategory);
