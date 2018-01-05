@@ -11,7 +11,7 @@ export default class AddCategory extends Component {
         order: this.props.categoryCount,
         title: "",
         scoring: [],
-        taks: []
+        tasks: []
       });
   };
 

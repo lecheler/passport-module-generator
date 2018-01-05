@@ -87,6 +87,88 @@ class App extends Component {
     }
   };
 
+  tasks = {
+    get: (catIndex, taskIndex) =>
+      this.state.categories[catIndex].tasks[taskIndex],
+    count: catIndex => this.state.categories[catIndex].tasks.length,
+    countMax: 5,
+    countMin: 1,
+    addFlipGrid: catIndex => {
+      this.setState(prevState => {
+        const defaultTask = { type: "flipgrid", question: "", direction: "" };
+        let newCategories = [...prevState.categories];
+        let newCategory = newCategories[catIndex];
+        newCategory.tasks.push(defaultTask);
+        newCategories.splice(catIndex, 1, newCategory);
+        return { categories: newCategories };
+      });
+    },
+    addStimulus: catIndex => {
+      this.setState(prevState => {
+        const defaultTask = {
+          type: "stimulus",
+          responseType: "",
+          direction: "",
+          shortDirection: "",
+          resources: []
+        };
+        let newCategories = [...prevState.categories];
+        let newCategory = newCategories[catIndex];
+        newCategory.tasks.push(defaultTask);
+        newCategories.splice(catIndex, 1, newCategory);
+        return { categories: newCategories };
+      });
+    },
+    addAvenue: catIndex => {
+      this.setState(prevState => {
+        const defaultTask = {
+          type: "avenue",
+          name: "",
+          instructions: "",
+          recordingTries: "",
+          recordTime: "",
+          views: "",
+          mediaTime: "",
+          mediaWhileRecording: "",
+          allowMobile: "",
+          sliders: [],
+          assets: [],
+          level: "",
+          unit: ""
+        };
+        let newCategories = [...prevState.categories];
+        let newCategory = newCategories[catIndex];
+        newCategory.tasks.push(defaultTask);
+        newCategories.splice(catIndex, 1, newCategory);
+        return { categories: newCategories };
+      });
+    },
+
+    update: (catIndex, taskIndex, taskUpdate) => {
+      this.setState(prevState => {
+        let newCategories = [...prevState.categories];
+        let newCategory = newCategories[catIndex];
+        const prevTask = this.state.categories[catIndex].tasks[taskIndex];
+        const newTask = {
+          ...prevTask,
+          ...taskUpdate
+        };
+        newCategory.tasks.splice(taskIndex, 1, newTask);
+        newCategories.splice(catIndex, 1, newCategory);
+        return { categories: newCategories };
+      });
+    },
+    remove: (catIndex, taskIndex) => {
+      this.setState(prevState => {
+        let newCategories = [...prevState.categories];
+        let newCategory = newCategories[catIndex];
+        newCategory.tasks.splice(taskIndex, 1);
+        newCategories.splice(catIndex, 1, newCategory);
+        return { categories: newCategories };
+      });
+    }
+  };
+
   updateTitle = e => {
     this.setState({ title: e.target.value });
   };
@@ -106,6 +188,7 @@ class App extends Component {
           content={this.state}
           addCategory={this.addCategory}
           scoring={this.scoring}
+          tasks={this.tasks}
           deleteCategory={this.deleteCategory}
           updateCategory={this.updateCategory}
           updateTitle={this.updateTitle}

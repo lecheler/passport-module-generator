@@ -64,6 +64,7 @@ function InputContainer(props) {
                     deleteCategory={props.deleteCategory}
                     catContent={category}
                     scoring={props.scoring}
+                    tasks={props.tasks}
                   />
                 </Grid>
               );
