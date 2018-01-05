@@ -6,6 +6,7 @@ import Paper from "material-ui/Paper";
 import Grid from "material-ui/Grid";
 
 import SelectLanguageID from "./SelectLanguageID.js";
+import InputDropdown from "./InputDropdown";
 
 import InputField from "./InputField";
 import AddCategory from "./AddCategory";
@@ -28,6 +29,17 @@ const styles = theme => ({
 
 function InputContainer(props) {
   const { classes, content } = props;
+
+  const options = [
+    { value: "my value", display: "name to display" },
+    { value: "my value", display: "name to display" }
+  ];
+
+  const anotherOption = [
+    { value: 1, display: "on" },
+    { value: 0, display: "off" }
+  ];
+
   return (
     <div className={classes.root}>
       <Grid container spacing={24}>
@@ -35,9 +47,17 @@ function InputContainer(props) {
         <Grid item xs={8} md={10}>
           <Paper className={classes.paper}>
             <SelectLanguageID
+              // send selectLanguageID through here
               handleChange={props.languageID}
               languageID={props.content.language}
+              // get rid of this line
               selectLanguageID={props.selectLanguageID}
+            />
+            <InputDropdown
+              name="string"
+              id="string"
+              options="array"
+              handleChange="function"
             />
           </Paper>
           <Paper className={classes.paper}>

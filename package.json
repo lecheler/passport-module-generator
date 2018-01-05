@@ -2,6 +2,7 @@
   "name": "passport-module-generator",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://resources.emcp.com/module-authoring-tool/",
   "dependencies": {
     "js-file-download": "^0.4.1",
     "material-ui": "^1.0.0-beta.26",
