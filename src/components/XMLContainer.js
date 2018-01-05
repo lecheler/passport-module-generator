@@ -33,7 +33,13 @@ const formatTasks = tasksArray => {
         return {};
         break;
       case "flipgrid":
-        return {};
+        return {
+          task: [
+            { _attr: { type: "flipgrid" } },
+            { direction: task.direction },
+            { question: task.question }
+          ]
+        };
         break;
       case "avenue":
         return {};
@@ -55,7 +61,7 @@ function XMLContainer(props) {
         { _attr: { order: category.order + 1 } },
         { title: category.title },
         { scoring: formattedScores },
-        { tasks: category.tasks }
+        { tasks: formattedTasks }
       ]
     };
     return formattedCategory;
