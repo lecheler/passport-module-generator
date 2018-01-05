@@ -88,8 +88,11 @@ class App extends Component {
   };
 
   tasks = {
-    get: (catIndex, taskIndex) =>
-      this.state.categories[catIndex].tasks[taskIndex],
+    get: (catIndex, taskIndex) => {
+      // console.log(catIndex, taskIndex);
+      // console.log(this.state.categories[catIndex].tasks[taskIndex]);
+      return this.state.categories[catIndex].tasks[taskIndex];
+    },
     count: catIndex => this.state.categories[catIndex].tasks.length,
     countMax: 5,
     countMin: 1,
@@ -166,6 +169,65 @@ class App extends Component {
         newCategories.splice(catIndex, 1, newCategory);
         return { categories: newCategories };
       });
+    },
+    addRepeater: (catIndex, taskIndex, type) => {
+      let defaultRepeater = {};
+      let repeaterArray = "";
+      switch (type) {
+        case "resource":
+          defaultRepeater = { type: "HTTP", url: "", label: "" };
+          repeaterArray = "resources";
+          break;
+        case "asset":
+          defaultRepeater = {
+            type: "",
+            extension: "",
+            file: "",
+            title: "",
+            text: ""
+          };
+          repeaterArray = "assets";
+          break;
+        case "slider":
+          defaultRepeater = { max: "", title: "" };
+          repeaterArray = "sliders";
+          break;
+        default:
+          return {};
+      }
+
+      const defaultResource = { type: "HTTP", url: "", label: "" };
+      let prevTask = this.tasks.get(catIndex, taskIndex);
+      let newResources = [...prevTask.resources, defaultResource];
+      let updatedTask = {
+        ...prevTask
+      };
+      updatedTask[repeaterArray] = newResources;
+      this.tasks.update(catIndex, taskIndex, updatedTask);
+    },
+    updateRepeater: (catIndex, taskIndex, repeaterIndex, repeaterUpdate) => {
+      let prevTask = this.tasks.get(catIndex, taskIndex);
+      let repeaterArrayName = (prevTask.type = "stimulus")
+        ? "resources"
+        : "sliders";
+
+      let updatedRepeater = {
+        ...prevTask[repeaterArrayName][repeaterIndex],
+        ...repeaterUpdate
+      };
+
+      // console.log(updatedRepeater);
+
+      let updatedRepeaterArray = [...prevTask[repeaterArrayName]];
+      updatedRepeaterArray.splice(repeaterIndex, 1, updatedRepeater);
+
+      let updatedTask = {
+        ...prevTask
+      };
+
+      updatedTask[repeaterArrayName] = updatedRepeaterArray;
+
+      this.tasks.update(catIndex, taskIndex, updatedTask);
     }
   };
 

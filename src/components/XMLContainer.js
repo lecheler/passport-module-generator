@@ -28,14 +28,35 @@ const formatScoring = scoringArray => {
 
 const formatTasks = tasksArray => {
   const formattedTasksArray = tasksArray.map(task => {
+    console.log(task);
     switch (task.type) {
       case "stimulus":
-        return {};
+        const formattedResources = [
+          { _attr: { type: "HTTP" } },
+          ...task.resources.map(resource => {
+            return {
+              resource: [{ _attr: { url: resource.url } }, resource.label]
+            };
+          })
+        ];
+        console.log(task.resources);
+        return {
+          task: [
+            { _attr: { type: task.type } },
+            { _attr: { responseType: task.responseType } },
+            { direction: task.direction },
+            { shortDirection: task.shortDirection },
+            {
+              resources: formattedResources
+            }
+          ]
+        };
+        return formattedResources;
         break;
       case "flipgrid":
         return {
           task: [
-            { _attr: { type: "flipgrid" } },
+            { _attr: { type: task.type } },
             { direction: task.direction },
             { question: task.question }
           ]
@@ -90,7 +111,7 @@ function XMLContainer(props) {
   ];
 
   let xmlContent = XML(contentToFormat);
-  let title = props.title;
+  let title = props.content.title;
 
   const downloadXMLFile = () => fileDownload(xmlContent, `${title}.xml`);
   return (
