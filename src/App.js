@@ -93,8 +93,8 @@ class App extends Component {
   updateDirection = e => {
     this.setState({ direction: e.target.value });
   };
-  selectLanguageID = e => {
-    this.setState({ lanugageID: e.target.value });
+  selectLanguageID = value => {
+    this.setState({ languageID: value });
   };
 
   render() {

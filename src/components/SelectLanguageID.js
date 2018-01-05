@@ -33,12 +33,20 @@ const ITEM_PADDING_TOP = 8;
 //   "Spanish: ¡Qué chévere!,55"
 // ];
 class SelectLanguageID extends React.Component {
-  state = {
-    language: ""
-  };
+  // state = {
+  //   language: ""
+  // };
+  constructor(props) {
+    super(props);
+    this.state = {
+      language: ""
+    };
+  }
 
   handleChange = event => {
+    // console.log(event.target.value);
     this.setState({ language: event.target.value });
+    this.props.selectLanguageID(event.target.value);
   };
 
   render() {
@@ -53,12 +61,9 @@ class SelectLanguageID extends React.Component {
             onChange={this.handleChange}
             input={<Input name="LanguageID" id="languageid" />}
           >
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
-            <MenuItem value={10}>Chinese: Zhēn Bàng!</MenuItem>
-            <MenuItem value={20}>Chinese: Zhēn Bàng! 2nd Edition</MenuItem>
-            <MenuItem value={30}>French: T`es branché ?</MenuItem>
+            <MenuItem value={3}>Chinese: Zhēn Bàng!</MenuItem>
+            <MenuItem value={155}>Chinese: Zhēn Bàng! 2nd Edition</MenuItem>
+            <MenuItem value={4}>French: T`es branché ?</MenuItem>
             <MenuItem value={2}>German: Deutsch Aktuell 6th Edition</MenuItem>
             <MenuItem value={133}>German: Deutsch Aktuell 7th Edition</MenuItem>
             <MenuItem value={170}>Mirrors and Windows</MenuItem>

@@ -35,8 +35,9 @@ function InputContainer(props) {
         <Grid item xs={8} md={10}>
           <Paper className={classes.paper}>
             <SelectLanguageID
-              handleChange={props.SelectLanguageID}
-              languageID={props.content.languageID}
+              handleChange={props.languageID}
+              languageID={props.content.language}
+              selectLanguageID={props.selectLanguageID}
             />
           </Paper>
           <Paper className={classes.paper}>
