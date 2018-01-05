@@ -46,7 +46,7 @@ function XMLContainer(props) {
       modules: [
         {
           module: [
-            { _attr: { languageID: props.content.language_ID } },
+            { _attr: { languageID: props.content.languageID } },
             { _attr: { level: props.content.level } },
             { title: props.content.title },
             { direction: props.content.direction },

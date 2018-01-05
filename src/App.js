@@ -175,6 +175,9 @@ class App extends Component {
   updateDirection = e => {
     this.setState({ direction: e.target.value });
   };
+  selectLanguageID = value => {
+    this.setState({ languageID: value });
+  };
 
   render() {
     return (
@@ -186,6 +189,7 @@ class App extends Component {
 
         <InputContainer
           content={this.state}
+          selectLanguageID={this.selectLanguageID}
           addCategory={this.addCategory}
           scoring={this.scoring}
           tasks={this.tasks}
