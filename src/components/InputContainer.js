@@ -41,13 +41,14 @@ function InputContainer(props) {
             />
           </Paper>
           <Paper className={classes.paper}>
-            <h2>section 1</h2>
             <InputField
+              label={"Title"}
               placeholder="add title"
               handleChange={props.updateTitle}
               title={props.content.title}
             />
             <InputField
+              label={"Directions"}
               placeholder="add directions"
               handleChange={props.updateDirection}
               description={props.content.direction}
