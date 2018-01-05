@@ -28,12 +28,39 @@ const formatScoring = scoringArray => {
 
 const formatTasks = tasksArray => {
   const formattedTasksArray = tasksArray.map(task => {
+    console.log(task);
     switch (task.type) {
       case "stimulus":
-        return {};
+        const formattedResources = [
+          { _attr: { type: "HTTP" } },
+          ...task.resources.map(resource => {
+            return {
+              resource: [{ _attr: { url: resource.url } }, resource.label]
+            };
+          })
+        ];
+        console.log(task.resources);
+        return {
+          task: [
+            { _attr: { type: task.type } },
+            { _attr: { responseType: task.responseType } },
+            { direction: task.direction },
+            { shortDirection: task.shortDirection },
+            {
+              resources: formattedResources
+            }
+          ]
+        };
+        return formattedResources;
         break;
       case "flipgrid":
-        return {};
+        return {
+          task: [
+            { _attr: { type: task.type } },
+            { direction: task.direction },
+            { question: task.question }
+          ]
+        };
         break;
       case "avenue":
         return {};
@@ -55,7 +82,7 @@ function XMLContainer(props) {
         { _attr: { order: category.order + 1 } },
         { title: category.title },
         { scoring: formattedScores },
-        { tasks: category.tasks }
+        { tasks: formattedTasks }
       ]
     };
     return formattedCategory;
