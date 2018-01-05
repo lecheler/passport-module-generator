@@ -48,6 +48,7 @@ const formatTasks = tasksArray => {
 function XMLContainer(props) {
   let formattedCategories = props.content.categories.map(category => {
     let formattedScores = formatScoring(category.scoring);
+    let formattedTasks = formatTasks(category.tasks);
 
     let formattedCategory = {
       category: [
