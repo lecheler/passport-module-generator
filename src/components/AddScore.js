@@ -20,7 +20,7 @@ function AddScore(props) {
 
   return (
     <div>
-      <Button primary onClick={handleAddScore} color="primary">
+      <Button onClick={handleAddScore} color="primary">
         Add Score
       </Button>
     </div>

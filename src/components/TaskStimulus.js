@@ -4,7 +4,7 @@ import InputFieldTwo from "./InputFieldTwo";
 import IconButton from "material-ui/IconButton";
 import DeleteIcon from "material-ui-icons/Delete";
 import InputDropdown from "./InputDropdown";
-
+import AddRepeater from "./AddRepeater";
 const styles = theme => ({
   root: {},
   flex: {
@@ -25,6 +25,12 @@ const inputArray = [
   { label: "shortDirection", type: "string" }
 ];
 
+const resourceArray = [
+  { label: "type", type: "string", default: "HTTP" },
+  { label: "url", type: "string", default: "" },
+  { label: "label", type: "string", default: "" }
+];
+
 function TaskStimulus(props) {
   const { taskIndex, catIndex, tasks, taskContent, classes } = props;
 
@@ -32,6 +38,12 @@ function TaskStimulus(props) {
     let updateObject = {};
     updateObject[input.label] = input.value;
     props.tasks.update(catIndex, taskIndex, updateObject);
+  };
+
+  const handleRepeaterUpdate = input => {
+    let updateObject = {};
+    updateObject[input.label] = input.value;
+    props.tasks.updateRepeater(catIndex, taskIndex, input.rIndex, updateObject);
   };
 
   const handleDelete = () => {
@@ -63,7 +75,28 @@ function TaskStimulus(props) {
         );
       })}
 
-      <h5>---RESOURCES GO HERE---</h5>
+      <h5>RESOURCES</h5>
+      {taskContent.resources.map((resource, rIndex) => {
+        return resourceArray.map((item, index) => {
+          return (
+            <InputFieldTwo
+              label={item.label}
+              handleChange={handleRepeaterUpdate}
+              placeholder={item.label}
+              value={resource[item.label]}
+              key={index}
+              rIndex={rIndex}
+            />
+          );
+        });
+      })}
+
+      <AddRepeater
+        tasks={tasks}
+        catIndex={catIndex}
+        taskIndex={taskIndex}
+        type="resource"
+      />
     </div>
   );
 }

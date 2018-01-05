@@ -24,8 +24,14 @@ const styles = theme => ({
 });
 
 function InputField(props) {
+  const rIndex = props.rIndex ? props.rIndex : 0;
+
   const handleInputChange = e => {
-    props.handleChange({ value: e.target.value, label: props.label });
+    props.handleChange({
+      value: e.target.value,
+      label: props.label,
+      rIndex: rIndex
+    });
   };
 
   const { classes } = props;
