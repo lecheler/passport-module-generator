@@ -15,13 +15,14 @@ const styles = theme => ({
   textField: {
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
-    width: 400
+    width: "100%"
   },
   menu: {
-    width: 400
+    // width: 400
   },
   input: {
-    margin: theme.spacing.unit
+    margin: theme.spacing.unit,
+    width: "100%"
   }
 });
 // Convert to class component. DONE
@@ -29,20 +30,17 @@ const styles = theme => ({
 // update local state of input field.
 
 class InputField extends Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     // inputValue: ""
-  //   };
-  // }
-
   render() {
+    // const { classes } = this.props;
     return (
       <div className={this.props.classes.root}>
-        <Input
+        <TextField
+          label={this.props.label}
           onChange={this.props.handleChange}
           defaultValue={this.props.defaultValue}
           placeholder={this.props.placeholder}
+          multiline
+          rowsMax="4"
           className={this.props.classes.input}
           inputProps={{
             "aria-label": "Add Title"
