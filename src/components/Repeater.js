@@ -24,7 +24,7 @@ function Repeater(props) {
     taskIndex,
     repeaterIndex,
     type,
-    repeaterArray,
+    repeaterSchema,
     value
   } = props;
 
@@ -45,7 +45,7 @@ function Repeater(props) {
     props.tasks.removeRepeater(catIndex, taskIndex, repeaterIndex, type);
   };
 
-  const repeaterInputs = repeaterArray.map((item, index) => {
+  const repeaterInputs = repeaterSchema.map((item, index) => {
     return (
       <InputFieldTwo
         label={item.label}

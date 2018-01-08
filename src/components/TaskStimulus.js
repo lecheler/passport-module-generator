@@ -28,7 +28,7 @@ const inputArray = [
   { label: "shortDirection", type: "string" }
 ];
 
-const repeaterArray = [
+const resourceSchema = [
   { label: "url", type: "string", default: "" },
   { label: "label", type: "string", default: "" }
 ];
@@ -86,7 +86,7 @@ function TaskStimulus(props) {
             catIndex={catIndex}
             taskIndex={taskIndex}
             repeaterIndex={repeaterIndex}
-            repeaterArray={repeaterArray}
+            repeaterSchema={resourceSchema}
             type="resources"
             value={resource}
           />

@@ -35,9 +35,17 @@ const inputArray = [
   { label: "level", type: "number", max: 999 }
 ];
 
-const repeaterArray = [
+const sliderSchema = [
   { label: "label", type: "string", default: "" },
   { label: "max", type: "string", default: "" }
+];
+
+const assetSchema = [
+  { label: "type", type: "string", default: "" },
+  { label: "extention", type: "string", default: "" },
+  { label: "file", type: "string", default: "" },
+  { label: "title", type: "string", default: "" },
+  { label: "text", type: "string", default: "" }
 ];
 
 function TaskAvenue(props) {
@@ -93,7 +101,7 @@ function TaskAvenue(props) {
             catIndex={catIndex}
             taskIndex={taskIndex}
             repeaterIndex={repeaterIndex}
-            repeaterArray={repeaterArray}
+            repeaterSchema={sliderSchema}
             type="sliders"
             value={slider}
           />
@@ -119,7 +127,7 @@ function TaskAvenue(props) {
             catIndex={catIndex}
             taskIndex={taskIndex}
             repeaterIndex={repeaterIndex}
-            repeaterArray={repeaterArray}
+            repeaterSchema={assetSchema}
             type="assets"
             value={asset}
           />
