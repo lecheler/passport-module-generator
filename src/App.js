@@ -174,7 +174,7 @@ class App extends Component {
       let defaultRepeater = {};
       let repeaterArray = "";
       switch (type) {
-        case "resource":
+        case "resources":
           defaultRepeater = { type: "HTTP", url: "", label: "" };
           repeaterArray = "resources";
           break;
@@ -188,7 +188,7 @@ class App extends Component {
           };
           repeaterArray = "assets";
           break;
-        case "slider":
+        case "sliders":
           defaultRepeater = { max: "", title: "" };
           repeaterArray = "sliders";
           break;
@@ -198,7 +198,7 @@ class App extends Component {
 
       const defaultResource = { type: "HTTP", url: "", label: "" };
       let prevTask = this.tasks.get(catIndex, taskIndex);
-      let newResources = [...prevTask.resources, defaultResource];
+      let newResources = [...prevTask[repeaterArray], defaultResource];
       let updatedTask = {
         ...prevTask
       };
@@ -210,6 +210,8 @@ class App extends Component {
       let repeaterArrayName = (prevTask.type = "stimulus")
         ? "resources"
         : "sliders";
+
+      console.log(repeaterUpdate);
 
       let updatedRepeater = {
         ...prevTask[repeaterArrayName][repeaterIndex],
@@ -227,6 +229,17 @@ class App extends Component {
 
       updatedTask[repeaterArrayName] = updatedRepeaterArray;
 
+      this.tasks.update(catIndex, taskIndex, updatedTask);
+    },
+    removeRepeater: (catIndex, taskIndex, repeaterIndex, type) => {
+      let prevTask = this.tasks.get(catIndex, taskIndex);
+      let newResources = [...prevTask[type]];
+      newResources.splice(repeaterIndex, 1);
+      console.log("newResources====", newResources);
+      let updatedTask = {
+        ...prevTask
+      };
+      updatedTask[type] = newResources;
       this.tasks.update(catIndex, taskIndex, updatedTask);
     }
   };

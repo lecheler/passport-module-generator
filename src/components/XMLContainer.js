@@ -32,7 +32,7 @@ const formatTasks = tasksArray => {
     switch (task.type) {
       case "stimulus":
         const formattedResources = [
-          { _attr: { type: "HTTP" } },
+          { _attr: { type: "http" } },
           ...task.resources.map(resource => {
             return {
               resource: [{ _attr: { url: resource.url } }, resource.label]
