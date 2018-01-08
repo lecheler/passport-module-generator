@@ -6,6 +6,7 @@ import DeleteIcon from "material-ui-icons/Delete";
 import InputDropdown from "./InputDropdown";
 import AddRepeater from "./AddRepeater";
 import Repeater from "./Repeater";
+import Divider from "material-ui/Divider";
 
 const styles = theme => ({
   root: {},
@@ -65,7 +66,6 @@ function TaskStimulus(props) {
       </div>
 
       {inputArray.map((item, index) => {
-        console.log("vallllue", item.label);
         return (
           <InputFieldTwo
             label={item.label}
@@ -76,24 +76,10 @@ function TaskStimulus(props) {
         );
       })}
 
+      <Divider />
       <h5>RESOURCES</h5>
-      {/*{taskContent.resources.map((resource, rIndex) => {
-        return resourceArray.map((item, index) => {
-          return (
-            <InputFieldTwo
-              label={item.label}
-              handleChange={handleRepeaterUpdate}
-              placeholder={item.label}
-              value={resource[item.label]}
-              key={index}
-              rIndex={rIndex}
-            />
-          );
-        });
-      })}*/}
 
       {taskContent.resources.map((resource, repeaterIndex) => {
-        console.log("resourceeeee", resource);
         return (
           <Repeater
             tasks={tasks}
@@ -112,6 +98,7 @@ function TaskStimulus(props) {
         catIndex={catIndex}
         taskIndex={taskIndex}
         type="resources"
+        name="Resource"
       />
     </div>
   );

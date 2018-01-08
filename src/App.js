@@ -16,34 +16,32 @@ class App extends Component {
     };
   }
 
-  addCategory = e => {
-    this.setState(prevState => {
-      let prevCategories = prevState.categories;
-      let newCategories = [...prevCategories, e];
-      return { categories: newCategories };
-    });
-  };
-
-  deleteCategory = index => {
-    // console.log("DELETE", index);
-    this.setState(prevState => {
-      let newCategories = [...prevState.categories];
-      newCategories.splice(index, 1);
-
-      let reorderedCategories = newCategories.map((category, index) => {
-        return { ...category, order: index };
+  categories = {
+    add: e => {
+      this.setState(prevState => {
+        let prevCategories = prevState.categories;
+        let newCategories = [...prevCategories, e];
+        return { categories: newCategories };
       });
-      return { categories: reorderedCategories };
-    });
-  };
+    },
+    update: (index, newCategory) => {
+      this.setState(prevState => {
+        let newCategories = [...prevState.categories];
+        newCategories.splice(index, 1, newCategory);
+        return { categories: newCategories };
+      });
+    },
+    delete: index => {
+      this.setState(prevState => {
+        let newCategories = [...prevState.categories];
+        newCategories.splice(index, 1);
 
-  updateCategory = (index, newCategory) => {
-    this.setState(prevState => {
-      // console.log("new cat >>> ", newCategory);
-      let newCategories = [...prevState.categories];
-      newCategories.splice(index, 1, newCategory);
-      return { categories: newCategories };
-    });
+        let reorderedCategories = newCategories.map((category, index) => {
+          return { ...category, order: index };
+        });
+        return { categories: reorderedCategories };
+      });
+    }
   };
 
   scoring = {
@@ -89,8 +87,6 @@ class App extends Component {
 
   tasks = {
     get: (catIndex, taskIndex) => {
-      // console.log(catIndex, taskIndex);
-      // console.log(this.state.categories[catIndex].tasks[taskIndex]);
       return this.state.categories[catIndex].tasks[taskIndex];
     },
     count: catIndex => this.state.categories[catIndex].tasks.length,
@@ -178,7 +174,7 @@ class App extends Component {
           defaultRepeater = { type: "HTTP", url: "", label: "" };
           repeaterArray = "resources";
           break;
-        case "asset":
+        case "assets":
           defaultRepeater = {
             type: "",
             extension: "",
@@ -189,45 +185,54 @@ class App extends Component {
           repeaterArray = "assets";
           break;
         case "sliders":
-          defaultRepeater = { max: "", title: "" };
+          defaultRepeater = { max: "", label: "" };
           repeaterArray = "sliders";
           break;
         default:
           return {};
       }
 
-      const defaultResource = { type: "HTTP", url: "", label: "" };
       let prevTask = this.tasks.get(catIndex, taskIndex);
-      let newResources = [...prevTask[repeaterArray], defaultResource];
+      let newRepeaters = [...prevTask[repeaterArray], defaultRepeater];
       let updatedTask = {
         ...prevTask
       };
-      updatedTask[repeaterArray] = newResources;
+      updatedTask[repeaterArray] = newRepeaters;
       this.tasks.update(catIndex, taskIndex, updatedTask);
     },
-    updateRepeater: (catIndex, taskIndex, repeaterIndex, repeaterUpdate) => {
+    updateRepeater: (
+      catIndex,
+      taskIndex,
+      repeaterIndex,
+      repeaterUpdate,
+      repeaterType
+    ) => {
+      console.log(
+        "catIndex, taskIndex, repeaterIndex, repeaterUpdate",
+        catIndex,
+        taskIndex,
+        repeaterIndex,
+        repeaterUpdate,
+        repeaterType
+      );
       let prevTask = this.tasks.get(catIndex, taskIndex);
-      let repeaterArrayName = (prevTask.type = "stimulus")
-        ? "resources"
-        : "sliders";
-
-      console.log(repeaterUpdate);
+      console.log("salkgjelakj?? ", prevTask);
+      // let repeaterArrayName =
+      //   prevTask.type === "stimulus" ? "resources" : "sliders";
 
       let updatedRepeater = {
-        ...prevTask[repeaterArrayName][repeaterIndex],
+        ...prevTask[repeaterType][repeaterIndex],
         ...repeaterUpdate
       };
 
-      // console.log(updatedRepeater);
-
-      let updatedRepeaterArray = [...prevTask[repeaterArrayName]];
+      let updatedRepeaterArray = [...prevTask[repeaterType]];
       updatedRepeaterArray.splice(repeaterIndex, 1, updatedRepeater);
 
       let updatedTask = {
         ...prevTask
       };
 
-      updatedTask[repeaterArrayName] = updatedRepeaterArray;
+      updatedTask[repeaterType] = updatedRepeaterArray;
 
       this.tasks.update(catIndex, taskIndex, updatedTask);
     },
@@ -235,7 +240,6 @@ class App extends Component {
       let prevTask = this.tasks.get(catIndex, taskIndex);
       let newResources = [...prevTask[type]];
       newResources.splice(repeaterIndex, 1);
-      console.log("newResources====", newResources);
       let updatedTask = {
         ...prevTask
       };
@@ -264,15 +268,12 @@ class App extends Component {
 
         <InputContainer
           content={this.state}
-          selectLanguageID={this.selectLanguageID}
-          addCategory={this.addCategory}
+          categories={this.categories}
           scoring={this.scoring}
           tasks={this.tasks}
-          deleteCategory={this.deleteCategory}
-          updateCategory={this.updateCategory}
+          selectLanguageID={this.selectLanguageID}
           updateTitle={this.updateTitle}
           updateDirection={this.updateDirection}
-          updateCategory={this.updateCategory}
         />
         <XMLContainer content={this.state} />
       </div>

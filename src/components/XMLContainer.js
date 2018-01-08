@@ -51,7 +51,7 @@ const formatTasks = tasksArray => {
             }
           ]
         };
-        return formattedResources;
+        // return formattedResources;
         break;
       case "flipgrid":
         return {
@@ -63,7 +63,31 @@ const formatTasks = tasksArray => {
         };
         break;
       case "avenue":
-        return {};
+        const formattedSliders = [
+          ...task.sliders.map(slider => {
+            return {
+              slider: [{ _attr: { max: slider.max } }, slider.label]
+            };
+          })
+        ];
+
+        return {
+          task: [
+            { _attr: { type: task.type } },
+            { name: task.name },
+            { instructions: task.instructions },
+            { recordingTries: task.recordingTries },
+            { recordTime: task.recordTime },
+            { views: task.views },
+            { mediaTime: task.mediaTime },
+            { mediaWhileRecording: task.mediaWhileRecording },
+            { allowMobile: task.allowMobile },
+            {
+              sliders: formattedSliders
+            }
+          ]
+        };
+        // return formattedSliders;
         break;
       default:
         return {};

@@ -89,9 +89,8 @@ function InputContainer(props) {
                   <Category
                     type="stimulus"
                     index={index}
-                    updateCategory={props.updateCategory}
-                    updateValidCategory={props.updateValidCategory}
-                    deleteCategory={props.deleteCategory}
+                    updateCategory={props.categories.update}
+                    deleteCategory={props.categories.delete}
                     catContent={category}
                     scoring={props.scoring}
                     tasks={props.tasks}
@@ -105,7 +104,7 @@ function InputContainer(props) {
       </Grid>
       <AddCategory
         categoryCount={content.categories.length}
-        addCategory={props.addCategory}
+        addCategory={props.categories.add}
       />
     </div>
   );

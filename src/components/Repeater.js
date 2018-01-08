@@ -36,7 +36,8 @@ function Repeater(props) {
       catIndex,
       taskIndex,
       repeaterIndex,
-      updateObject
+      updateObject,
+      type
     );
   };
 

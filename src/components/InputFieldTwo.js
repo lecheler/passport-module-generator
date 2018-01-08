@@ -27,7 +27,8 @@ function InputField(props) {
   const handleInputChange = e => {
     props.handleChange({
       value: e.target.value,
-      label: props.label
+      label: props.label,
+      type: props.type
     });
   };
 
