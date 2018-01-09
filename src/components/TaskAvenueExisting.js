@@ -25,40 +25,28 @@ const styles = theme => ({
 });
 
 const inputArray = [
-  { label: "responseType", type: "string" },
-  { label: "direction", type: "string" },
-  { label: "shortDirection", type: "string" }
+  // { label: "type", type: "string", default: "avenue" },
+  { label: "taskId", type: "string" }
 ];
 
-const resourceSchema = [
-  { label: "url", type: "string", default: "" },
-  { label: "label", type: "string", default: "" }
-];
-
-function TaskStimulus(props) {
+function TaskAvenueExisting(props) {
   const { taskIndex, catIndex, tasks, taskContent, classes } = props;
 
   const handleUpdate = input => {
     let updateObject = {};
     updateObject[input.label] = input.value;
-    props.tasks.update(catIndex, taskIndex, updateObject);
-  };
-
-  const handleRepeaterUpdate = input => {
-    let updateObject = {};
-    updateObject[input.label] = input.value;
-    props.tasks.updateRepeater(catIndex, taskIndex, input.rIndex, updateObject);
+    tasks.update(catIndex, taskIndex, updateObject);
   };
 
   const handleDelete = () => {
-    props.tasks.remove(catIndex, taskIndex);
+    tasks.remove(catIndex, taskIndex);
   };
 
   return (
     <div>
       <div className={classes.flex}>
         <h5>C{catIndex + 1}</h5>
-        <h5>Task {taskIndex + 1}: Stimulus</h5>
+        <h5>Task {taskIndex + 1}: Avenue (Existing)</h5>
         <IconButton
           className={classes.button}
           aria-label="Delete"
@@ -75,37 +63,12 @@ function TaskStimulus(props) {
             handleChange={handleUpdate}
             placeholder={item.label}
             key={index}
+            value={taskContent[item.label]}
           />
         );
       })}
-
-      <Divider />
-      <h5>Task {taskIndex + 1} Resources</h5>
-
-      {taskContent.resources.map((resource, repeaterIndex) => {
-        return (
-          <Repeater
-            tasks={tasks}
-            catIndex={catIndex}
-            taskIndex={taskIndex}
-            repeaterIndex={repeaterIndex}
-            repeaterSchema={resourceSchema}
-            type="resources"
-            value={resource}
-            key={repeaterIndex}
-          />
-        );
-      })}
-
-      <AddRepeater
-        tasks={tasks}
-        catIndex={catIndex}
-        taskIndex={taskIndex}
-        type="resources"
-        name="Resource"
-      />
     </div>
   );
 }
 
-export default withStyles(styles)(TaskStimulus);
+export default withStyles(styles)(TaskAvenueExisting);

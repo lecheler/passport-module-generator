@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import FlipMove from "react-flip-move";
-
 import TaskAvenue from "./TaskAvenue";
 import TaskFlipgrid from "./TaskFlipgrid";
 import TaskStimulus from "./TaskStimulus";
@@ -10,7 +9,6 @@ import { withStyles } from "material-ui/styles";
 import Paper from "material-ui/Paper";
 import Grid from "material-ui/Grid";
 import Divider from "material-ui/Divider";
-
 import InputField from "./InputField";
 import InputFieldTwo from "./InputFieldTwo";
 import DeleteCategory from "./DeleteCategory";
@@ -52,6 +50,7 @@ class Category extends Component {
     return (
       <div className={classes.root}>
         <Paper className={classes.paper}>
+          <h2>Category {index + 1}</h2>
           <div className={classes.deleteBar}>
             <InputFieldTwo
               label={`Category ${catContent.order + 1} Title`}

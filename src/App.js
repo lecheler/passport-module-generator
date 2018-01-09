@@ -16,7 +16,9 @@ class App extends Component {
     };
   }
 
+  /* ==================== CATEGORIES ==================== */
   categories = {
+    /* ----- Add new category ----- */
     add: e => {
       this.setState(prevState => {
         let prevCategories = prevState.categories;
@@ -24,6 +26,7 @@ class App extends Component {
         return { categories: newCategories };
       });
     },
+    /* ----- Update category ----- */
     update: (index, newCategory) => {
       this.setState(prevState => {
         let newCategories = [...prevState.categories];
@@ -31,6 +34,7 @@ class App extends Component {
         return { categories: newCategories };
       });
     },
+    /* ----- Delete category ----- */
     delete: index => {
       this.setState(prevState => {
         let newCategories = [...prevState.categories];
@@ -44,11 +48,16 @@ class App extends Component {
     }
   };
 
+  /* ==================== SCORING ==================== */
   scoring = {
+    /* ----- Get info on score ----- */
     get: (catIndex, scoreIndex) =>
       this.state.categories[catIndex].scoring[scoreIndex],
+    /* ----- Get current number of scores ----- */
     count: catIndex => this.state.categories[catIndex].scoring.length,
+    /* ----- Max number of scores ----- */
     countMax: 5,
+    /* ----- Add a new score ----- */
     add: catIndex => {
       this.setState(prevState => {
         // const defaultScore = { score: [{ _attr: { max: 99 } }, "STRING"] };
@@ -60,6 +69,7 @@ class App extends Component {
         return { categories: newCategories };
       });
     },
+    /* ----- Update score ----- */
     update: (catIndex, scoreIndex, scoreUpdate) => {
       this.setState(prevState => {
         let newCategories = [...prevState.categories];
@@ -85,16 +95,26 @@ class App extends Component {
     }
   };
 
+  /* ==================== TASKS ==================== */
   tasks = {
+    /* ----- Get info on tasks ----- */
     get: (catIndex, taskIndex) => {
       return this.state.categories[catIndex].tasks[taskIndex];
     },
+    /* ----- Get current number of tasks ----- */
     count: catIndex => this.state.categories[catIndex].tasks.length,
+    /* ----- Max and min number of tasks ----- */
     countMax: 5,
     countMin: 1,
+    /* ----- Add task controls ----- */
     addFlipGrid: catIndex => {
       this.setState(prevState => {
-        const defaultTask = { type: "flipgrid", question: "", direction: "" };
+        const defaultTask = {
+          type: "flipgrid",
+          question: "",
+          direction: "",
+          resources: []
+        };
         let newCategories = [...prevState.categories];
         let newCategory = newCategories[catIndex];
         newCategory.tasks.push(defaultTask);
@@ -142,7 +162,20 @@ class App extends Component {
         return { categories: newCategories };
       });
     },
-
+    addExistingAvenue: catIndex => {
+      this.setState(prevState => {
+        const defaultTask = {
+          type: "avenue-existing",
+          avenueTaskId: ""
+        };
+        let newCategories = [...prevState.categories];
+        let newCategory = newCategories[catIndex];
+        newCategory.tasks.push(defaultTask);
+        newCategories.splice(catIndex, 1, newCategory);
+        return { categories: newCategories };
+      });
+    },
+    /* ----- Update and remove tasks ----- */
     update: (catIndex, taskIndex, taskUpdate) => {
       this.setState(prevState => {
         let newCategories = [...prevState.categories];
@@ -166,6 +199,9 @@ class App extends Component {
         return { categories: newCategories };
       });
     },
+    /* ----- Reapeater controls ----- */
+    /* Types: resources, assests, sliders
+    /* Limits: Flipgrid / Stimulus: resources(unlimited), Avenue: assets(1), sliders(5) */
     addRepeater: (catIndex, taskIndex, type) => {
       let defaultRepeater = {};
       let repeaterArray = "";
@@ -200,6 +236,7 @@ class App extends Component {
       updatedTask[repeaterArray] = newRepeaters;
       this.tasks.update(catIndex, taskIndex, updatedTask);
     },
+    /* ----- Update repeater ----- */
     updateRepeater: (
       catIndex,
       taskIndex,
@@ -207,16 +244,14 @@ class App extends Component {
       repeaterUpdate,
       repeaterType
     ) => {
+      let prevTask = this.tasks.get(catIndex, taskIndex);
       console.log(
-        "catIndex, taskIndex, repeaterIndex, repeaterUpdate",
         catIndex,
         taskIndex,
         repeaterIndex,
         repeaterUpdate,
         repeaterType
       );
-      let prevTask = this.tasks.get(catIndex, taskIndex);
-      console.log("salkgjelakj?? ", prevTask);
       // let repeaterArrayName =
       //   prevTask.type === "stimulus" ? "resources" : "sliders";
 
@@ -236,6 +271,8 @@ class App extends Component {
 
       this.tasks.update(catIndex, taskIndex, updatedTask);
     },
+    /* ----- Remove repeater ----- */
+
     removeRepeater: (catIndex, taskIndex, repeaterIndex, type) => {
       let prevTask = this.tasks.get(catIndex, taskIndex);
       let newResources = [...prevTask[type]];
@@ -248,6 +285,7 @@ class App extends Component {
     }
   };
 
+  /* ==================== META DATA ==================== */
   updateTitle = e => {
     this.setState({ title: e.target.value });
   };
@@ -258,12 +296,14 @@ class App extends Component {
     this.setState({ languageID: value });
   };
 
+  /* ==================== COMPONENT RENDER ==================== */
+
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+          {/*<img src={logo} className="App-logo" alt="logo" />*/}
+          <h1 className="App-title">Passport Module Generator</h1>
         </header>
 
         <InputContainer

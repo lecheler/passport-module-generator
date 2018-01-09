@@ -1,8 +1,10 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import TaskAvenue from "./TaskAvenue";
 import TaskFlipgrid from "./TaskFlipgrid";
 import TaskStimulus from "./TaskStimulus";
 import InputDropdown from "./InputDropdown";
+import TaskAvenueExisting from "./TaskAvenueExisting";
 
 class Task extends Component {
   displayTask() {
@@ -16,6 +18,8 @@ class Task extends Component {
       case "avenue":
         return <TaskAvenue {...this.props} />;
         break;
+      case "avenue-existing":
+        return <TaskAvenueExisting {...this.props} />;
       default:
         return <h1>Haaaalp</h1>;
     }

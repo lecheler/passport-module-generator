@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { withStyles } from "material-ui/styles";
 import InputFieldTwo from "./InputFieldTwo";
 import IconButton from "material-ui/IconButton";
@@ -31,7 +32,7 @@ function Repeater(props) {
   const handleRepeaterUpdate = input => {
     let updateObject = {};
     updateObject[input.label] = input.value;
-    console.log("BUG HERE >>> ", updateObject);
+
     props.tasks.updateRepeater(
       catIndex,
       taskIndex,

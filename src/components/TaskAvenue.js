@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { withStyles } from "material-ui/styles";
 import InputFieldTwo from "./InputFieldTwo";
 import IconButton from "material-ui/IconButton";
@@ -14,8 +15,9 @@ const styles = theme => ({
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-    background: "lightGray",
-    padding: 10
+    border: "2px solid lightgray",
+    borderRadius: "5px",
+    padding: "0px 10px"
   },
   button: {
     margin: theme.spacing.unit
@@ -57,12 +59,6 @@ function TaskAvenue(props) {
     props.tasks.update(catIndex, taskIndex, updateObject);
   };
 
-  const handleRepeaterUpdate = input => {
-    let updateObject = {};
-    updateObject[input.label] = input.value;
-    props.tasks.updateRepeater(catIndex, taskIndex, input.rIndex, updateObject);
-  };
-
   const handleDelete = () => {
     props.tasks.remove(catIndex, taskIndex);
   };
@@ -70,6 +66,7 @@ function TaskAvenue(props) {
   return (
     <div>
       <div className={classes.flex}>
+        <h5>C{catIndex + 1}</h5>
         <h5>Task {taskIndex + 1}: Avenue</h5>
         <IconButton
           className={classes.button}
@@ -92,7 +89,7 @@ function TaskAvenue(props) {
       })}
 
       <Divider />
-      <h5>SLIDERS</h5>
+      <h5>Task {taskIndex + 1} Sliders</h5>
 
       {taskContent.sliders.map((slider, repeaterIndex) => {
         return (
@@ -102,6 +99,7 @@ function TaskAvenue(props) {
             taskIndex={taskIndex}
             repeaterIndex={repeaterIndex}
             repeaterSchema={sliderSchema}
+            key={repeaterIndex}
             type="sliders"
             value={slider}
           />
@@ -119,7 +117,7 @@ function TaskAvenue(props) {
       ) : null}
 
       <Divider />
-      <h5>ASSETS</h5>
+      <h5>Task {taskIndex + 1} Assets</h5>
       {taskContent.assets.map((asset, repeaterIndex) => {
         return (
           <Repeater
