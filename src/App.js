@@ -240,6 +240,11 @@ class App extends Component {
   selectLanguageID = value => {
     this.setState({ languageID: value });
   };
+  updateInputDropdown = value => {
+    this.setState({ inputDropdownValue: value });
+  };
+  // above igURL and sgURL add image field that is an input field for phase one, for phase 2
+  //`igUrl` and `sgUrl` need to be inputs that accept a URL.  The label for igUrl on the front end should be "Integration Guide URL" and sgUrl should be "Scoring Guide URL".
 
   render() {
     return (
@@ -252,6 +257,7 @@ class App extends Component {
         <InputContainer
           content={this.state}
           selectLanguageID={this.selectLanguageID}
+          updateInputDropdown={this.updateInputDropdown}
           addCategory={this.addCategory}
           scoring={this.scoring}
           tasks={this.tasks}

@@ -45,6 +45,7 @@ class SelectLanguageID extends React.Component {
   handleDropdownChange = event => {
     // updates local state with name
     this.setState({ language: event.target.value });
+
     // updates app state with ID
     // reference handleChange function from props here
     this.props.selectLanguageID(event.target.value);
@@ -58,7 +59,8 @@ class SelectLanguageID extends React.Component {
     return (
       <div className={classes.container}>
         <FormControl className={classes.formControl}>
-          <InputLabel htmlFor="languageID">LanguageID</InputLabel>
+          {/*//Make InputLabel a variable also.*/}
+          <InputLabel htmlFor="languageID">Program</InputLabel>
           <Select
             value={this.state.language}
             onChange={this.handleDropdownChange}

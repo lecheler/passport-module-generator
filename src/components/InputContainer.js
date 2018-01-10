@@ -7,6 +7,7 @@ import Grid from "material-ui/Grid";
 
 import SelectLanguageID from "./SelectLanguageID.js";
 import InputDropdown from "./InputDropdown";
+import { MenuItem } from "material-ui/Menu";
 
 import InputField from "./InputField";
 import AddCategory from "./AddCategory";
@@ -30,9 +31,16 @@ const styles = theme => ({
 function InputContainer(props) {
   const { classes, content } = props;
 
-  const options = [
-    { value: "my value", display: "name to display" },
-    { value: "my value", display: "name to display" }
+  const languageIdOptions = [
+    { value: 3, display: "Chinese: Zhēn Bàng!" },
+    { value: 155, display: "Chinese: Zhēn Bàng! 2nd Edition" },
+    { value: 4, display: "French: T`es branché ?" },
+    { value: 2, display: "German: Deutsch Aktuell 6th Edition" },
+    { value: 133, display: "German: Deutsch Aktuell 7th Edition" },
+    { value: 170, display: "Mirrors and Windows" },
+    { value: 169, display: "Mirrors and Windows: CCSS" },
+    { value: 1, display: "Spanish: ¡Aventura!" },
+    { value: 55, display: "Spanish: ¡Qué chévere!" }
   ];
 
   const anotherOption = [
@@ -46,18 +54,14 @@ function InputContainer(props) {
         <Grid item xs />
         <Grid item xs={8} md={10}>
           <Paper className={classes.paper}>
-            <SelectLanguageID
-              // send selectLanguageID through here
-              handleChange={props.languageID}
-              languageID={props.content.language}
-              // get rid of this line
-              selectLanguageID={props.selectLanguageID}
-            />
             <InputDropdown
               name="string"
               id="string"
-              options="array"
-              handleChange="function"
+              //key={option}
+              //value={option}
+              options={languageIdOptions}
+              updateInputDropdown={props.updateInputDropdown}
+              handleChange={props.updateInputDropdown}
             />
           </Paper>
           <Paper className={classes.paper}>
