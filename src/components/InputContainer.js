@@ -7,6 +7,7 @@ import InputDropdown from "./InputDropdown";
 // import InputField from "./InputField";
 import AddCategory from "./AddCategory";
 import FlipMove from "react-flip-move";
+import CategoryTabContainer from "./CategoryTabContainer";
 import Meta from "./Meta";
 
 // import Title from "./Title";
@@ -72,21 +73,25 @@ function InputContainer(props) {
               description={props.content.direction}
             /> */}
           </Paper>
-          <FlipMove
+
+          <CategoryTabContainer
+            content={props.content}
+            categories={props.categories}
+            scoring={props.scoring}
+            tasks={props.tasks}
+          />
+
+          {/*<FlipMove
             duration={300}
             easing="ease-out"
             enterAnimation="elevator"
             maintainContainerHeight={true}
           >
-            {content.categories.map((category, index) => {
-              {
-                /*console.log("bananas", category);*/
-              }
+            {content.categories.map((category, catIndex) => {
               return (
-                <Grid item xs={12} key={index}>
+                <Grid item xs={12} key={catIndex}>
                   <Category
-                    type="stimulus"
-                    index={index}
+                    catIndex={catIndex}
                     updateCategory={props.categories.update}
                     deleteCategory={props.categories.delete}
                     catContent={category}
@@ -101,6 +106,7 @@ function InputContainer(props) {
             categoryCount={content.categories.length}
             addCategory={props.categories.add}
           />
+          */}
         </Grid>
         <Grid item xs />
       </Grid>

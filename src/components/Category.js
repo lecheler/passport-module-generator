@@ -41,30 +41,40 @@ class Category extends Component {
     // console.log(e);
     let newCategory = { ...this.props.catContent };
     newCategory.title = e.value;
-    this.props.updateCategory(this.props.index, newCategory);
+    this.props.updateCategory(this.props.catIndex, newCategory);
   };
 
   render() {
-    const { classes, index, catContent, scoring, tasks } = this.props;
+    const {
+      classes,
+      catIndex,
+      catContent,
+      scoring,
+      tasks,
+      categoryCount
+    } = this.props;
     // console.log("catContent", catContent);
     return (
       <div className={classes.root}>
         <Paper className={classes.paper}>
-          <h2>Category {index + 1}</h2>
           <div className={classes.deleteBar}>
-            <InputFieldTwo
-              label={`Category ${catContent.order + 1} Title`}
-              handleChange={this.updateCatTitle}
-              placeholder="Category Title"
-              value={catContent.title}
-            />
-            <DeleteCategory
-              index={index}
-              deleteCategory={this.props.deleteCategory}
-            />
+            <h2>Category {catIndex + 1}</h2>
+            {categoryCount > 1 && (
+              <DeleteCategory
+                catIndex={catIndex}
+                deleteCategory={this.props.deleteCategory}
+              />
+            )}
           </div>
           <Divider />
-          {/*<h2>Category {index + 1}</h2>*/}
+          <InputFieldTwo
+            label="Title"
+            handleChange={this.updateCatTitle}
+            placeholder="Title"
+            value={catContent.title}
+          />
+          <Divider />
+          {/*<h2>Category {catIndex + 1}</h2>*/}
           <h3>Scores</h3>
           <FlipMove
             duration={100}
@@ -75,15 +85,15 @@ class Category extends Component {
             {catContent.scoring.map((score, scoreIndex) => (
               <Score
                 scoring={this.props.scoring}
-                scoreContent={this.props.scoring.get(index, scoreIndex)}
-                catIndex={index}
+                scoreContent={this.props.scoring.get(catIndex, scoreIndex)}
+                catIndex={catIndex}
                 scoreIndex={scoreIndex}
                 key={scoreIndex}
               />
             ))}
           </FlipMove>
-          {scoring.count(index) < scoring.countMax ? (
-            <AddScore catIndex={index} scoring={this.props.scoring} />
+          {scoring.count(catIndex) < scoring.countMax ? (
+            <AddScore catIndex={catIndex} scoring={this.props.scoring} />
           ) : null}
           <Divider />
           <h3>Tasks</h3>
@@ -96,16 +106,16 @@ class Category extends Component {
             {catContent.tasks.map((score, taskIndex) => (
               <Task
                 tasks={tasks}
-                taskContent={tasks.get(index, taskIndex)}
-                catIndex={index}
+                taskContent={tasks.get(catIndex, taskIndex)}
+                catIndex={catIndex}
                 taskIndex={taskIndex}
                 key={taskIndex}
               />
             ))}
           </FlipMove>
 
-          {tasks.count(index) < tasks.countMax ? (
-            <AddTask catIndex={index} tasks={this.props.tasks} />
+          {tasks.count(catIndex) < tasks.countMax ? (
+            <AddTask catIndex={catIndex} tasks={this.props.tasks} />
           ) : null}
         </Paper>
       </div>

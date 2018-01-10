@@ -12,7 +12,14 @@ class App extends Component {
       direction: "Temp Directions",
       language_ID: "Temp Language Id",
       level: "Temp Level",
-      categories: []
+      categories: [
+        {
+          order: 0,
+          title: "",
+          scoring: [],
+          tasks: []
+        }
+      ]
     };
   }
 
@@ -21,8 +28,14 @@ class App extends Component {
     /* ----- Add new category ----- */
     add: e => {
       this.setState(prevState => {
+        let defaultCategory = {
+          order: prevState.categories.length,
+          title: "",
+          scoring: [],
+          tasks: []
+        };
         let prevCategories = prevState.categories;
-        let newCategories = [...prevCategories, e];
+        let newCategories = [...prevCategories, defaultCategory];
         return { categories: newCategories };
       });
     },

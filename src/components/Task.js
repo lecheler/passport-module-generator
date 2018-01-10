@@ -19,7 +19,11 @@ const styles = theme => ({
   },
   heading: {
     fontSize: theme.typography.pxToRem(15),
-    fontWeight: theme.typography.fontWeightRegular
+    fontWeight: theme.typography.fontWeightRegular,
+    margin: "0px 10px"
+  },
+  logo: {
+    maxHeight: 20
   }
 });
 
@@ -48,8 +52,19 @@ function Task(props) {
     <ExpansionPanel>
       <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
         <Typography className={classes.heading}>
-          Task: {props.taskIndex + 1} Type: {props.taskContent.type} Title:{" "}
-          {props.taskContent.shortDirection}
+          Task: {props.taskIndex + 1}{" "}
+        </Typography>
+        <img src={`${props.taskContent.type}.svg`} className={classes.logo} />
+        <Typography className={classes.heading}>
+          {props.taskContent.shortDirection ? (
+            `Short Direction: ${props.taskContent.shortDirection}`
+          ) : props.taskContent.name ? (
+            `Name: ${props.taskContent.name}`
+          ) : props.taskContent.taskId ? (
+            `Task ID: ${props.taskContent.taskId}`
+          ) : (
+            "---"
+          )}
         </Typography>
       </ExpansionPanelSummary>
       <ExpansionPanelDetails>{displayTask()}</ExpansionPanelDetails>
