@@ -10,7 +10,9 @@ const styles = theme => ({
     justifyContent: "space-between",
     margin: 20
   },
-  button: {}
+  logo: { maxWidth: 50 },
+  logoLite: { maxWidth: 50, opacity: 0.5 },
+  button: { display: "block" }
 });
 
 function DeleteCategory(props) {
@@ -40,8 +42,8 @@ function DeleteCategory(props) {
         color="default"
         onClick={handleAddStimulus}
       >
-        <AddIcon className={classes.rightIcon} />
-        Stimulus
+        <img src="./stimulus.svg" className={classes.logo} />
+        <div>Stimulus</div>
       </Button>
       <Button
         className={classes.button}
@@ -49,8 +51,8 @@ function DeleteCategory(props) {
         color="default"
         onClick={handleAddFlipGrid}
       >
-        <AddIcon className={classes.rightIcon} />
-        FlipGrid
+        <img src="./flipgrid.svg" className={classes.logo} />
+        <div>FlipGrid</div>
       </Button>
       <Button
         className={classes.button}
@@ -58,8 +60,8 @@ function DeleteCategory(props) {
         color="default"
         onClick={handleAddAvenue}
       >
-        <AddIcon className={classes.rightIcon} />
-        Avenue
+        <img src="./avenue.svg" className={classes.logo} />
+        <div>Avenue</div>
       </Button>
       <Button
         className={classes.button}
@@ -67,8 +69,9 @@ function DeleteCategory(props) {
         color="default"
         onClick={handleAddExistingAvenue}
       >
-        <AddIcon className={classes.rightIcon} />
-        Existing Avenue
+        <img src="./avenue-existing.svg" className={classes.logoLite} />
+        <div>Avenue</div>
+        <div>(Existing)</div>
       </Button>
     </div>
   );

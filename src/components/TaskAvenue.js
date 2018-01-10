@@ -21,6 +21,9 @@ const styles = theme => ({
   },
   button: {
     margin: theme.spacing.unit
+  },
+  logo: {
+    maxHeight: 20
   }
 });
 
@@ -64,10 +67,10 @@ function TaskAvenue(props) {
   };
 
   return (
-    <div>
+    <div className={classes.root}>
       <div className={classes.flex}>
-        <h5>C{catIndex + 1}</h5>
         <h5>Task {taskIndex + 1}: Avenue</h5>
+
         <IconButton
           className={classes.button}
           aria-label="Delete"

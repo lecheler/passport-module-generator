@@ -49,7 +49,7 @@ function TaskFlipgrid(props) {
   };
 
   return (
-    <div>
+    <div className={classes.root}>
       <div className={classes.flex}>
         <h5>C{catIndex + 1}</h5>
         <h5>Task {taskIndex + 1}: Flipgrid</h5>
