@@ -8,10 +8,10 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: "Temp Title",
-      direction: "Temp Directions",
-      language_ID: "Temp Language Id",
-      level: "Temp Level",
+      title: "",
+      direction: "",
+      language_ID: "",
+      level: "",
       categories: [
         {
           order: 0,
@@ -333,10 +333,9 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          {/* <img src={logo} className="App-logo" alt="logo" /> */}
-          <h1 className="App-title">Passport Module Generator</h1>
+          <img src="passport_logo.png" />
+          <h1 className="App-title">Module Generator</h1>
         </header>
-
         <InputContainer
           content={this.state}
           categories={this.categories}
