@@ -1,14 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
-
 import { withStyles } from "material-ui/styles";
 import Paper from "material-ui/Paper";
 import Grid from "material-ui/Grid";
-
 import SelectLanguageID from "./SelectLanguageID.js";
 import InputDropdown from "./InputDropdown";
-import { MenuItem } from "material-ui/Menu";
-
 import InputField from "./InputField";
 import AddCategory from "./AddCategory";
 import FlipMove from "react-flip-move";
@@ -93,9 +89,8 @@ function InputContainer(props) {
                   <Category
                     type="stimulus"
                     index={index}
-                    updateCategory={props.updateCategory}
-                    updateValidCategory={props.updateValidCategory}
-                    deleteCategory={props.deleteCategory}
+                    updateCategory={props.categories.update}
+                    deleteCategory={props.categories.delete}
                     catContent={category}
                     scoring={props.scoring}
                     tasks={props.tasks}
@@ -104,13 +99,13 @@ function InputContainer(props) {
               );
             })}
           </FlipMove>
+          <AddCategory
+            categoryCount={content.categories.length}
+            addCategory={props.categories.add}
+          />
         </Grid>
         <Grid item xs />
       </Grid>
-      <AddCategory
-        categoryCount={content.categories.length}
-        addCategory={props.addCategory}
-      />
     </div>
   );
 }

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import Button from "material-ui/Button";
 import AddIcon from "material-ui-icons/Add";
 import { withStyles } from "material-ui/styles";
@@ -25,6 +26,10 @@ function DeleteCategory(props) {
 
   const handleAddAvenue = () => {
     tasks.addAvenue(catIndex);
+  };
+
+  const handleAddExistingAvenue = () => {
+    tasks.addExistingAvenue(catIndex);
   };
 
   return (
@@ -55,6 +60,15 @@ function DeleteCategory(props) {
       >
         <AddIcon className={classes.rightIcon} />
         Avenue
+      </Button>
+      <Button
+        className={classes.button}
+        raised
+        color="default"
+        onClick={handleAddExistingAvenue}
+      >
+        <AddIcon className={classes.rightIcon} />
+        Existing Avenue
       </Button>
     </div>
   );

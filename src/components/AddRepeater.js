@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import Button from "material-ui/Button";
 import { withStyles } from "material-ui/styles";
 
@@ -12,7 +13,7 @@ const styles = theme => ({
 });
 
 function AddRepeater(props) {
-  const { classes, catIndex, taskIndex, type } = props;
+  const { classes, catIndex, taskIndex, type, name } = props;
   const handleAddRepeater = () => {
     props.tasks.addRepeater(catIndex, taskIndex, type);
   };
@@ -20,7 +21,7 @@ function AddRepeater(props) {
   return (
     <div>
       <Button onClick={handleAddRepeater} color="primary">
-        Add
+        Add {name}
       </Button>
     </div>
   );
