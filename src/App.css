@@ -1,4 +1,6 @@
 .App {
+  width: 100vw;
+  overflow: hidden;
   text-align: center;
   background-color: lightgray;
   /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+1,000000+100&0.08+0,0.65+100 */
