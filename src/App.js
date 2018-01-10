@@ -19,8 +19,13 @@ class App extends Component {
           scoring: [],
           tasks: []
         }
-      ]
+      ],
+
+      height: props.height
     };
+  }
+  componentWillMount() {
+    this.setState({ height: window.innerHeight + "1px" });
   }
 
   /* ==================== CATEGORIES ==================== */
@@ -320,11 +325,6 @@ class App extends Component {
     updatesgURL: e => {
       this.setState({ sgURL: e.target.value });
     }
-    // image - input that accepts an image
-
-    // igURL - input that accepts a url, label should be: "Integration Guide URL"
-
-    // sgURL - input that accepts a url, label should be: "Scoring Guide URL"
   };
 
   /* ==================== COMPONENT RENDER ==================== */
