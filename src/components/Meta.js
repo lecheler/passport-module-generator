@@ -9,7 +9,6 @@ function Meta(props) {
   return (
     <div>
       <InputField
-        // verify type of input
         label={"Title"}
         placeholder="add title"
         handleChange={props.metaUpdates.updateTitle}
@@ -19,13 +18,11 @@ function Meta(props) {
         label={"Directions"}
         placeholder="add directions"
         handleChange={props.metaUpdates.updateDirection}
-        //name={props.content.direction}
       />
       <InputField
         label={"Image"}
         placeholder="add Image file name"
         handleChange={props.metaUpdates.updateImage}
-        //name={props.content.direction}
       />
       <InputField
         label={"Integration Guide URL"}
