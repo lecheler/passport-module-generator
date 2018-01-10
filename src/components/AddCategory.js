@@ -54,7 +54,7 @@ function AddCategory(props) {
 }
 
 AddCategory.propTypes = {
-  classesasdg: PropTypes.object.isRequired
+  bananas: PropTypes.number.isRequired
 };
 
 export default withStyles(styles)(AddCategory);

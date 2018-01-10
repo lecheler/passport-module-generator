@@ -103,6 +103,7 @@ class Category extends Component {
               />
             ))}
           </FlipMove>
+
           {tasks.count(index) < tasks.countMax ? (
             <AddTask catIndex={index} tasks={this.props.tasks} />
           ) : null}

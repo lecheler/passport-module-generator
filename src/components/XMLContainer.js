@@ -41,7 +41,6 @@ const formatTasks = tasksArray => {
             }
           ]
         };
-        // return formattedResources;
         break;
       case "flipgrid":
         formattedResources = formatResources(task.resources);
@@ -81,7 +80,6 @@ const formatTasks = tasksArray => {
             }
           ]
         };
-        // return formattedSliders;
         break;
       case "avenue-existing":
         return {
