@@ -299,14 +299,32 @@ class App extends Component {
   };
 
   /* ==================== META DATA ==================== */
-  updateTitle = e => {
-    this.setState({ title: e.target.value });
+
+  updateInputDropdown = inputDropdownValue => {
+    this.setState({ languageID: inputDropdownValue });
   };
-  updateDirection = e => {
-    this.setState({ direction: e.target.value });
-  };
-  selectLanguageID = value => {
-    this.setState({ languageID: value });
+
+  metaUpdates = {
+    updateTitle: e => {
+      this.setState({ title: e.target.value });
+    },
+    updateDirection: e => {
+      this.setState({ direction: e.target.value });
+    },
+    updateImage: e => {
+      this.setState({ image: e.target.value });
+    },
+    updateigURL: e => {
+      this.setState({ igURL: e.target.value });
+    },
+    updatesgURL: e => {
+      this.setState({ sgURL: e.target.value });
+    }
+    // image - input that accepts an image
+
+    // igURL - input that accepts a url, label should be: "Integration Guide URL"
+
+    // sgURL - input that accepts a url, label should be: "Scoring Guide URL"
   };
 
   /* ==================== COMPONENT RENDER ==================== */
@@ -315,7 +333,7 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          {/*<img src={logo} className="App-logo" alt="logo" />*/}
+          {/* <img src={logo} className="App-logo" alt="logo" /> */}
           <h1 className="App-title">Passport Module Generator</h1>
         </header>
 
@@ -324,9 +342,10 @@ class App extends Component {
           categories={this.categories}
           scoring={this.scoring}
           tasks={this.tasks}
-          selectLanguageID={this.selectLanguageID}
-          updateTitle={this.updateTitle}
-          updateDirection={this.updateDirection}
+          metaUpdates={this.metaUpdates}
+          updateInputDropdown={this.updateInputDropdown}
+          //updateTitle={this.updateTitle}
+          //updateDirection={this.updateDirection}
         />
         <XMLContainer content={this.state} />
       </div>
