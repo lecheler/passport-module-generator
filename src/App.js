@@ -8,10 +8,10 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: "Temp Title",
-      direction: "Temp Directions",
-      language_ID: "Temp Language Id",
-      level: "Temp Level",
+      title: "",
+      direction: "",
+      language_ID: "",
+      level: "",
       categories: [
         {
           order: 0,

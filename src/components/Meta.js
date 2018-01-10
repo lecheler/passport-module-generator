@@ -25,7 +25,7 @@ function Meta(props) {
     <ExpansionPanel defaultExpanded={true}>
       <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
         <Typography className={classes.heading}>
-          Title: {content.title}
+          Metadata for: {content.title}
         </Typography>
       </ExpansionPanelSummary>
       <ExpansionPanelDetails className={classes.details}>
