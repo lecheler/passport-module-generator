@@ -333,10 +333,9 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          {/* <img src={logo} className="App-logo" alt="logo" /> */}
-          <h1 className="App-title">Passport Module Generator</h1>
+          <img src="passport_logo.png" />
+          <h1 className="App-title">Module Generator</h1>
         </header>
-
         <InputContainer
           content={this.state}
           categories={this.categories}
