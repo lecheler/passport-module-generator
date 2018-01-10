@@ -3,11 +3,11 @@ import PropTypes from "prop-types";
 import { withStyles } from "material-ui/styles";
 import Paper from "material-ui/Paper";
 import Grid from "material-ui/Grid";
-import SelectLanguageID from "./SelectLanguageID.js";
 import InputDropdown from "./InputDropdown";
-import InputField from "./InputField";
+// import InputField from "./InputField";
 import AddCategory from "./AddCategory";
 import FlipMove from "react-flip-move";
+import Meta from "./Meta";
 
 // import Title from "./Title";
 import Category from "./Category";
@@ -51,17 +51,15 @@ function InputContainer(props) {
         <Grid item xs={8} md={10}>
           <Paper className={classes.paper}>
             <InputDropdown
-              name="string"
-              id="string"
-              //key={option}
-              //value={option}
               options={languageIdOptions}
               updateInputDropdown={props.updateInputDropdown}
               handleChange={props.updateInputDropdown}
             />
           </Paper>
           <Paper className={classes.paper}>
-            <InputField
+            <Meta metaUpdates={props.metaUpdates} content={props.content} />
+            {/* <InputField
+              // verify type of input
               label={"Title"}
               placeholder="add title"
               handleChange={props.updateTitle}
@@ -72,7 +70,7 @@ function InputContainer(props) {
               placeholder="add directions"
               handleChange={props.updateDirection}
               description={props.content.direction}
-            />
+            /> */}
           </Paper>
           <FlipMove
             duration={300}

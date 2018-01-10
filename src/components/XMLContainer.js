@@ -119,9 +119,9 @@ function XMLContainer(props) {
             { title: props.content.title },
             { direction: props.content.direction },
             { banner: "" },
-            { image: "" },
-            { igUrl: "" },
-            { sgUrl: "" },
+            { image: props.content.image },
+            { igUrl: props.content.igURL },
+            { sgUrl: props.content.sgURL },
             {
               categories: formattedCategories
             }
