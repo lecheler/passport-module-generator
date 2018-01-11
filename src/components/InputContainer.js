@@ -59,54 +59,13 @@ function InputContainer(props) {
           </Paper>
           <Paper className={classes.paper}>
             <Meta metaUpdates={props.metaUpdates} content={props.content} />
-            {/* <InputField
-              // verify type of input
-              label={"Title"}
-              placeholder="add title"
-              handleChange={props.updateTitle}
-              title={props.content.title}
-            />
-            <InputField
-              label={"Directions"}
-              placeholder="add directions"
-              handleChange={props.updateDirection}
-              description={props.content.direction}
-            /> */}
           </Paper>
-
           <CategoryTabContainer
             content={props.content}
             categories={props.categories}
             scoring={props.scoring}
             tasks={props.tasks}
           />
-
-          {/*<FlipMove
-            duration={300}
-            easing="ease-out"
-            enterAnimation="elevator"
-            maintainContainerHeight={true}
-          >
-            {content.categories.map((category, catIndex) => {
-              return (
-                <Grid item xs={12} key={catIndex}>
-                  <Category
-                    catIndex={catIndex}
-                    updateCategory={props.categories.update}
-                    deleteCategory={props.categories.delete}
-                    catContent={category}
-                    scoring={props.scoring}
-                    tasks={props.tasks}
-                  />
-                </Grid>
-              );
-            })}
-          </FlipMove>
-          <AddCategory
-            categoryCount={content.categories.length}
-            addCategory={props.categories.add}
-          />
-          */}
         </Grid>
         <Grid item xs />
       </Grid>
