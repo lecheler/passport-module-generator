@@ -16,7 +16,7 @@ class App extends Component {
         {
           order: 0,
           title: "",
-          scoring: [],
+          scoring: [{ max: "", label: "" }],
           tasks: []
         }
       ],
@@ -36,7 +36,7 @@ class App extends Component {
         let defaultCategory = {
           order: prevState.categories.length,
           title: "",
-          scoring: [],
+          scoring: [{ max: "", label: "" }],
           tasks: []
         };
         let prevCategories = prevState.categories;
@@ -131,6 +131,7 @@ class App extends Component {
           type: "flipgrid",
           question: "",
           direction: "",
+          shortDirection: "",
           resources: []
         };
         let newCategories = [...prevState.categories];
@@ -184,7 +185,7 @@ class App extends Component {
       this.setState(prevState => {
         const defaultTask = {
           type: "avenue-existing",
-          avenueTaskId: ""
+          taskId: ""
         };
         let newCategories = [...prevState.categories];
         let newCategory = newCategories[catIndex];

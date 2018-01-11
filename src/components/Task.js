@@ -73,7 +73,7 @@ function Task(props) {
 }
 
 Task.propTypes = {
-  taskIndexs: PropTypes.element.isRequired
+  taskIndex: PropTypes.number.isRequired
 };
 
 export default withStyles(styles)(Task);
