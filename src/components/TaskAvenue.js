@@ -87,6 +87,7 @@ function TaskAvenue(props) {
             placeholder={item.label}
             value={taskContent.label}
             key={index}
+            value={taskContent[item.label]}
           />
         );
       })}

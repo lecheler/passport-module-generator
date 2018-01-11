@@ -75,6 +75,7 @@ function TaskStimulus(props) {
             handleChange={handleUpdate}
             placeholder={item.label}
             key={index}
+            value={taskContent[item.label]}
           />
         );
       })}
