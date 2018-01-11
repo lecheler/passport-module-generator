@@ -39,7 +39,7 @@ const styles = theme => ({
   }
 });
 
-const validateContent = content => {
+const validateCategoryContent = content => {
   const validateObject = object => {
     return Object.keys(object).every(key => {
       if (Array.isArray(object[key])) {
@@ -49,15 +49,12 @@ const validateContent = content => {
       } else return object[key] ? true : false;
     });
   };
-
   const validScores = content.scoring.every(score => {
     return validateObject(score);
   });
-
   const validTasks = content.tasks.every(task => {
     return validateObject(task);
   });
-
   return content.title && validScores && validTasks ? "green" : "lightgray";
 };
 
@@ -83,7 +80,7 @@ class Category extends Component {
       <div className={classes.root}>
         <Paper className={classes.paper}>
           <div className={classes.deleteBar}>
-            <Icon style={{ color: validateContent(catContent) }}>
+            <Icon style={{ color: validateCategoryContent(catContent) }}>
               <CheckCircle />
             </Icon>
 

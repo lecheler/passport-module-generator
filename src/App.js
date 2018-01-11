@@ -4,14 +4,19 @@ import "./App.css";
 import XMLContainer from "./components/XMLContainer";
 import InputContainer from "./components/InputContainer";
 import sample from "./data/sample.js";
+import Button from "material-ui/Button";
+
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       title: "",
       direction: "",
-      language_ID: "",
-      level: "",
+      languageID: "",
+      level: "temp",
+      igURL: "",
+      sgURL: "",
+      image: "",
       categories: [
         {
           order: 0,
@@ -334,8 +339,10 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <img src="passport_logo.png" />
-          <h1 className="App-title">Module Generator</h1>
+          <div>
+            <img src="passport_logo.png" />
+            <h1 className="App-title">Module Generator</h1>
+          </div>
         </header>
         <InputContainer
           content={this.state}

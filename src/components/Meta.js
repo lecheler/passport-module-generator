@@ -10,23 +10,49 @@ import ExpansionPanel, {
 } from "material-ui/ExpansionPanel";
 import Typography from "material-ui/Typography";
 import ExpandMoreIcon from "material-ui-icons/ExpandMore";
+import Icon from "material-ui/Icon";
+import CheckCircle from "material-ui-icons/CheckCircle";
 
 const styles = {
-  heading: {},
+  heading: { display: "flex", alignItems: "center" },
   details: {
     display: "block"
   }
 };
 
+const validateMetaContent = object => {
+  let isValid = Object.keys(object).every(key => {
+    return object[key] ? true : false;
+  });
+  return isValid ? "green" : "lightgray";
+};
+
 function Meta(props) {
   const { classes, content, metaUpdates } = props;
+  const metaContent = {
+    title: content.title,
+    direction: content.direction,
+    languageID: content.languageID,
+    level: content.level,
+    igURL: content.igURL,
+    sgURL: content.sgURL,
+    image: content.image
+  };
+  console.log(metaContent);
 
   return (
     <ExpansionPanel defaultExpanded={true}>
       <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-        <Typography className={classes.heading}>
-          Metadata for: {content.title}
-        </Typography>
+        <div className={classes.heading}>
+          <Icon
+            style={{ color: validateMetaContent(metaContent), marginRight: 20 }}
+          >
+            <CheckCircle />
+          </Icon>
+          <h2 className={classes.heading}>
+            Title: {content.title ? content.title : "---"}
+          </h2>
+        </div>
       </ExpansionPanelSummary>
       <ExpansionPanelDetails className={classes.details}>
         <InputField
