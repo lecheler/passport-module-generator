@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "material-ui/styles";
-import InputFieldTwo from "./InputFieldTwo";
+import InputString from "./InputString";
 import IconButton from "material-ui/IconButton";
 import DeleteIcon from "material-ui-icons/Delete";
 import InputDropdown from "./InputDropdown";
@@ -81,7 +81,7 @@ function TaskAvenue(props) {
       </div>
       {inputArray.map((item, index) => {
         return (
-          <InputFieldTwo
+          <InputString
             label={item.label}
             handleChange={handleUpdate}
             placeholder={item.label}

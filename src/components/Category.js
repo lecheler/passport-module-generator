@@ -10,7 +10,7 @@ import Paper from "material-ui/Paper";
 import Grid from "material-ui/Grid";
 import Divider from "material-ui/Divider";
 import InputField from "./InputField";
-import InputFieldTwo from "./InputFieldTwo";
+import InputString from "./InputString";
 import DeleteCategory from "./DeleteCategory";
 import AddScore from "./AddScore";
 import AddTask from "./AddTask";
@@ -67,7 +67,7 @@ class Category extends Component {
             )}
           </div>
           <Divider />
-          <InputFieldTwo
+          <InputString
             label="Title"
             handleChange={this.updateCatTitle}
             placeholder="Title"

@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "material-ui/styles";
-import InputFieldTwo from "./InputFieldTwo";
+import InputString from "./InputString";
 import IconButton from "material-ui/IconButton";
 import DeleteIcon from "material-ui-icons/Delete";
 
@@ -33,13 +33,13 @@ function Score(props) {
 
   return (
     <div className={classes.root}>
-      <InputFieldTwo
+      <InputString
         label={`Score ${scoreIndex + 1}`}
         handleChange={handleLabelUpdate}
         placeholder="Score Label"
         value={props.scoreContent.label}
       />
-      <InputFieldTwo
+      <InputString
         label="Max"
         handleChange={handleMaxUpdate}
         placeholder="Score"
