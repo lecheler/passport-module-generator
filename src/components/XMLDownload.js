@@ -29,14 +29,15 @@ function XMLDownload(props) {
     if (!valid.categories) {
       alert("Looks like there's an error in the Categories section.");
     }
-    if (valid.meta && valid.cateogries) {
+    let allGood = valid.meta && valid.categories;
+    if (allGood) {
       handleDownload();
     }
   };
 
   const isEverythingValid = () => {
     let isValid = valid.meta && valid.categories;
-    return isValid ? "accent" : "disabled";
+    return isValid ? "accent" : "default";
   };
 
   return (

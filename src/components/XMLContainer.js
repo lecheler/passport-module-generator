@@ -112,7 +112,6 @@ const formatTasks = tasksArray => {
 
 function XMLContainer(props) {
   let { classes, valid } = props;
-  let { title } = props.content.title;
 
   let formattedCategories = props.content.categories.map(category => {
     let formattedScores = formatScoring(category.scoring);
@@ -152,8 +151,11 @@ function XMLContainer(props) {
   ];
 
   let xmlContent = XML(contentToFormat);
+  let { title } = props.content;
 
-  const downloadXMLFile = () =>
+  console.log("my fucking title", title);
+
+  const downloadXMLFile = filename =>
     fileDownload(beautify(xmlContent), `${title}.xml`);
 
   return (
