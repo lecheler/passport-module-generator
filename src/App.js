@@ -1,10 +1,6 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
 import "./App.css";
-import XMLContainer from "./components/XMLContainer";
 import MainContainer from "./components/MainContainer";
-import sample from "./data/sample.js";
-import Button from "material-ui/Button";
 
 class App extends Component {
   constructor(props) {
@@ -63,13 +59,11 @@ class App extends Component {
     const validTasks = content.tasks.every(task => {
       return validateObject(task);
     });
-    // console.log(content.title, validScores, validTasks);
     return content.title && validScores && validTasks ? true : false;
   };
 
   validateAllCategories = () => {
     let isAllValid = this.state.categories.every(this.validateCategoryContent);
-    // console.log(isAllValid);
     return isAllValid;
   };
 
@@ -405,7 +399,7 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <div>
-            <img src="passport_logo.png" />
+            <img alt="Passport logo" src="passport_logo.png" />
             <h1 className="App-title">Module Generator</h1>
           </div>
         </header>

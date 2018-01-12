@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import Button from "material-ui/Button";
 import AddIcon from "material-ui-icons/Add";
@@ -15,7 +15,7 @@ const styles = theme => ({
   button: { display: "block" }
 });
 
-function DeleteCategory(props) {
+function AddTask(props) {
   const { classes, catIndex, tasks } = props;
 
   const handleAddStimulus = () => {
@@ -77,4 +77,10 @@ function DeleteCategory(props) {
   );
 }
 
-export default withStyles(styles)(DeleteCategory);
+AddTask.propTypes = {
+  classes: PropTypes.object.isRequired,
+  catIndex: PropTypes.number.isRequired,
+  tasks: PropTypes.object.isRequired
+};
+
+export default withStyles(styles)(AddTask);

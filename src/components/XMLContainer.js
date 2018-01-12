@@ -58,7 +58,7 @@ const formatTasks = tasksArray => {
             }
           ]
         };
-        break;
+      // break;
       case "flipgrid":
         formattedResources = formatResources(task.resources);
         return {
@@ -71,7 +71,7 @@ const formatTasks = tasksArray => {
             }
           ]
         };
-        break;
+      // break;
       case "avenue":
         const formattedSliders = [
           ...task.sliders.map(slider => {
@@ -97,12 +97,12 @@ const formatTasks = tasksArray => {
             }
           ]
         };
-        break;
+      // break;
       case "avenue-existing":
         return {
           task: [{ _attr: { type: "avenue" } }, { taskId: task.taskId }]
         };
-        break;
+      // break;
       default:
         return {};
     }
@@ -153,8 +153,6 @@ function XMLContainer(props) {
   let xmlContent = XML(contentToFormat);
   let { title } = props.content;
 
-  console.log("my fucking title", title);
-
   const downloadXMLFile = filename =>
     fileDownload(beautify(xmlContent), `${title}.xml`);
 
@@ -176,4 +174,11 @@ function XMLContainer(props) {
     </div>
   );
 }
+
+XMLContainer.propTypes = {
+  classes: PropTypes.object.isRequired,
+  content: PropTypes.object.isRequired,
+  valid: PropTypes.object.isRequired
+};
+
 export default withStyles(styles)(XMLContainer);
