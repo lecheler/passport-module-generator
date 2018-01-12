@@ -20,10 +20,23 @@ const styles = theme => ({
 });
 
 function XMLDownload(props) {
-  let { classes, handleDownload } = props;
-
+  let { classes, handleDownload, valid } = props;
+  // console.log(valid);
   const handleClick = () => {
-    handleDownload();
+    if (!valid.meta) {
+      alert("Looks like you forgot something in the Meta section.");
+    }
+    if (!valid.categories) {
+      alert("Looks like there's an error in the Categories section.");
+    }
+    if (valid.meta && valid.cateogries) {
+      handleDownload();
+    }
+  };
+
+  const isEverythingValid = () => {
+    let isValid = valid.meta && valid.categories;
+    return isValid ? "accent" : "disabled";
   };
 
   return (
@@ -32,7 +45,7 @@ function XMLDownload(props) {
         <Button
           onClick={handleClick}
           raised
-          color="accent"
+          color={isEverythingValid()}
           style={{ width: "100%", maxWidth: "630px" }}
         >
           Download XML File

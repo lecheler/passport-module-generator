@@ -99,6 +99,7 @@ class ScrollableTabsButtonAuto extends React.Component {
               catContent={content.categories[value]}
               scoring={scoring}
               tasks={tasks}
+              validate={categories.validate}
             />
           </TabContainer>
         )}

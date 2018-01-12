@@ -52,7 +52,7 @@ function Meta(props) {
     sgURL: content.sgURL,
     image: content.image
   };
-  console.log(metaContent);
+  // console.log(metaContent);
 
   return (
     <ExpansionPanel defaultExpanded={true}>

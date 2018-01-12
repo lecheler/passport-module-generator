@@ -18,19 +18,79 @@ class App extends Component {
       image: "",
       categories: [
         {
-          order: 0,
+          order: 1,
           title: "",
           scoring: [{ max: "", label: "" }],
           tasks: []
         }
       ],
-
+      valid: {
+        meta: false,
+        categories: false
+      },
       height: props.height
     };
   }
 
+  validateMetaContent = () => {
+    const metaContent = {
+      title: this.state.title,
+      direction: this.state.direction,
+      languageID: this.state.languageID,
+      level: this.state.level,
+      igURL: this.state.igURL,
+      sgURL: this.state.sgURL,
+      image: this.state.image
+    };
+    return Object.keys(metaContent).every(key => {
+      return metaContent[key] ? true : false;
+    });
+  };
+
+  validateCategoryContent = content => {
+    const validateObject = object => {
+      return Object.keys(object).every(key => {
+        if (Array.isArray(object[key])) {
+          return object[key].every(itemInArray => {
+            return validateObject(itemInArray);
+          });
+        } else return object[key] ? true : false;
+      });
+    };
+    const validScores = content.scoring.every(score => {
+      return validateObject(score);
+    });
+    const validTasks = content.tasks.every(task => {
+      return validateObject(task);
+    });
+    // console.log(content.title, validScores, validTasks);
+    return content.title && validScores && validTasks ? true : false;
+  };
+
+  validateAllCategories = () => {
+    let isAllValid = this.state.categories.every(this.validateCategoryContent);
+    // console.log(isAllValid);
+    return isAllValid;
+  };
+
   componentWillMount() {
     this.setState({ height: window.innerHeight + "1px" });
+  }
+
+  componentDidUpdate() {
+    /* ===== VALIDATE META ===== */
+    if (this.validateMetaContent() != this.state.valid.meta) {
+      this.setState({
+        valid: { ...this.state.valid, meta: this.validateMetaContent() }
+      });
+    }
+    /* ==== VALIDATE CATEGORIES ===== */
+    // console.log(this.validateAllCategories());
+    if (this.validateAllCategories() != this.state.valid.categories) {
+      this.setState({
+        valid: { ...this.state.valid, categories: this.validateAllCategories() }
+      });
+    }
   }
 
   /* ==================== CATEGORIES ==================== */
@@ -56,6 +116,9 @@ class App extends Component {
         newCategories.splice(index, 1, newCategory);
         return { categories: newCategories };
       });
+    },
+    validate: catContent => {
+      return this.validateCategoryContent(catContent);
     },
     /* ----- Delete category ----- */
     delete: index => {
@@ -352,6 +415,8 @@ class App extends Component {
           scoring={this.scoring}
           tasks={this.tasks}
           metaUpdates={this.metaUpdates}
+          validateCategoryContent={this.validateCategoryContent}
+          valid={this.state.valid}
         />
       </div>
     );

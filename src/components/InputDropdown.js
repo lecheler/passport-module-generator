@@ -44,7 +44,7 @@ class InputDropdown extends React.Component {
     const { classes, label, options } = this.props;
 
     // const options = this.props.options;
-    console.log(options);
+    // console.log(options);
     return (
       <div className={classes.container}>
         <FormControl className={classes.formControl}>

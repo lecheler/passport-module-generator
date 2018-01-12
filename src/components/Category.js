@@ -39,26 +39,30 @@ const styles = theme => ({
   }
 });
 
-const validateCategoryContent = content => {
-  const validateObject = object => {
-    return Object.keys(object).every(key => {
-      if (Array.isArray(object[key])) {
-        return object[key].every(itemInArray => {
-          return validateObject(itemInArray);
-        });
-      } else return object[key] ? true : false;
-    });
-  };
-  const validScores = content.scoring.every(score => {
-    return validateObject(score);
-  });
-  const validTasks = content.tasks.every(task => {
-    return validateObject(task);
-  });
-  return content.title && validScores && validTasks ? "green" : "lightgray";
-};
+// const validateCategoryContent = content => {
+//   const validateObject = object => {
+//     return Object.keys(object).every(key => {
+//       if (Array.isArray(object[key])) {
+//         return object[key].every(itemInArray => {
+//           return validateObject(itemInArray);
+//         });
+//       } else return object[key] ? true : false;
+//     });
+//   };
+//   const validScores = content.scoring.every(score => {
+//     return validateObject(score);
+//   });
+//   const validTasks = content.tasks.every(task => {
+//     return validateObject(task);
+//   });
+//   return content.title && validScores && validTasks ? "green" : "lightgray";
+// };
 
 class Category extends Component {
+  isCategoryValid = () => {
+    return this.props.validate(this.props.catContent) ? "green" : "lightgray";
+  };
+
   updateCatTitle = e => {
     // console.log(e);
     let newCategory = { ...this.props.catContent };
@@ -73,14 +77,16 @@ class Category extends Component {
       catContent,
       scoring,
       tasks,
-      categoryCount
+      categoryCount,
+      validate
     } = this.props;
+
     // console.log("catContent", catContent);
     return (
       <div className={classes.root}>
         <Paper className={classes.paper}>
           <div className={classes.deleteBar}>
-            <Icon style={{ color: validateCategoryContent(catContent) }}>
+            <Icon style={{ color: this.isCategoryValid() }}>
               <CheckCircle />
             </Icon>
 

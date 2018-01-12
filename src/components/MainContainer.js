@@ -29,8 +29,7 @@ const styles = theme => ({
 });
 
 function MainContainer(props) {
-  const { classes, content } = props;
-
+  const { classes, content, categories, scoring, tasks, valid } = props;
   // const anotherOption = [
   //   { value: 1, display: "on" },
   //   { value: 0, display: "off" }
@@ -52,14 +51,14 @@ function MainContainer(props) {
             <Meta metaUpdates={props.metaUpdates} content={props.content} />
           </Paper>
           <CategoryTabContainer
-            content={props.content}
-            categories={props.categories}
-            scoring={props.scoring}
-            tasks={props.tasks}
+            content={content}
+            categories={categories}
+            scoring={scoring}
+            tasks={tasks}
           />
 
           <Paper className={classes.paperBottom}>
-            <XMLContainer content={content} />
+            <XMLContainer content={content} valid={valid} />
           </Paper>
         </Grid>
         <Grid item xs />

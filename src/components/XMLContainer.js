@@ -111,7 +111,9 @@ const formatTasks = tasksArray => {
 };
 
 function XMLContainer(props) {
-  let { classes } = props;
+  let { classes, valid } = props;
+  let { title } = props.content.title;
+
   let formattedCategories = props.content.categories.map(category => {
     let formattedScores = formatScoring(category.scoring);
     let formattedTasks = formatTasks(category.tasks);
@@ -150,14 +152,13 @@ function XMLContainer(props) {
   ];
 
   let xmlContent = XML(contentToFormat);
-  let title = props.content.title;
 
   const downloadXMLFile = () =>
     fileDownload(beautify(xmlContent), `${title}.xml`);
 
   return (
     <div className="xmlContainer">
-      <XMLDownload handleDownload={downloadXMLFile} />
+      <XMLDownload handleDownload={downloadXMLFile} valid={valid} />
       <ExpansionPanel>
         <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
           <Typography className={classes.heading}>
