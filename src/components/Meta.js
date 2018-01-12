@@ -4,6 +4,8 @@ import { withStyles } from "material-ui/styles";
 import MenuItem from "material-ui/Menu/MenuItem";
 import TextField from "material-ui/TextField";
 import InputField from "./InputField";
+import InputDropdown from "./InputDropdown";
+
 import ExpansionPanel, {
   ExpansionPanelSummary,
   ExpansionPanelDetails
@@ -19,6 +21,18 @@ const styles = {
     display: "block"
   }
 };
+
+const languageIdOptions = [
+  { value: 3, display: "Chinese: Zhēn Bàng!" },
+  { value: 155, display: "Chinese: Zhēn Bàng! 2nd Edition" },
+  { value: 4, display: "French: T`es branché ?" },
+  { value: 2, display: "German: Deutsch Aktuell 6th Edition" },
+  { value: 133, display: "German: Deutsch Aktuell 7th Edition" },
+  { value: 170, display: "Mirrors and Windows" },
+  { value: 169, display: "Mirrors and Windows: CCSS" },
+  { value: 1, display: "Spanish: ¡Aventura!" },
+  { value: 55, display: "Spanish: ¡Qué chévere!" }
+];
 
 const validateMetaContent = object => {
   let isValid = Object.keys(object).every(key => {
@@ -55,6 +69,11 @@ function Meta(props) {
         </div>
       </ExpansionPanelSummary>
       <ExpansionPanelDetails className={classes.details}>
+        <InputDropdown
+          label="Program"
+          options={languageIdOptions}
+          handleChange={metaUpdates.updateLanguageId}
+        />
         <InputField
           // verify type of input
           label={"Title"}
@@ -63,24 +82,31 @@ function Meta(props) {
           //name={props.metaUpdates.content.title}
         />
         <InputField
-          label={"Directions"}
+          // verify type of input
+          label={"Level"}
+          placeholder="add level"
+          handleChange={metaUpdates.updateLevel}
+          //name={props.metaUpdates.content.title}
+        />
+        <InputField
+          label="Directions"
           placeholder="add directions"
           handleChange={metaUpdates.updateDirection}
           //name={props.content.direction}
         />
         <InputField
-          label={"Image"}
+          label="Image"
           placeholder="add Image file name"
           handleChange={metaUpdates.updateImage}
           //name={props.content.direction}
         />
         <InputField
-          label={"Integration Guide URL"}
+          label="Integration Guide URL"
           placeholder="add Integration Guide URL"
           handleChange={metaUpdates.updateigURL}
         />
         <InputField
-          label={"Scoring Guide URL"}
+          label="Scoring Guide URL"
           placeholder="add Scoring Guide URL"
           handleChange={metaUpdates.updatesgURL}
         />

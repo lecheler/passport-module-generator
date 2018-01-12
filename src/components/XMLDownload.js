@@ -19,44 +19,32 @@ const styles = theme => ({
   }
 });
 
-function AddCategory(props) {
-  let { classes } = props;
+function XMLDownload(props) {
+  let { classes, handleDownload } = props;
 
-  const handleAddCategory = () => {
-    if (props.categoryCount >= 4) {
-      alert(
-        "Whoa there partner! Our supreme leader has set a limit of 4 categories."
-      );
-    } else
-      props.addCategory({
-        order: props.categoryCount,
-        title: "",
-        scoring: [],
-        tasks: []
-      });
+  const handleClick = () => {
+    handleDownload();
   };
 
   return (
     <div>
       <Paper className={classes.paper}>
         <Button
-          onClick={handleAddCategory}
+          onClick={handleClick}
           raised
-          color="primary"
+          color="accent"
           style={{ width: "100%", maxWidth: "630px" }}
         >
-          <AddIcon />
-          Category
+          Download XML File
         </Button>
       </Paper>
     </div>
   );
 }
 
-AddCategory.propTypes = {
+XMLDownload.propTypes = {
   classes: PropTypes.object.isRequired,
-  addCategory: PropTypes.func.isRequired,
-  categoryCount: PropTypes.number.isRequired
+  handleDownload: PropTypes.func.isRequired
 };
 
-export default withStyles(styles)(AddCategory);
+export default withStyles(styles)(XMLDownload);

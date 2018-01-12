@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import XMLContainer from "./components/XMLContainer";
-import InputContainer from "./components/InputContainer";
+import MainContainer from "./components/MainContainer";
 import sample from "./data/sample.js";
 import Button from "material-ui/Button";
 
@@ -13,7 +13,6 @@ class App extends Component {
       title: "",
       direction: "",
       languageID: "",
-      level: "temp",
       igURL: "",
       sgURL: "",
       image: "",
@@ -29,6 +28,7 @@ class App extends Component {
       height: props.height
     };
   }
+
   componentWillMount() {
     this.setState({ height: window.innerHeight + "1px" });
   }
@@ -310,14 +310,16 @@ class App extends Component {
   };
 
   /* ==================== META DATA ==================== */
-
-  updateInputDropdown = inputDropdownValue => {
-    this.setState({ languageID: inputDropdownValue });
-  };
-
   metaUpdates = {
+    updateLanguageId: inputDropdownValue => {
+      this.setState({ languageID: inputDropdownValue });
+    },
+
     updateTitle: e => {
       this.setState({ title: e.target.value });
+    },
+    updateLevel: e => {
+      this.setState({ level: e.target.value });
     },
     updateDirection: e => {
       this.setState({ direction: e.target.value });
@@ -344,17 +346,13 @@ class App extends Component {
             <h1 className="App-title">Module Generator</h1>
           </div>
         </header>
-        <InputContainer
+        <MainContainer
           content={this.state}
           categories={this.categories}
           scoring={this.scoring}
           tasks={this.tasks}
           metaUpdates={this.metaUpdates}
-          updateInputDropdown={this.updateInputDropdown}
-          //updateTitle={this.updateTitle}
-          //updateDirection={this.updateDirection}
         />
-        <XMLContainer content={this.state} />
       </div>
     );
   }
