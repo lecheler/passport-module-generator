@@ -10,6 +10,7 @@ import ExpansionPanel, {
 } from "material-ui/ExpansionPanel";
 import Typography from "material-ui/Typography";
 import ExpandMoreIcon from "material-ui-icons/ExpandMore";
+import SmartInput from "./SmartInput";
 
 const styles = {
   heading: {},
@@ -29,7 +30,8 @@ function Meta(props) {
         </Typography>
       </ExpansionPanelSummary>
       <ExpansionPanelDetails className={classes.details}>
-        <InputField
+        <SmartInput handleChange={metaUpdates} />
+        {/* <InputField
           // verify type of input
           label={"Title"}
           placeholder="add title"
@@ -57,7 +59,7 @@ function Meta(props) {
           label={"Scoring Guide URL"}
           placeholder="add Scoring Guide URL"
           handleChange={metaUpdates.updatesgURL}
-        />
+        /> */}
       </ExpansionPanelDetails>
     </ExpansionPanel>
   );
