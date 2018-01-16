@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import Button from "material-ui/Button";
 import DeleteIcon from "material-ui-icons/Delete";
@@ -13,9 +13,9 @@ const styles = theme => ({
 });
 
 function DeleteCategory(props) {
-  const { classes } = props;
+  const { classes, catIndex } = props;
   const handleDelete = () => {
-    props.deleteCategory(props.index);
+    props.deleteCategory(catIndex);
   };
 
   return (
@@ -31,5 +31,11 @@ function DeleteCategory(props) {
     </div>
   );
 }
+
+DeleteCategory.propTypes = {
+  classes: PropTypes.object.isRequired,
+  catIndex: PropTypes.number.isRequired,
+  deleteCategory: PropTypes.func.isRequired
+};
 
 export default withStyles(styles)(DeleteCategory);

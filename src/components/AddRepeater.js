@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import Button from "material-ui/Button";
 import { withStyles } from "material-ui/styles";
@@ -19,12 +19,19 @@ function AddRepeater(props) {
   };
 
   return (
-    <div>
+    <div className={classes.root}>
       <Button onClick={handleAddRepeater} color="primary">
         Add {name}
       </Button>
     </div>
   );
 }
+
+AddRepeater.propTypes = {
+  classes: PropTypes.object.isRequired,
+  catIndex: PropTypes.number.isRequired,
+  taskIndex: PropTypes.number.isRequired,
+  type: PropTypes.string.isRequired
+};
 
 export default withStyles(styles)(AddRepeater);

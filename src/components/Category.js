@@ -10,12 +10,14 @@ import Paper from "material-ui/Paper";
 import Grid from "material-ui/Grid";
 import Divider from "material-ui/Divider";
 import InputField from "./InputField";
-import InputFieldTwo from "./InputFieldTwo";
+import InputString from "./InputString";
 import DeleteCategory from "./DeleteCategory";
 import AddScore from "./AddScore";
 import AddTask from "./AddTask";
 import Score from "./Score";
 import Task from "./Task";
+import Icon from "material-ui/Icon";
+import CheckCircle from "material-ui-icons/CheckCircle";
 
 const styles = theme => ({
   root: {
@@ -32,11 +34,35 @@ const styles = theme => ({
     // backgroundColor: "red",
     display: "flex",
     justifyContent: "space-between",
-    marginBottom: "10px"
+    marginBottom: "10px",
+    alignItems: "center"
   }
 });
 
+// const validateCategoryContent = content => {
+//   const validateObject = object => {
+//     return Object.keys(object).every(key => {
+//       if (Array.isArray(object[key])) {
+//         return object[key].every(itemInArray => {
+//           return validateObject(itemInArray);
+//         });
+//       } else return object[key] ? true : false;
+//     });
+//   };
+//   const validScores = content.scoring.every(score => {
+//     return validateObject(score);
+//   });
+//   const validTasks = content.tasks.every(task => {
+//     return validateObject(task);
+//   });
+//   return content.title && validScores && validTasks ? "green" : "lightgray";
+// };
+
 class Category extends Component {
+  isCategoryValid = () => {
+    return this.props.validate(this.props.catContent) ? "green" : "lightgray";
+  };
+
   updateCatTitle = e => {
     // console.log(e);
     let newCategory = { ...this.props.catContent };
@@ -51,23 +77,32 @@ class Category extends Component {
       catContent,
       scoring,
       tasks,
-      categoryCount
+      categoryCount,
+      validate
     } = this.props;
+
     // console.log("catContent", catContent);
     return (
       <div className={classes.root}>
         <Paper className={classes.paper}>
           <div className={classes.deleteBar}>
+            <Icon style={{ color: this.isCategoryValid() }}>
+              <CheckCircle />
+            </Icon>
+
             <h2>Category {catIndex + 1}</h2>
-            {categoryCount > 1 && (
+
+            {categoryCount > 1 ? (
               <DeleteCategory
                 catIndex={catIndex}
                 deleteCategory={this.props.deleteCategory}
               />
+            ) : (
+              <div />
             )}
           </div>
           <Divider />
-          <InputFieldTwo
+          <InputString
             label="Title"
             handleChange={this.updateCatTitle}
             placeholder="Title"

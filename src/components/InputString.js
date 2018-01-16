@@ -1,9 +1,7 @@
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "material-ui/styles";
-import MenuItem from "material-ui/Menu/MenuItem";
 import TextField from "material-ui/TextField";
-import InputFieldTwo from "./InputFieldTwo";
 
 const styles = theme => ({
   root: {
@@ -23,7 +21,7 @@ const styles = theme => ({
   }
 });
 
-function InputField(props) {
+function InputString(props) {
   const handleInputChange = e => {
     props.handleChange({
       value: e.target.value,
@@ -48,8 +46,8 @@ function InputField(props) {
   );
 }
 
-InputField.propTypes = {
+InputString.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(InputField);
+export default withStyles(styles)(InputString);

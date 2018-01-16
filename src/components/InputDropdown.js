@@ -37,14 +37,14 @@ class InputDropdown extends React.Component {
 
     // updates app state with ID
     // reference handleChange function from props here
-    this.props.updateInputDropdown(event.target.value);
+    this.props.handleChange(event.target.value);
   };
 
   render() {
-    const { classes, options } = this.props;
+    const { classes, label, options } = this.props;
 
     // const options = this.props.options;
-    console.log(options);
+    // console.log(options);
     return (
       <div className={classes.container}>
         <FormControl className={classes.formControl}>

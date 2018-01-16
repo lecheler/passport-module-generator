@@ -3,6 +3,23 @@ import PropTypes from "prop-types";
 import XML from "xml";
 import beautify from "xml-beautifier";
 import fileDownload from "js-file-download";
+import XMLDownload from "./XMLDownload";
+import ExpansionPanel, {
+  ExpansionPanelSummary,
+  ExpansionPanelDetails
+} from "material-ui/ExpansionPanel";
+import Typography from "material-ui/Typography";
+import ExpandMoreIcon from "material-ui-icons/ExpandMore";
+import { withStyles } from "material-ui/styles";
+
+const styles = theme => ({
+  root: {},
+
+  button: {
+    margin: theme.spacing.unit,
+    width: "100%"
+  }
+});
 
 const formatScoring = scoringArray => {
   const formattedScoringArray = scoringArray.map(score => {
@@ -41,7 +58,7 @@ const formatTasks = tasksArray => {
             }
           ]
         };
-        break;
+      // break;
       case "flipgrid":
         formattedResources = formatResources(task.resources);
         return {
@@ -54,7 +71,7 @@ const formatTasks = tasksArray => {
             }
           ]
         };
-        break;
+      // break;
       case "avenue":
         const formattedSliders = [
           ...task.sliders.map(slider => {
@@ -80,12 +97,12 @@ const formatTasks = tasksArray => {
             }
           ]
         };
-        break;
+      // break;
       case "avenue-existing":
         return {
           task: [{ _attr: { type: "avenue" } }, { taskId: task.taskId }]
         };
-        break;
+      // break;
       default:
         return {};
     }
@@ -94,6 +111,8 @@ const formatTasks = tasksArray => {
 };
 
 function XMLContainer(props) {
+  let { classes, valid } = props;
+
   let formattedCategories = props.content.categories.map(category => {
     let formattedScores = formatScoring(category.scoring);
     let formattedTasks = formatTasks(category.tasks);
@@ -132,16 +151,34 @@ function XMLContainer(props) {
   ];
 
   let xmlContent = XML(contentToFormat);
-  let title = props.content.title;
+  let { title } = props.content;
 
-  const downloadXMLFile = () =>
+  const downloadXMLFile = filename =>
     fileDownload(beautify(xmlContent), `${title}.xml`);
+
   return (
     <div className="xmlContainer">
-      <pre>{beautify(xmlContent)}</pre>
-      <button onClick={downloadXMLFile}>Download XML File</button>
+      <XMLDownload handleDownload={downloadXMLFile} valid={valid} />
+      <ExpansionPanel>
+        <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+          <Typography className={classes.heading}>
+            Formatted XML Content
+          </Typography>
+        </ExpansionPanelSummary>
+        <ExpansionPanelDetails>
+          <pre>{beautify(xmlContent)}</pre>
+        </ExpansionPanelDetails>
+      </ExpansionPanel>
+
+      {/*<button onClick={downloadXMLFile}>Download XML File</button>*/}
     </div>
   );
 }
 
-export default XMLContainer;
+XMLContainer.propTypes = {
+  classes: PropTypes.object.isRequired,
+  content: PropTypes.object.isRequired,
+  valid: PropTypes.object.isRequired
+};
+
+export default withStyles(styles)(XMLContainer);

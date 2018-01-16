@@ -1,31 +1,90 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
 import "./App.css";
-import XMLContainer from "./components/XMLContainer";
-import InputContainer from "./components/InputContainer";
-import sample from "./data/sample.js";
+import MainContainer from "./components/MainContainer";
+
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       title: "",
       direction: "",
-      language_ID: "",
-      level: "",
+      languageID: "",
+      igURL: "",
+      sgURL: "",
+      image: "",
       categories: [
         {
-          order: 0,
+          order: 1,
           title: "",
-          scoring: [],
+          scoring: [{ max: "", label: "" }],
           tasks: []
         }
       ],
-
+      valid: {
+        meta: false,
+        categories: false
+      },
       height: props.height
     };
   }
+
+  validateMetaContent = () => {
+    const metaContent = {
+      title: this.state.title,
+      direction: this.state.direction,
+      languageID: this.state.languageID,
+      level: this.state.level,
+      igURL: this.state.igURL,
+      sgURL: this.state.sgURL,
+      image: this.state.image
+    };
+    return Object.keys(metaContent).every(key => {
+      return metaContent[key] ? true : false;
+    });
+  };
+
+  validateCategoryContent = content => {
+    const validateObject = object => {
+      return Object.keys(object).every(key => {
+        if (Array.isArray(object[key])) {
+          return object[key].every(itemInArray => {
+            return validateObject(itemInArray);
+          });
+        } else return object[key] ? true : false;
+      });
+    };
+    const validScores = content.scoring.every(score => {
+      return validateObject(score);
+    });
+    const validTasks = content.tasks.every(task => {
+      return validateObject(task);
+    });
+    return content.title && validScores && validTasks ? true : false;
+  };
+
+  validateAllCategories = () => {
+    let isAllValid = this.state.categories.every(this.validateCategoryContent);
+    return isAllValid;
+  };
+
   componentWillMount() {
     this.setState({ height: window.innerHeight + "1px" });
+  }
+
+  componentDidUpdate() {
+    /* ===== VALIDATE META ===== */
+    if (this.validateMetaContent() != this.state.valid.meta) {
+      this.setState({
+        valid: { ...this.state.valid, meta: this.validateMetaContent() }
+      });
+    }
+    /* ==== VALIDATE CATEGORIES ===== */
+    // console.log(this.validateAllCategories());
+    if (this.validateAllCategories() != this.state.valid.categories) {
+      this.setState({
+        valid: { ...this.state.valid, categories: this.validateAllCategories() }
+      });
+    }
   }
 
   /* ==================== CATEGORIES ==================== */
@@ -36,7 +95,7 @@ class App extends Component {
         let defaultCategory = {
           order: prevState.categories.length,
           title: "",
-          scoring: [],
+          scoring: [{ max: "", label: "" }],
           tasks: []
         };
         let prevCategories = prevState.categories;
@@ -51,6 +110,9 @@ class App extends Component {
         newCategories.splice(index, 1, newCategory);
         return { categories: newCategories };
       });
+    },
+    validate: catContent => {
+      return this.validateCategoryContent(catContent);
     },
     /* ----- Delete category ----- */
     delete: index => {
@@ -131,6 +193,7 @@ class App extends Component {
           type: "flipgrid",
           question: "",
           direction: "",
+          shortDirection: "",
           resources: []
         };
         let newCategories = [...prevState.categories];
@@ -184,7 +247,7 @@ class App extends Component {
       this.setState(prevState => {
         const defaultTask = {
           type: "avenue-existing",
-          avenueTaskId: ""
+          taskId: ""
         };
         let newCategories = [...prevState.categories];
         let newCategory = newCategories[catIndex];
@@ -304,14 +367,16 @@ class App extends Component {
   };
 
   /* ==================== META DATA ==================== */
-
-  updateInputDropdown = inputDropdownValue => {
-    this.setState({ languageID: inputDropdownValue });
-  };
-
   metaUpdates = {
+    updateLanguageId: inputDropdownValue => {
+      this.setState({ languageID: inputDropdownValue });
+    },
+
     updateTitle: e => {
       this.setState({ title: e.target.value });
+    },
+    updateLevel: e => {
+      this.setState({ level: e.target.value });
     },
     updateDirection: e => {
       this.setState({ direction: e.target.value });
@@ -333,20 +398,20 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <img src="passport_logo.png" />
-          <h1 className="App-title">Module Generator</h1>
+          <div>
+            <img alt="Passport logo" src="passport_logo.png" />
+            <h1 className="App-title">Module Generator</h1>
+          </div>
         </header>
-        <InputContainer
+        <MainContainer
           content={this.state}
           categories={this.categories}
           scoring={this.scoring}
           tasks={this.tasks}
           metaUpdates={this.metaUpdates}
-          updateInputDropdown={this.updateInputDropdown}
-          //updateTitle={this.updateTitle}
-          //updateDirection={this.updateDirection}
+          validateCategoryContent={this.validateCategoryContent}
+          valid={this.state.valid}
         />
-        <XMLContainer content={this.state} />
       </div>
     );
   }

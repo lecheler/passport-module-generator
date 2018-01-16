@@ -75,6 +75,7 @@ class ScrollableTabsButtonAuto extends React.Component {
                 <Tab
                   label={`C-${catIndex + 1}: ${category.title}`}
                   className={classes.categoryTab}
+                  key={catIndex}
                 />
               );
             })}
@@ -98,6 +99,7 @@ class ScrollableTabsButtonAuto extends React.Component {
               catContent={content.categories[value]}
               scoring={scoring}
               tasks={tasks}
+              validate={categories.validate}
             />
           </TabContainer>
         )}
