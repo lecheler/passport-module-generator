@@ -367,6 +367,9 @@ class App extends Component {
   };
 
   /* ==================== META DATA ==================== */
+
+  // combine functions to receive tag
+
   metaUpdates = {
     updateLanguageId: inputDropdownValue => {
       this.setState({ languageID: inputDropdownValue });

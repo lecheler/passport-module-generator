@@ -24,13 +24,9 @@ const styles = theme => ({
     width: "100%"
   }
 });
-// Convert to class component. DONE
-// Add state constructor.
-// update local state of input field.
 
 class InputField extends Component {
   render() {
-    // const { classes } = this.props;
     return (
       <div className={this.props.classes.root}>
         <TextField

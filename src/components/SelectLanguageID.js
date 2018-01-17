@@ -20,21 +20,7 @@ const styles = theme => ({
 const ITEM_HEIGHT = 60;
 const ITEM_PADDING_TOP = 8;
 
-// const language = [
-//   "Chinese: Zhēn Bàng!",
-//   "Chinese: Zhēn Bàng! 2nd Edition",
-//   "French: T`es branché ?/",
-//   "German: Deutsch Aktuell 6th Edition,2",
-//   "German: Deutsch Aktuell 7th Edition,133",
-//   "Mirrors and Windows,170",
-//   "Mirrors and Windows: CCSS,169",
-//   "Spanish: ¡Aventura!,1",
-//   "Spanish: ¡Qué chévere!,55"
-// ];
 class SelectLanguageID extends React.Component {
-  // state = {
-  //   language: ""
-  // };
   constructor(props) {
     super(props);
     this.state = {
