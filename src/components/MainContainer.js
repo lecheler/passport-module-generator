@@ -40,13 +40,13 @@ function MainContainer(props) {
       <Grid container spacing={24}>
         <Grid item xs />
         <Grid item xs={8} md={10}>
-          {/*<Paper className={classes.paper}>
+          {/* <Paper className={classes.paper}>
             <InputDropdown
               options={languageIdOptions}
               updateInputDropdown={props.updateInputDropdown}
               handleChange={props.updateInputDropdown}
             />
-          </Paper>*/}
+          </Paper> */}
           <Paper className={classes.paper}>
             <Meta metaUpdates={props.metaUpdates} content={props.content} />
           </Paper>

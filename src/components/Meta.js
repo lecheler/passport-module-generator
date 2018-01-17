@@ -44,15 +44,36 @@ const validateMetaContent = object => {
 
 function Meta(props) {
   const { classes, content, metaUpdates } = props;
-  const metaContent = {
-    title: content.title,
-    direction: content.direction,
-    languageID: content.languageID,
-    level: content.level,
-    igURL: content.igURL,
-    sgURL: content.sgURL,
-    image: content.image
-  };
+  // const metaContent = {
+  //   title: content.title,
+  //   direction: content.direction,
+  //   languageID: content.languageID,
+  //   level: content.level,
+  //   igURL: content.igURL,
+  //   sgURL: content.sgURL,
+  //   image: content.image
+  // };
+
+  // build array
+  // iterate over array and render smart input
+  const metaContent = [
+    { label: "title", type: "string", handleChange: metaUpdates.updateTitle },
+    {
+      label: "direction",
+      type: "string",
+      handleChange: metaUpdates.updateDirection
+    },
+    {
+      label: "languageID",
+      type: "dropdown",
+      handleChange: metaUpdates.updateLanguageId
+    },
+    { label: "level", type: "number", handleChange: metaUpdates.updateLevel },
+    { label: "igURL", type: "string", handleChange: metaUpdates.updateigURL },
+    { label: "sgURL", type: "string", handleChange: metaUpdates.updatesgURL },
+    { label: "image", type: "string", handleChange: metaUpdates.updateImage }
+  ];
+
   // console.log(metaContent);
 
   return (
@@ -70,7 +91,23 @@ function Meta(props) {
         </div>
       </ExpansionPanelSummary>
       <ExpansionPanelDetails className={classes.details}>
-        <SmartInput handleChange={metaUpdates} />
+        <InputDropdown
+          label="Program"
+          options={languageIdOptions}
+          handleChange={metaUpdates.updateLanguageId}
+        />
+        {metaContent.map((meta, metaIndex) => {
+          return (
+            <SmartInput
+              handleChange={meta.handleChange}
+              label={meta.label}
+              type={meta.type}
+              key={metaIndex}
+              placeholder={meta.label}
+            />
+          );
+        })}
+
         {/* <InputField
           // verify type of input
           label={"Title"}
