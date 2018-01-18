@@ -28,14 +28,14 @@ const styles = theme => ({
 });
 
 function Task(props) {
-  const { classes, tasks, taskContent, catIndex, taskIndex } = props;
+  const { classes, taskUtils, taskContent, catIndex, taskIndex } = props;
 
   const displayTask = () => {
     switch (props.taskContent.type) {
       case "stimulus":
         return (
           <TaskStimulus
-            tasks={tasks}
+            taskUtils={taskUtils}
             taskContent={taskContent}
             catIndex={catIndex}
             taskIndex={taskIndex}
@@ -45,7 +45,7 @@ function Task(props) {
       case "flipgrid":
         return (
           <TaskFlipgrid
-            tasks={tasks}
+            taskUtils={taskUtils}
             taskContent={taskContent}
             catIndex={catIndex}
             taskIndex={taskIndex}
@@ -55,7 +55,7 @@ function Task(props) {
       case "avenue":
         return (
           <TaskAvenue
-            tasks={tasks}
+            taskUtils={taskUtils}
             taskContent={taskContent}
             catIndex={catIndex}
             taskIndex={taskIndex}
@@ -65,7 +65,7 @@ function Task(props) {
       case "avenue-existing":
         return (
           <TaskAvenueExisting
-            tasks={tasks}
+            taskUtils={taskUtils}
             taskContent={taskContent}
             catIndex={catIndex}
             taskIndex={taskIndex}

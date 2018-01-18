@@ -36,16 +36,16 @@ const resourceSchema = [
 ];
 
 function TaskFlipgrid(props) {
-  const { taskIndex, catIndex, tasks, taskContent, classes } = props;
+  const { taskIndex, catIndex, taskUtils, taskContent, classes } = props;
 
   const handleUpdate = input => {
     let updateObject = {};
     updateObject[input.label] = input.value;
-    tasks.update(catIndex, taskIndex, updateObject);
+    taskUtils.update(catIndex, taskIndex, updateObject);
   };
 
   const handleDelete = () => {
-    tasks.remove(catIndex, taskIndex);
+    taskUtils.delete(catIndex, taskIndex);
   };
 
   return (
@@ -80,12 +80,12 @@ function TaskFlipgrid(props) {
       {taskContent.resources.map((resource, repeaterIndex) => {
         return (
           <Repeater
-            tasks={tasks}
+            taskUtils={taskUtils}
             catIndex={catIndex}
             taskIndex={taskIndex}
             repeaterIndex={repeaterIndex}
             repeaterSchema={resourceSchema}
-            type="resources"
+            repeaterType="resources"
             value={resource}
             key={repeaterIndex}
           />
@@ -93,10 +93,10 @@ function TaskFlipgrid(props) {
       })}
 
       <AddRepeater
-        tasks={tasks}
+        taskUtils={taskUtils}
         catIndex={catIndex}
         taskIndex={taskIndex}
-        type="resources"
+        repeaterType="resources"
         name="Resource"
       />
     </div>

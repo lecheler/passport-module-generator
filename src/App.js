@@ -7,7 +7,18 @@ import {
   deleteCategory,
   validateCategory
 } from "./utils/categories";
+
 import { addScore, updateScore, deleteScore } from "./utils/scoring";
+
+import {
+  getTask,
+  addTask,
+  updateTask,
+  deleteTask,
+  addRepeater,
+  updateRepeater,
+  deleteRepeater
+} from "./utils/tasks";
 
 class App extends Component {
   constructor(props) {
@@ -124,27 +135,12 @@ class App extends Component {
     countMax: 5,
     countMin: 1,
     get: (catIndex, taskIndex) => {
-      return this.state.categories[catIndex].tasks[taskIndex];
+      return getTask(this.state, catIndex, taskIndex);
     },
     count: catIndex => this.state.categories[catIndex].tasks.length,
-    addFlipGrid: catIndex => {
+    add: (catIndex, taskType) => {
       this.setState(prevState => {
-        return addFlipGrid(prevState, catIndex);
-      });
-    },
-    addStimulus: catIndex => {
-      this.setState(prevState => {
-        return addStimulus(prevState, catIndex);
-      });
-    },
-    addAvenue: catIndex => {
-      this.setState(prevState => {
-        return addAvenue(prevState, catIndex);
-      });
-    },
-    addExistingAvenue: catIndex => {
-      this.setState(prevState => {
-        return addExistingAvenue(prevState, catIndex);
+        return addTask(prevState, catIndex, taskType);
       });
     },
     update: (catIndex, taskIndex, taskUpdate) => {
@@ -157,9 +153,9 @@ class App extends Component {
         return deleteTask(prevState, catIndex, taskIndex);
       });
     },
-    addRepeater: (catIndex, taskIndex, type) => {
+    addRepeater: (catIndex, taskIndex, repeaterType) => {
       this.setState(prevState => {
-        return addRepeater(prevState, catIndex, taskIndex, type);
+        return addRepeater(prevState, catIndex, taskIndex, repeaterType);
       });
     },
     updateRepeater: (
@@ -190,196 +186,6 @@ class App extends Component {
           repeaterType
         );
       });
-    }
-  };
-
-  tasks = {
-    /* ----- Get info on tasks ----- */
-    get: (catIndex, taskIndex) => {
-      return this.state.categories[catIndex].tasks[taskIndex];
-    },
-    /* ----- Get current number of tasks ----- */
-    count: catIndex => this.state.categories[catIndex].tasks.length,
-    /* ----- Max and min number of tasks ----- */
-    countMax: 5,
-    countMin: 1,
-    /* ----- Add task controls ----- */
-    addFlipGrid: catIndex => {
-      this.setState(prevState => {
-        const defaultTask = {
-          type: "flipgrid",
-          question: "",
-          direction: "",
-          shortDirection: "",
-          resources: []
-        };
-        let newCategories = [...prevState.categories];
-        let newCategory = newCategories[catIndex];
-        newCategory.tasks.push(defaultTask);
-        newCategories.splice(catIndex, 1, newCategory);
-        return { categories: newCategories };
-      });
-    },
-    addStimulus: catIndex => {
-      this.setState(prevState => {
-        const defaultTask = {
-          type: "stimulus",
-          responseType: "",
-          direction: "",
-          shortDirection: "",
-          resources: []
-        };
-        let newCategories = [...prevState.categories];
-        let newCategory = newCategories[catIndex];
-        newCategory.tasks.push(defaultTask);
-        newCategories.splice(catIndex, 1, newCategory);
-        return { categories: newCategories };
-      });
-    },
-    addAvenue: catIndex => {
-      this.setState(prevState => {
-        const defaultTask = {
-          type: "avenue",
-          name: "",
-          instructions: "",
-          recordingTries: "",
-          recordTime: "",
-          views: "",
-          mediaTime: "",
-          mediaWhileRecording: "",
-          allowMobile: "",
-          sliders: [],
-          assets: [],
-          level: "",
-          unit: ""
-        };
-        let newCategories = [...prevState.categories];
-        let newCategory = newCategories[catIndex];
-        newCategory.tasks.push(defaultTask);
-        newCategories.splice(catIndex, 1, newCategory);
-        return { categories: newCategories };
-      });
-    },
-    addExistingAvenue: catIndex => {
-      this.setState(prevState => {
-        const defaultTask = {
-          type: "avenue-existing",
-          taskId: ""
-        };
-        let newCategories = [...prevState.categories];
-        let newCategory = newCategories[catIndex];
-        newCategory.tasks.push(defaultTask);
-        newCategories.splice(catIndex, 1, newCategory);
-        return { categories: newCategories };
-      });
-    },
-    /* ----- Update and remove tasks ----- */
-    update: (catIndex, taskIndex, taskUpdate) => {
-      this.setState(prevState => {
-        let newCategories = [...prevState.categories];
-        let newCategory = newCategories[catIndex];
-        const prevTask = this.state.categories[catIndex].tasks[taskIndex];
-        const newTask = {
-          ...prevTask,
-          ...taskUpdate
-        };
-        newCategory.tasks.splice(taskIndex, 1, newTask);
-        newCategories.splice(catIndex, 1, newCategory);
-        return { categories: newCategories };
-      });
-    },
-    remove: (catIndex, taskIndex) => {
-      this.setState(prevState => {
-        let newCategories = [...prevState.categories];
-        let newCategory = newCategories[catIndex];
-        newCategory.tasks.splice(taskIndex, 1);
-        newCategories.splice(catIndex, 1, newCategory);
-        return { categories: newCategories };
-      });
-    },
-    /* ----- Reapeater controls ----- */
-    /* Types: resources, assests, sliders
-    /* Limits: Flipgrid / Stimulus: resources(unlimited), Avenue: assets(1), sliders(5) */
-    addRepeater: (catIndex, taskIndex, type) => {
-      let defaultRepeater = {};
-      let repeaterArray = "";
-      switch (type) {
-        case "resources":
-          defaultRepeater = { type: "HTTP", url: "", label: "" };
-          repeaterArray = "resources";
-          break;
-        case "assets":
-          defaultRepeater = {
-            type: "",
-            extension: "",
-            file: "",
-            title: "",
-            text: ""
-          };
-          repeaterArray = "assets";
-          break;
-        case "sliders":
-          defaultRepeater = { max: "", label: "" };
-          repeaterArray = "sliders";
-          break;
-        default:
-          return {};
-      }
-
-      let prevTask = this.tasks.get(catIndex, taskIndex);
-      let newRepeaters = [...prevTask[repeaterArray], defaultRepeater];
-      let updatedTask = {
-        ...prevTask
-      };
-      updatedTask[repeaterArray] = newRepeaters;
-      this.tasks.update(catIndex, taskIndex, updatedTask);
-    },
-    /* ----- Update repeater ----- */
-    updateRepeater: (
-      catIndex,
-      taskIndex,
-      repeaterIndex,
-      repeaterUpdate,
-      repeaterType
-    ) => {
-      let prevTask = this.tasks.get(catIndex, taskIndex);
-      console.log(
-        catIndex,
-        taskIndex,
-        repeaterIndex,
-        repeaterUpdate,
-        repeaterType
-      );
-      // let repeaterArrayName =
-      //   prevTask.type === "stimulus" ? "resources" : "sliders";
-
-      let updatedRepeater = {
-        ...prevTask[repeaterType][repeaterIndex],
-        ...repeaterUpdate
-      };
-
-      let updatedRepeaterArray = [...prevTask[repeaterType]];
-      updatedRepeaterArray.splice(repeaterIndex, 1, updatedRepeater);
-
-      let updatedTask = {
-        ...prevTask
-      };
-
-      updatedTask[repeaterType] = updatedRepeaterArray;
-
-      this.tasks.update(catIndex, taskIndex, updatedTask);
-    },
-    /* ----- Remove repeater ----- */
-
-    removeRepeater: (catIndex, taskIndex, repeaterIndex, type) => {
-      let prevTask = this.tasks.get(catIndex, taskIndex);
-      let newResources = [...prevTask[type]];
-      newResources.splice(repeaterIndex, 1);
-      let updatedTask = {
-        ...prevTask
-      };
-      updatedTask[type] = newResources;
-      this.tasks.update(catIndex, taskIndex, updatedTask);
     }
   };
 
@@ -424,7 +230,7 @@ class App extends Component {
           content={this.state}
           categoryUtils={this.categoryUtils}
           scoringUtils={this.scoringUtils}
-          tasks={this.tasks}
+          taskUtils={this.taskUtils}
           metaUpdates={this.metaUpdates}
           validateCategoryContent={this.validateCategoryContent}
           valid={this.state.valid}

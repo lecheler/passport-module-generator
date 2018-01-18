@@ -77,7 +77,7 @@ class Category extends Component {
       catContent,
       scoring,
       scoringUtils,
-      tasks,
+      taskUtils,
       categoryCount,
       validate
     } = this.props;
@@ -141,8 +141,8 @@ class Category extends Component {
           >
             {catContent.tasks.map((score, taskIndex) => (
               <Task
-                tasks={tasks}
-                taskContent={tasks.get(catIndex, taskIndex)}
+                taskUtils={taskUtils}
+                taskContent={catContent.tasks[taskIndex]}
                 catIndex={catIndex}
                 taskIndex={taskIndex}
                 key={taskIndex}
@@ -150,8 +150,8 @@ class Category extends Component {
             ))}
           </FlipMove>
 
-          {tasks.count(catIndex) < tasks.countMax ? (
-            <AddTask catIndex={catIndex} tasks={this.props.tasks} />
+          {taskUtils.count(catIndex) < taskUtils.countMax ? (
+            <AddTask catIndex={catIndex} taskUtils={taskUtils} />
           ) : null}
         </Paper>
       </div>

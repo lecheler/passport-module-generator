@@ -34,9 +34,8 @@ function MainContainer(props) {
     content,
     categories,
     categoryUtils,
-    scoring,
     scoringUtils,
-    tasks,
+    taskUtils,
     valid
   } = props;
   // const anotherOption = [
@@ -63,7 +62,7 @@ function MainContainer(props) {
             content={content}
             categoryUtils={categoryUtils}
             scoringUtils={scoringUtils}
-            tasks={tasks}
+            taskUtils={taskUtils}
           />
 
           <Paper className={classes.paperBottom}>

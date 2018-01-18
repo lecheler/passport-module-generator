@@ -54,16 +54,16 @@ const assetSchema = [
 ];
 
 function TaskAvenue(props) {
-  const { taskIndex, catIndex, tasks, taskContent, classes } = props;
+  const { taskIndex, catIndex, taskUtils, taskContent, classes } = props;
 
   const handleUpdate = input => {
     let updateObject = {};
     updateObject[input.label] = input.value;
-    props.tasks.update(catIndex, taskIndex, updateObject);
+    taskUtils.update(catIndex, taskIndex, updateObject);
   };
 
   const handleDelete = () => {
-    props.tasks.remove(catIndex, taskIndex);
+    taskUtils.delete(catIndex, taskIndex);
   };
 
   return (
@@ -98,13 +98,13 @@ function TaskAvenue(props) {
       {taskContent.sliders.map((slider, repeaterIndex) => {
         return (
           <Repeater
-            tasks={tasks}
+            taskUtils={taskUtils}
             catIndex={catIndex}
             taskIndex={taskIndex}
             repeaterIndex={repeaterIndex}
             repeaterSchema={sliderSchema}
             key={repeaterIndex}
-            type="sliders"
+            repeaterType="sliders"
             value={slider}
           />
         );
@@ -112,10 +112,10 @@ function TaskAvenue(props) {
 
       {taskContent.sliders.length < 4 ? (
         <AddRepeater
-          tasks={tasks}
+          taskUtils={taskUtils}
           catIndex={catIndex}
           taskIndex={taskIndex}
-          type="sliders"
+          repeaterType="sliders"
           name="Slider"
         />
       ) : null}
@@ -125,12 +125,12 @@ function TaskAvenue(props) {
       {taskContent.assets.map((asset, repeaterIndex) => {
         return (
           <Repeater
-            tasks={tasks}
+            taskUtils={taskUtils}
             catIndex={catIndex}
             taskIndex={taskIndex}
             repeaterIndex={repeaterIndex}
             repeaterSchema={assetSchema}
-            type="assets"
+            repeaterType="assets"
             value={asset}
           />
         );
@@ -138,10 +138,10 @@ function TaskAvenue(props) {
 
       {taskContent.assets.length < 1 ? (
         <AddRepeater
-          tasks={tasks}
+          taskUtils={taskUtils}
           catIndex={catIndex}
           taskIndex={taskIndex}
-          type="assets"
+          repeaterType="assets"
           name="Asset"
         />
       ) : null}

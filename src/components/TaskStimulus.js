@@ -36,22 +36,22 @@ const resourceSchema = [
 ];
 
 function TaskStimulus(props) {
-  const { taskIndex, catIndex, tasks, taskContent, classes } = props;
+  const { taskIndex, catIndex, taskUtils, taskContent, classes } = props;
 
   const handleUpdate = input => {
     let updateObject = {};
     updateObject[input.label] = input.value;
-    props.tasks.update(catIndex, taskIndex, updateObject);
+    taskUtils.update(catIndex, taskIndex, updateObject);
   };
 
   const handleRepeaterUpdate = input => {
     let updateObject = {};
     updateObject[input.label] = input.value;
-    props.tasks.updateRepeater(catIndex, taskIndex, input.rIndex, updateObject);
+    taskUtils.updateRepeater(catIndex, taskIndex, input.rIndex, updateObject);
   };
 
   const handleDelete = () => {
-    props.tasks.remove(catIndex, taskIndex);
+    taskUtils.delete(catIndex, taskIndex);
   };
 
   return (
@@ -86,12 +86,12 @@ function TaskStimulus(props) {
       {taskContent.resources.map((resource, repeaterIndex) => {
         return (
           <Repeater
-            tasks={tasks}
+            taskUtils={taskUtils}
             catIndex={catIndex}
             taskIndex={taskIndex}
             repeaterIndex={repeaterIndex}
             repeaterSchema={resourceSchema}
-            type="resources"
+            repeaterType="resources"
             value={resource}
             key={repeaterIndex}
           />
@@ -99,10 +99,10 @@ function TaskStimulus(props) {
       })}
 
       <AddRepeater
-        tasks={tasks}
+        taskUtils={taskUtils}
         catIndex={catIndex}
         taskIndex={taskIndex}
-        type="resources"
+        repeaterType="resources"
         name="Resource"
       />
     </div>

@@ -16,22 +16,22 @@ const styles = theme => ({
 });
 
 function AddTask(props) {
-  const { classes, catIndex, tasks } = props;
+  const { classes, catIndex, taskUtils } = props;
 
   const handleAddStimulus = () => {
-    tasks.addStimulus(catIndex);
+    taskUtils.add(catIndex, "stimulus");
   };
 
   const handleAddFlipGrid = () => {
-    tasks.addFlipGrid(catIndex);
+    taskUtils.add(catIndex, "flipGrid");
   };
 
   const handleAddAvenue = () => {
-    tasks.addAvenue(catIndex);
+    taskUtils.add(catIndex, "avenue");
   };
 
   const handleAddExistingAvenue = () => {
-    tasks.addExistingAvenue(catIndex);
+    taskUtils.add(catIndex, "avenueExisting");
   };
 
   return (
@@ -80,7 +80,7 @@ function AddTask(props) {
 AddTask.propTypes = {
   classes: PropTypes.object.isRequired,
   catIndex: PropTypes.number.isRequired,
-  tasks: PropTypes.object.isRequired
+  taskUtils: PropTypes.object.isRequired
 };
 
 export default withStyles(styles)(AddTask);

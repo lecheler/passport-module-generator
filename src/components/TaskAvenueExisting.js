@@ -25,21 +25,22 @@ const styles = theme => ({
 });
 
 const inputArray = [
-  // { label: "type", type: "string", default: "avenue" },
-  { label: "taskId", type: "string" }
+  { label: "avenueTaskId", type: "string" },
+  { label: "direction", type: "string" },
+  { label: "shortDescription", type: "string" }
 ];
 
 function TaskAvenueExisting(props) {
-  const { taskIndex, catIndex, tasks, taskContent, classes } = props;
+  const { taskIndex, catIndex, taskUtils, taskContent, classes } = props;
 
   const handleUpdate = input => {
     let updateObject = {};
     updateObject[input.label] = input.value;
-    tasks.update(catIndex, taskIndex, updateObject);
+    taskUtils.update(catIndex, taskIndex, updateObject);
   };
 
   const handleDelete = () => {
-    tasks.remove(catIndex, taskIndex);
+    taskUtils.delete(catIndex, taskIndex);
   };
 
   return (

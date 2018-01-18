@@ -61,7 +61,7 @@ class ScrollableTabsButtonAuto extends React.Component {
       content,
       scoring,
       scoringUtils,
-      tasks
+      taskUtils
     } = this.props;
     const { value } = this.state;
 
@@ -104,7 +104,7 @@ class ScrollableTabsButtonAuto extends React.Component {
               deleteCategory={this.handleCategoryDelete}
               catContent={content.categories[value]}
               scoringUtils={scoringUtils}
-              tasks={tasks}
+              taskUtils={taskUtils}
               validate={categoryUtils.validate}
             />
           </TabContainer>

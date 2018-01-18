@@ -6,7 +6,7 @@ export const DefaultTasks = {
     shortDirection: "",
     resources: []
   },
-  stimulus: 
+  stimulus: {
     type: "stimulus",
     responseType: "",
     direction: "",
@@ -30,7 +30,7 @@ export const DefaultTasks = {
   },
   avenueExisting: {
     type: "avenue-existing",
-    taskId: "",
+    avenueTaskId: "",
     direction: "",
     shortDescription: ""
   }
