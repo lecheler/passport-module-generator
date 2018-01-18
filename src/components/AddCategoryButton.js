@@ -18,12 +18,6 @@ function AddCategory(props) {
 
   const handleAddCategory = () => {
     props.addCategory({ snap: "banana" });
-
-    // if (props.categoryCount >= 4) {
-    //   alert(
-    //     "Whoa there partner! Our supreme leader has set a limit of 4 categories."
-    //   );
-    // } else props.addCategory();
   };
 
   return (

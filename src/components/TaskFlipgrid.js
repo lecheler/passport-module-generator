@@ -4,10 +4,10 @@ import { withStyles } from "material-ui/styles";
 import InputString from "./InputString";
 import IconButton from "material-ui/IconButton";
 import DeleteIcon from "material-ui-icons/Delete";
-import InputDropdown from "./InputDropdown";
 import AddRepeater from "./AddRepeater";
 import Repeater from "./Repeater";
 import Divider from "material-ui/Divider";
+import { flipGridSchema, resourceSchema } from "../config/taskFlipGridSchema";
 
 const styles = theme => ({
   root: {},
@@ -24,23 +24,12 @@ const styles = theme => ({
   }
 });
 
-const inputArray = [
-  { label: "question", type: "string" },
-  { label: "direction", type: "string" },
-  { label: "shortDirection", type: "string" }
-];
-
-const resourceSchema = [
-  { label: "url", type: "string", default: "" },
-  { label: "label", type: "string", default: "" }
-];
-
 function TaskFlipgrid(props) {
   const { taskIndex, catIndex, taskUtils, taskContent, classes } = props;
 
   const handleUpdate = input => {
     let updateObject = {};
-    updateObject[input.label] = input.value;
+    updateObject[input.tag] = input.value;
     taskUtils.update(catIndex, taskIndex, updateObject);
   };
 
@@ -62,14 +51,15 @@ function TaskFlipgrid(props) {
         </IconButton>
       </div>
 
-      {inputArray.map((item, index) => {
+      {flipGridSchema.map((item, index) => {
         return (
           <InputString
+            tag={item.tag}
             label={item.label}
-            handleChange={handleUpdate}
-            placeholder={item.label}
-            key={index}
+            placeholder={item.placeholder}
             value={taskContent[item.label]}
+            handleChange={handleUpdate}
+            key={index}
           />
         );
       })}

@@ -16,8 +16,6 @@ const styles = theme => ({
   }
 });
 
-const repeaterArray = [];
-
 function Repeater(props) {
   const {
     classes,
@@ -32,7 +30,7 @@ function Repeater(props) {
 
   const handleRepeaterUpdate = input => {
     let updateObject = {};
-    updateObject[input.label] = input.value;
+    updateObject[input.tag] = input.value;
 
     taskUtils.updateRepeater(
       catIndex,
@@ -50,10 +48,11 @@ function Repeater(props) {
   const repeaterInputs = repeaterSchema.map((item, index) => {
     return (
       <InputString
+        tag={item.tag}
         label={item.label}
-        handleChange={handleRepeaterUpdate}
-        placeholder={item.label}
+        placeholder={item.placeholder}
         value={value[item.label]}
+        handleChange={handleRepeaterUpdate}
         key={index}
       />
     );

@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Button from "material-ui/Button";
-import AddIcon from "material-ui-icons/Add";
 import { withStyles } from "material-ui/styles";
 import Paper from "material-ui/Paper";
 

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import MainContainer from "./components/MainContainer";
+import { updateMeta } from "./utils/meta";
 import {
   addCategory,
   updateCategory,
@@ -30,6 +31,7 @@ class App extends Component {
       igURL: "",
       sgURL: "",
       image: "",
+      level: "",
       categories: [
         {
           order: 0,
@@ -56,6 +58,7 @@ class App extends Component {
       sgURL: this.state.sgURL,
       image: this.state.image
     };
+    console.log(metaContent);
     return Object.keys(metaContent).every(key => {
       return metaContent[key] ? true : false;
     });
@@ -72,14 +75,14 @@ class App extends Component {
 
   componentDidUpdate() {
     /* ===== VALIDATE META ===== */
-    if (this.validateMetaContent() != this.state.valid.meta) {
+    if (this.validateMetaContent() !== this.state.valid.meta) {
       this.setState({
         valid: { ...this.state.valid, meta: this.validateMetaContent() }
       });
     }
     /* ==== VALIDATE CATEGORIES ===== */
     // console.log(this.validateAllCategories());
-    if (this.validateAllCategories() != this.state.valid.categories) {
+    if (this.validateAllCategories() !== this.state.valid.categories) {
       this.setState({
         valid: { ...this.state.valid, categories: this.validateAllCategories() }
       });
@@ -193,29 +196,36 @@ class App extends Component {
 
   // combine functions to receive tag
 
-  metaUpdates = {
-    updateLanguageId: inputDropdownValue => {
-      this.setState({ languageID: inputDropdownValue });
-    },
-
-    updateTitle: e => {
-      this.setState({ title: e.target.value });
-    },
-    updateLevel: e => {
-      this.setState({ level: e.target.value });
-    },
-    updateDirection: e => {
-      this.setState({ direction: e.target.value });
-    },
-    updateImage: e => {
-      this.setState({ image: e.target.value });
-    },
-    updateigURL: e => {
-      this.setState({ igURL: e.target.value });
-    },
-    updatesgURL: e => {
-      this.setState({ sgURL: e.target.value });
+  metaUtils = {
+    update: metaObject => {
+      console.log(metaObject);
+      this.setState(prevState => {
+        return updateMeta(prevState, metaObject);
+      });
     }
+
+    // updateLanguageId: inputDropdownValue => {
+    //   this.setState({ languageID: inputDropdownValue });
+    // },
+
+    // updateTitle: e => {
+    //   this.setState({ title: e.target.value });
+    // },
+    // updateLevel: e => {
+    //   this.setState({ level: e.target.value });
+    // },
+    // updateDirection: e => {
+    //   this.setState({ direction: e.target.value });
+    // },
+    // updateImage: e => {
+    //   this.setState({ image: e.target.value });
+    // },
+    // updateigURL: e => {
+    //   this.setState({ igURL: e.target.value });
+    // },
+    // updatesgURL: e => {
+    //   this.setState({ sgURL: e.target.value });
+    // }
   };
 
   /* ==================== COMPONENT RENDER ==================== */
@@ -234,7 +244,7 @@ class App extends Component {
           categoryUtils={this.categoryUtils}
           scoringUtils={this.scoringUtils}
           taskUtils={this.taskUtils}
-          metaUpdates={this.metaUpdates}
+          metaUtils={this.metaUtils}
           valid={this.state.valid}
         />
       </div>

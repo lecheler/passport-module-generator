@@ -17,13 +17,7 @@ const styles = theme => ({
   }
 });
 
-const ITEM_HEIGHT = 60;
-const ITEM_PADDING_TOP = 8;
-
 class InputDropdown extends React.Component {
-  // state = {
-  //   language: ""
-  // };
   constructor(props) {
     super(props);
     this.state = {
@@ -31,24 +25,29 @@ class InputDropdown extends React.Component {
     };
   }
 
-  handleDropdownChange = event => {
+  handleDropdownChange = e => {
     // updates local state with name
-    this.setState({ inputDropdownValue: event.target.value });
+    this.setState({ inputDropdownValue: e.target.value });
 
     // updates app state with ID
     // reference handleChange function from props here
-    this.props.handleChange(event.target.value);
+
+    this.props.handleChange({
+      value: e.target.value,
+      tag: this.props.tag,
+      type: this.props.type
+    });
   };
 
   render() {
-    const { classes, label, options } = this.props;
+    const { classes, tag, label, options } = this.props;
 
     // const options = this.props.options;
     // console.log(options);
     return (
       <div className={classes.container}>
         <FormControl className={classes.formControl}>
-          <InputLabel htmlFor="inputDropdownValue">Program</InputLabel>
+          <InputLabel htmlFor="inputDropdownValue">{label}</InputLabel>
           <Select
             value={this.state.inputDropdownValue}
             onChange={this.handleDropdownChange}

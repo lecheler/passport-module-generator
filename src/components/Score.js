@@ -4,6 +4,7 @@ import { withStyles } from "material-ui/styles";
 import InputString from "./InputString";
 import IconButton from "material-ui/IconButton";
 import DeleteIcon from "material-ui-icons/Delete";
+import { scoreSchema } from "../config/scoreSchema";
 
 const styles = theme => ({
   root: {
@@ -20,12 +21,10 @@ function Score(props) {
   const { classes, scoreContent, catIndex, scoreIndex, scoringUtils } = props;
   const scoreCount = scoringUtils.count(catIndex);
 
-  const handleMaxUpdate = input => {
-    scoringUtils.update(catIndex, scoreIndex, { max: input.value });
-  };
-
-  const handleLabelUpdate = input => {
-    scoringUtils.update(catIndex, scoreIndex, { label: input.value });
+  const handleScoreUpdate = input => {
+    let updateObject = {};
+    updateObject[input.tag] = input.value;
+    scoringUtils.update(catIndex, scoreIndex, updateObject);
   };
 
   const handleDelete = () => {
@@ -34,18 +33,18 @@ function Score(props) {
 
   return (
     <div className={classes.root}>
-      <InputString
-        label={`Score ${scoreIndex + 1}`}
-        handleChange={handleLabelUpdate}
-        placeholder="Score Label"
-        value={scoreContent.label}
-      />
-      <InputString
-        label="Max"
-        handleChange={handleMaxUpdate}
-        placeholder="Score"
-        value={scoreContent.max}
-      />
+      {scoreSchema.map((item, index) => {
+        return (
+          <InputString
+            tag={item.tag}
+            label={item.label}
+            placeholder={item.placeholder}
+            value={scoreContent[item.label]}
+            handleChange={handleScoreUpdate}
+            key={index}
+          />
+        );
+      })};
       {scoreCount > 1 ? (
         <IconButton
           className={classes.button}

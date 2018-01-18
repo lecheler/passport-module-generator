@@ -6,7 +6,6 @@ import { withStyles } from "material-ui/styles";
 
 const styles = theme => ({
   root: {
-    // flexGrow: 1,
     marginTop: 30
   },
   button: {}

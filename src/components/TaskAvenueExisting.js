@@ -4,10 +4,7 @@ import { withStyles } from "material-ui/styles";
 import InputString from "./InputString";
 import IconButton from "material-ui/IconButton";
 import DeleteIcon from "material-ui-icons/Delete";
-import InputDropdown from "./InputDropdown";
-import AddRepeater from "./AddRepeater";
-import Repeater from "./Repeater";
-import Divider from "material-ui/Divider";
+import { avenueExistingSchema } from "../config/taskAvenueExistingSchema.js";
 
 const styles = theme => ({
   root: {},
@@ -24,20 +21,12 @@ const styles = theme => ({
   }
 });
 
-const inputArray = [
-  // { label: "type", type: "string", default: "avenue" },
-  { label: "avenueTaskID", type: "string" },
-  // update existing xml container to handle direction and short description.
-  { label: "direction", type: "string" },
-  { label: "shortDirection", type: "string" }
-];
-
 function TaskAvenueExisting(props) {
   const { taskIndex, catIndex, taskUtils, taskContent, classes } = props;
 
   const handleUpdate = input => {
     let updateObject = {};
-    updateObject[input.label] = input.value;
+    updateObject[input.tag] = input.value;
     taskUtils.update(catIndex, taskIndex, updateObject);
   };
 
@@ -59,14 +48,15 @@ function TaskAvenueExisting(props) {
         </IconButton>
       </div>
 
-      {inputArray.map((item, index) => {
+      {avenueExistingSchema.map((item, index) => {
         return (
           <InputString
+            tag={item.tag}
             label={item.label}
-            handleChange={handleUpdate}
-            placeholder={item.label}
-            key={index}
+            placeholder={item.placeholder}
             value={taskContent[item.label]}
+            handleChange={handleUpdate}
+            key={index}
           />
         );
       })}
