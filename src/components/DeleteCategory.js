@@ -13,9 +13,9 @@ const styles = theme => ({
 });
 
 function DeleteCategory(props) {
-  const { classes, catIndex } = props;
+  const { classes, catIndex, deleteCategory } = props;
   const handleDelete = () => {
-    props.deleteCategory(catIndex);
+    deleteCategory(catIndex);
   };
 
   return (

@@ -32,7 +32,7 @@ const styles = theme => ({
   }
 });
 
-class ScrollableTabsButtonAuto extends React.Component {
+class CategoryTabContainer extends React.Component {
   state = {
     value: 0
   };
@@ -56,10 +56,8 @@ class ScrollableTabsButtonAuto extends React.Component {
   render() {
     const {
       classes,
-      categories,
       categoryUtils,
       content,
-      scoring,
       scoringUtils,
       taskUtils
     } = this.props;
@@ -114,10 +112,12 @@ class ScrollableTabsButtonAuto extends React.Component {
   }
 }
 
-ScrollableTabsButtonAuto.propTypes = {
+CategoryTabContainer.propTypes = {
   classes: PropTypes.object.isRequired,
   content: PropTypes.object.isRequired,
-  categoryUtils: PropTypes.object.isRequired
+  categoryUtils: PropTypes.object.isRequired,
+  scoringUtils: PropTypes.object.isRequired,
+  taskUtils: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(ScrollableTabsButtonAuto);
+export default withStyles(styles)(CategoryTabContainer);

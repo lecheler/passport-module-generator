@@ -101,6 +101,10 @@ function Task(props) {
 }
 
 Task.propTypes = {
+  classes: PropTypes.number.isRequired,
+  taskUtils: PropTypes.object.isRequired,
+  taskContent: PropTypes.object.isRequired,
+  catIndex: PropTypes.number.isRequired,
   taskIndex: PropTypes.number.isRequired
 };
 

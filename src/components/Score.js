@@ -61,4 +61,12 @@ function Score(props) {
   );
 }
 
+Score.propTypes = {
+  classes: PropTypes.object.isRequired,
+  scoringUtils: PropTypes.object.isRequired,
+  scoreContent: PropTypes.object.isRequired,
+  catIndex: PropTypes.number.isRequired,
+  scoreIndex: PropTypes.number.isRequired
+};
+
 export default withStyles(styles)(Score);

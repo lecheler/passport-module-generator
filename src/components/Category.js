@@ -75,7 +75,6 @@ class Category extends Component {
       classes,
       catIndex,
       catContent,
-      scoring,
       scoringUtils,
       taskUtils,
       categoryCount,
@@ -160,7 +159,13 @@ class Category extends Component {
 }
 
 Category.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
+  catIndex: PropTypes.object.isRequired,
+  catContent: PropTypes.object.isRequired,
+  scoringUtils: PropTypes.object.isRequired,
+  taskUtils: PropTypes.object.isRequired,
+  categoryCount: PropTypes.number.isRequired,
+  validate: PropTypes.func.isRequired
 };
 
 export default withStyles(styles)(Category);

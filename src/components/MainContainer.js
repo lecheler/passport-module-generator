@@ -76,7 +76,13 @@ function MainContainer(props) {
 }
 
 MainContainer.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
+  content: PropTypes.object.isRequired,
+  categoryUtils: PropTypes.object.isRequired,
+  scoringUtils: PropTypes.object.isRequired,
+  taskUtils: PropTypes.object.isRequired,
+  metaUpdates: PropTypes.object.isRequired,
+  valid: PropTypes.bool.isRequired
 };
 
 export default withStyles(styles)(MainContainer);

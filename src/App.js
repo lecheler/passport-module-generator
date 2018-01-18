@@ -232,7 +232,6 @@ class App extends Component {
           scoringUtils={this.scoringUtils}
           taskUtils={this.taskUtils}
           metaUpdates={this.metaUpdates}
-          validateCategoryContent={this.validateCategoryContent}
           valid={this.state.valid}
         />
       </div>

@@ -109,4 +109,12 @@ function TaskStimulus(props) {
   );
 }
 
+TaskStimulus.propTypes = {
+  classes: PropTypes.number.isRequired,
+  taskUtils: PropTypes.object.isRequired,
+  taskContent: PropTypes.object.isRequired,
+  catIndex: PropTypes.number.isRequired,
+  taskIndex: PropTypes.number.isRequired
+};
+
 export default withStyles(styles)(TaskStimulus);
