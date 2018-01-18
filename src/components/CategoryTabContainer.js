@@ -41,9 +41,8 @@ class ScrollableTabsButtonAuto extends React.Component {
     this.setState({ value });
   };
 
-  handleCategoryDelete = e => {
+  handleCategoryDelete = catIndex => {
     const currentValue = this.state.value;
-
     // change tab value when attempting to delete the last category
     if (
       currentValue >= 1 &&
@@ -51,12 +50,19 @@ class ScrollableTabsButtonAuto extends React.Component {
     ) {
       this.setState({ value: currentValue - 1 });
     }
-
-    this.props.categories.delete(e);
+    this.props.categoryUtils.delete(catIndex);
   };
 
   render() {
-    const { classes, categories, content, scoring, tasks } = this.props;
+    const {
+      classes,
+      categories,
+      categoryUtils,
+      content,
+      scoring,
+      scoringUtils,
+      tasks
+    } = this.props;
     const { value } = this.state;
 
     return (
@@ -82,7 +88,7 @@ class ScrollableTabsButtonAuto extends React.Component {
 
             {content.categories.length < 4 ? (
               <AddCategoryButton
-                addCategory={categories.add}
+                addCategory={categoryUtils.add}
                 categoryCount={content.categories.length}
               />
             ) : null}
@@ -94,12 +100,12 @@ class ScrollableTabsButtonAuto extends React.Component {
             <Category
               catIndex={value}
               categoryCount={content.categories.length}
-              updateCategory={categories.update}
+              updateCategory={categoryUtils.update}
               deleteCategory={this.handleCategoryDelete}
               catContent={content.categories[value]}
-              scoring={scoring}
+              scoringUtils={scoringUtils}
               tasks={tasks}
-              validate={categories.validate}
+              validate={categoryUtils.validate}
             />
           </TabContainer>
         )}
@@ -111,7 +117,7 @@ class ScrollableTabsButtonAuto extends React.Component {
 ScrollableTabsButtonAuto.propTypes = {
   classes: PropTypes.object.isRequired,
   content: PropTypes.object.isRequired,
-  categories: PropTypes.object.isRequired
+  categoryUtils: PropTypes.object.isRequired
 };
 
 export default withStyles(styles)(ScrollableTabsButtonAuto);

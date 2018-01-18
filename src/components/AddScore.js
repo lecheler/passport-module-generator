@@ -13,10 +13,12 @@ const styles = theme => ({
 });
 
 function AddScore(props) {
+  const { scoringUtils, catIndex } = props;
+
   const handleAddScore = () => {
-    if (props.scoring.count(props.catIndex) >= props.scoring.countMax) {
+    if (scoringUtils.count(catIndex) >= scoringUtils.countMax) {
       alert("Slow your roll! Our master has set a limit of 5 total scores.");
-    } else props.scoring.add(props.catIndex);
+    } else scoringUtils.add(catIndex);
   };
 
   return (
@@ -31,7 +33,7 @@ function AddScore(props) {
 AddScore.propTypes = {
   classes: PropTypes.object.isRequired,
   catIndex: PropTypes.number.isRequired,
-  scoring: PropTypes.object.isRequired
+  scoringUtils: PropTypes.object.isRequired
 };
 
 export default withStyles(styles)(AddScore);

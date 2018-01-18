@@ -29,7 +29,16 @@ const styles = theme => ({
 });
 
 function MainContainer(props) {
-  const { classes, content, categories, scoring, tasks, valid } = props;
+  const {
+    classes,
+    content,
+    categories,
+    categoryUtils,
+    scoring,
+    scoringUtils,
+    tasks,
+    valid
+  } = props;
   // const anotherOption = [
   //   { value: 1, display: "on" },
   //   { value: 0, display: "off" }
@@ -52,8 +61,8 @@ function MainContainer(props) {
           </Paper>
           <CategoryTabContainer
             content={content}
-            categories={categories}
-            scoring={scoring}
+            categoryUtils={categoryUtils}
+            scoringUtils={scoringUtils}
             tasks={tasks}
           />
 

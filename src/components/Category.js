@@ -76,6 +76,7 @@ class Category extends Component {
       catIndex,
       catContent,
       scoring,
+      scoringUtils,
       tasks,
       categoryCount,
       validate
@@ -119,16 +120,16 @@ class Category extends Component {
           >
             {catContent.scoring.map((score, scoreIndex) => (
               <Score
-                scoring={this.props.scoring}
-                scoreContent={this.props.scoring.get(catIndex, scoreIndex)}
+                scoringUtils={scoringUtils}
+                scoreContent={scoringUtils.get(catIndex, scoreIndex)}
                 catIndex={catIndex}
                 scoreIndex={scoreIndex}
                 key={scoreIndex}
               />
             ))}
           </FlipMove>
-          {scoring.count(catIndex) < scoring.countMax ? (
-            <AddScore catIndex={catIndex} scoring={this.props.scoring} />
+          {scoringUtils.count(catIndex) < scoringUtils.countMax ? (
+            <AddScore catIndex={catIndex} scoringUtils={scoringUtils} />
           ) : null}
           <Divider />
           <h3>Tasks</h3>

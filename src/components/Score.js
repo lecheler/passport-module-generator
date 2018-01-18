@@ -17,19 +17,19 @@ const styles = theme => ({
 });
 
 function Score(props) {
-  const { classes, scoring, catIndex, scoreIndex } = props;
-  const scoreCount = scoring.count(catIndex);
+  const { classes, scoreContent, catIndex, scoreIndex, scoringUtils } = props;
+  const scoreCount = scoringUtils.count(catIndex);
 
   const handleMaxUpdate = input => {
-    scoring.update(catIndex, scoreIndex, { max: input.value });
+    scoringUtils.update(catIndex, scoreIndex, { max: input.value });
   };
 
   const handleLabelUpdate = input => {
-    scoring.update(catIndex, scoreIndex, { label: input.value });
+    scoringUtils.update(catIndex, scoreIndex, { label: input.value });
   };
 
   const handleDelete = () => {
-    scoring.remove(catIndex, scoreIndex);
+    scoringUtils.delete(catIndex, scoreIndex);
   };
 
   return (
@@ -38,13 +38,13 @@ function Score(props) {
         label={`Score ${scoreIndex + 1}`}
         handleChange={handleLabelUpdate}
         placeholder="Score Label"
-        value={props.scoreContent.label}
+        value={scoreContent.label}
       />
       <InputString
         label="Max"
         handleChange={handleMaxUpdate}
         placeholder="Score"
-        value={props.scoreContent.max}
+        value={scoreContent.max}
       />
       {scoreCount > 1 ? (
         <IconButton

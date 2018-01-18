@@ -1,6 +1,13 @@
 import React, { Component } from "react";
 import "./App.css";
 import MainContainer from "./components/MainContainer";
+import {
+  addCategory,
+  updateCategory,
+  deleteCategory,
+  validateCategory
+} from "./utils/categories";
+import { addScore, updateScore, deleteScore } from "./utils/scoring";
 
 class App extends Component {
   constructor(props) {
@@ -14,7 +21,7 @@ class App extends Component {
       image: "",
       categories: [
         {
-          order: 1,
+          order: 0,
           title: "",
           scoring: [{ max: "", label: "" }],
           tasks: []
@@ -43,27 +50,8 @@ class App extends Component {
     });
   };
 
-  validateCategoryContent = content => {
-    const validateObject = object => {
-      return Object.keys(object).every(key => {
-        if (Array.isArray(object[key])) {
-          return object[key].every(itemInArray => {
-            return validateObject(itemInArray);
-          });
-        } else return object[key] ? true : false;
-      });
-    };
-    const validScores = content.scoring.every(score => {
-      return validateObject(score);
-    });
-    const validTasks = content.tasks.every(task => {
-      return validateObject(task);
-    });
-    return content.title && validScores && validTasks ? true : false;
-  };
-
   validateAllCategories = () => {
-    let isAllValid = this.state.categories.every(this.validateCategoryContent);
+    let isAllValid = this.state.categories.every(validateCategory);
     return isAllValid;
   };
 
@@ -88,94 +76,123 @@ class App extends Component {
   }
 
   /* ==================== CATEGORIES ==================== */
-  categories = {
-    /* ----- Add new category ----- */
-    add: e => {
-      this.setState(prevState => {
-        let defaultCategory = {
-          order: prevState.categories.length,
-          title: "",
-          scoring: [{ max: "", label: "" }],
-          tasks: []
-        };
-        let prevCategories = prevState.categories;
-        let newCategories = [...prevCategories, defaultCategory];
-        return { categories: newCategories };
-      });
+
+  categoryUtils = {
+    add: () => {
+      this.setState(prevState => addCategory(prevState));
     },
-    /* ----- Update category ----- */
-    update: (index, newCategory) => {
-      this.setState(prevState => {
-        let newCategories = [...prevState.categories];
-        newCategories.splice(index, 1, newCategory);
-        return { categories: newCategories };
-      });
+    update: (catIndex, newCategory) => {
+      this.setState(prevState =>
+        updateCategory(prevState, catIndex, newCategory)
+      );
     },
     validate: catContent => {
-      return this.validateCategoryContent(catContent);
+      return validateCategory(catContent);
     },
-    /* ----- Delete category ----- */
-    delete: index => {
-      this.setState(prevState => {
-        let newCategories = [...prevState.categories];
-        newCategories.splice(index, 1);
-
-        let reorderedCategories = newCategories.map((category, index) => {
-          return { ...category, order: index };
-        });
-        return { categories: reorderedCategories };
-      });
+    delete: catIndex => {
+      this.setState(prevState => deleteCategory(prevState, catIndex));
     }
   };
 
   /* ==================== SCORING ==================== */
-  scoring = {
-    /* ----- Get info on score ----- */
-    get: (catIndex, scoreIndex) =>
-      this.state.categories[catIndex].scoring[scoreIndex],
-    /* ----- Get current number of scores ----- */
-    count: catIndex => this.state.categories[catIndex].scoring.length,
-    /* ----- Max number of scores ----- */
+  scoringUtils = {
     countMax: 5,
-    /* ----- Add a new score ----- */
+    get: (catIndex, scoreIndex) => {
+      return this.state.categories[catIndex].scoring[scoreIndex];
+    },
+    count: catIndex => this.state.categories[catIndex].scoring.length,
     add: catIndex => {
       this.setState(prevState => {
-        // const defaultScore = { score: [{ _attr: { max: 99 } }, "STRING"] };
-        const defaultScore = { max: "", label: "" };
-        let newCategories = [...prevState.categories];
-        let newCategory = newCategories[catIndex];
-        newCategory.scoring.push(defaultScore);
-        newCategories.splice(catIndex, 1, newCategory);
-        return { categories: newCategories };
+        return addScore(prevState, catIndex);
       });
     },
-    /* ----- Update score ----- */
     update: (catIndex, scoreIndex, scoreUpdate) => {
       this.setState(prevState => {
-        let newCategories = [...prevState.categories];
-        let newCategory = newCategories[catIndex];
-        const prevScore = this.state.categories[catIndex].scoring[scoreIndex];
-        const newScore = {
-          ...prevScore,
-          ...scoreUpdate
-        };
-        newCategory.scoring.splice(scoreIndex, 1, newScore);
-        newCategories.splice(catIndex, 1, newCategory);
-        return { categories: newCategories };
+        return updateScore(prevState, catIndex, scoreIndex, scoreUpdate);
       });
     },
-    remove: (catIndex, scoreIndex) => {
+    delete: (catIndex, scoreIndex) => {
       this.setState(prevState => {
-        let newCategories = [...prevState.categories];
-        let newCategory = newCategories[catIndex];
-        newCategory.scoring.splice(scoreIndex, 1);
-        newCategories.splice(catIndex, 1, newCategory);
-        return { categories: newCategories };
+        return deleteScore(prevState, catIndex, scoreIndex);
       });
     }
   };
 
   /* ==================== TASKS ==================== */
+
+  taskUtils = {
+    countMax: 5,
+    countMin: 1,
+    get: (catIndex, taskIndex) => {
+      return this.state.categories[catIndex].tasks[taskIndex];
+    },
+    count: catIndex => this.state.categories[catIndex].tasks.length,
+    addFlipGrid: catIndex => {
+      this.setState(prevState => {
+        return addFlipGrid(prevState, catIndex);
+      });
+    },
+    addStimulus: catIndex => {
+      this.setState(prevState => {
+        return addStimulus(prevState, catIndex);
+      });
+    },
+    addAvenue: catIndex => {
+      this.setState(prevState => {
+        return addAvenue(prevState, catIndex);
+      });
+    },
+    addExistingAvenue: catIndex => {
+      this.setState(prevState => {
+        return addExistingAvenue(prevState, catIndex);
+      });
+    },
+    update: (catIndex, taskIndex, taskUpdate) => {
+      this.setState(prevState => {
+        return updateTask(prevState, catIndex, taskIndex, taskUpdate);
+      });
+    },
+    delete: (catIndex, taskIndex) => {
+      this.setState(prevState => {
+        return deleteTask(prevState, catIndex, taskIndex);
+      });
+    },
+    addRepeater: (catIndex, taskIndex, type) => {
+      this.setState(prevState => {
+        return addRepeater(prevState, catIndex, taskIndex, type);
+      });
+    },
+    updateRepeater: (
+      catIndex,
+      taskIndex,
+      repeaterIndex,
+      repeaterUpdate,
+      repeaterType
+    ) => {
+      this.setState(prevState => {
+        return updateRepeater(
+          prevState,
+          catIndex,
+          taskIndex,
+          repeaterIndex,
+          repeaterUpdate,
+          repeaterType
+        );
+      });
+    },
+    deleteRepeater: (catIndex, taskIndex, repeaterIndex, repeaterType) => {
+      this.setState(prevState => {
+        return deleteRepeater(
+          prevState,
+          catIndex,
+          taskIndex,
+          repeaterIndex,
+          repeaterType
+        );
+      });
+    }
+  };
+
   tasks = {
     /* ----- Get info on tasks ----- */
     get: (catIndex, taskIndex) => {
@@ -405,8 +422,8 @@ class App extends Component {
         </header>
         <MainContainer
           content={this.state}
-          categories={this.categories}
-          scoring={this.scoring}
+          categoryUtils={this.categoryUtils}
+          scoringUtils={this.scoringUtils}
           tasks={this.tasks}
           metaUpdates={this.metaUpdates}
           validateCategoryContent={this.validateCategoryContent}
