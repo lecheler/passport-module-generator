@@ -47,7 +47,7 @@ const sliderSchema = [
 
 const assetSchema = [
   { label: "type", type: "string", default: "" },
-  { label: "extention", type: "string", default: "" },
+  { label: "extension", type: "string", default: "" },
   { label: "file", type: "string", default: "" },
   { label: "title", type: "string", default: "" },
   { label: "text", type: "string", default: "" }

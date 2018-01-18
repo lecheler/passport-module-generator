@@ -77,22 +77,20 @@ function Task(props) {
   };
 
   return (
-    <ExpansionPanel>
+    <ExpansionPanel defaultExpanded={true}>
       <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
         <Typography className={classes.heading}>
           Task: {props.taskIndex + 1}{" "}
         </Typography>
         <img src={`${props.taskContent.type}.svg`} className={classes.logo} />
         <Typography className={classes.heading}>
-          {props.taskContent.shortDirection ? (
-            `Short Direction: ${props.taskContent.shortDirection}`
-          ) : props.taskContent.name ? (
-            `Name: ${props.taskContent.name}`
-          ) : props.taskContent.taskId ? (
-            `Task ID: ${props.taskContent.taskId}`
-          ) : (
-            "---"
-          )}
+          {props.taskContent.shortDirection
+            ? `Short Direction: ${props.taskContent.shortDirection}`
+            : props.taskContent.name
+              ? `Name: ${props.taskContent.name}`
+              : props.taskContent.avenueTaskId
+                ? `Task ID: ${props.taskContent.avenueTaskId}`
+                : "---"}
         </Typography>
       </ExpansionPanelSummary>
       <ExpansionPanelDetails>{displayTask()}</ExpansionPanelDetails>

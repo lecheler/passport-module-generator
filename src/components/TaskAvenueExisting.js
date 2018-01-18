@@ -25,9 +25,11 @@ const styles = theme => ({
 });
 
 const inputArray = [
-  { label: "avenueTaskId", type: "string" },
+  // { label: "type", type: "string", default: "avenue" },
+  { label: "avenueTaskID", type: "string" },
+  // update existing xml container to handle direction and short description.
   { label: "direction", type: "string" },
-  { label: "shortDescription", type: "string" }
+  { label: "shortDirection", type: "string" }
 ];
 
 function TaskAvenueExisting(props) {

@@ -90,7 +90,7 @@ const sample = [
                               }
                             ]
                           },
-                          { level: "INT" },
+                          { level: "1-12 INT" },
                           { unit: "INT" }
                         ]
                       }
