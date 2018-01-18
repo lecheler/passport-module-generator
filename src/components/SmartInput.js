@@ -19,12 +19,15 @@ function SmartInput(props) {
           />
         );
         break;
-      case "string" || "number":
+      case "string":
         return <InputField label={label} handleChange={handleChange} />;
         break;
-      case "complexstring":
+      case "number":
         return <InputField label={label} handleChange={handleChange} />;
         break;
+      // case "complexstring":
+      //   return <InputField label={label} handleChange={handleChange} />;
+      //   break;
     }
   };
 

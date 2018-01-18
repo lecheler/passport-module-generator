@@ -100,7 +100,12 @@ const formatTasks = tasksArray => {
       // break;
       case "avenue-existing":
         return {
-          task: [{ _attr: { type: "avenue" } }, { taskId: task.taskId }]
+          task: [
+            { _attr: { type: "avenue" } },
+            { avenueTaskID: task.avenueTaskID },
+            { direction: task.direction },
+            { shortDirection: task.shortDirection }
+          ]
         };
       // break;
       default:

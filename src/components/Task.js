@@ -88,8 +88,8 @@ function Task(props) {
             ? `Short Direction: ${props.taskContent.shortDirection}`
             : props.taskContent.name
               ? `Name: ${props.taskContent.name}`
-              : props.taskContent.taskId
-                ? `Task ID: ${props.taskContent.taskId}`
+              : props.taskContent.avenueTaskId
+                ? `Task ID: ${props.taskContent.avenueTaskId}`
                 : "---"}
         </Typography>
       </ExpansionPanelSummary>

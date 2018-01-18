@@ -23,15 +23,9 @@ const styles = {
   }
 };
 
-const validateMetaContent = object => {
-  let isValid = Object.keys(object).every(key => {
-    return object[key] ? true : false;
-  });
-  return isValid ? "green" : "lightgray";
-};
-
 function Meta(props) {
   const { classes, content, metaUpdates } = props;
+  const { valid } = props;
 
   // SmartInput iterates over array
   const metaContent = [
@@ -90,12 +84,19 @@ function Meta(props) {
     }
   ];
 
+  const validateMetaContent = () => {
+    return content.valid.meta ? "green" : "lightgray";
+  };
+
   return (
     <ExpansionPanel defaultExpanded={true}>
       <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
         <div className={classes.heading}>
           <Icon
-            style={{ color: validateMetaContent(metaContent), marginRight: 20 }}
+            style={{
+              color: validateMetaContent(),
+              marginRight: 20
+            }}
           >
             <CheckCircle />
           </Icon>

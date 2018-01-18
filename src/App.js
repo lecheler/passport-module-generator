@@ -247,7 +247,9 @@ class App extends Component {
       this.setState(prevState => {
         const defaultTask = {
           type: "avenue-existing",
-          taskId: ""
+          avenueTaskID: "",
+          direction: "",
+          shortDirection: ""
         };
         let newCategories = [...prevState.categories];
         let newCategory = newCategories[catIndex];
