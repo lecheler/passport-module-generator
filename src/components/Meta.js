@@ -88,6 +88,11 @@ function Meta(props) {
     return content.valid.meta ? "green" : "lightgray";
   };
 
+  // //RegExp (?:([^:/?#]+):)?(?://([^/?#]*))?([^?#]*\.(?:jpg|jpeg))(?:\?([^#]*))?(?:#(.*))?
+
+  // const validateJpg = () => {
+  //   console.log(Meta[7]);
+  // };
   return (
     <ExpansionPanel defaultExpanded={true}>
       <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
@@ -107,7 +112,13 @@ function Meta(props) {
       </ExpansionPanelSummary>
       <ExpansionPanelDetails className={classes.details}>
         {metaContent.map((metaItem, metaIndex) => {
-          return <SmartInput metaItem={metaItem} key={metaIndex} />;
+          return (
+            <SmartInput
+              metaItem={metaItem}
+              key={metaIndex}
+              //validatejpg={validateJpg(metaItem[7])}
+            />
+          );
         })}
       </ExpansionPanelDetails>
     </ExpansionPanel>
