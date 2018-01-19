@@ -7,7 +7,7 @@ import DeleteIcon from "material-ui-icons/Delete";
 import { avenueExistingSchema } from "../config/taskAvenueExistingSchema.js";
 
 const styles = theme => ({
-  root: {},
+  root: { width: "100%" },
   flex: {
     display: "flex",
     justifyContent: "space-between",

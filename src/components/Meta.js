@@ -33,6 +33,9 @@ function Meta(props) {
     return valid.meta ? "green" : "lightgray";
   };
 
+  const validateFileName = () => {
+    console.log("rule");
+  };
   // //RegExp (?:([^:/?#]+):)?(?://([^/?#]*))?([^?#]*\.(?:jpg|jpeg))(?:\?([^#]*))?(?:#(.*))?
 
   // const validateJpg = () => {

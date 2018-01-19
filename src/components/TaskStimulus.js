@@ -10,7 +10,7 @@ import Divider from "material-ui/Divider";
 import { stimulusSchema, resourceSchema } from "../config/taskStimulusSchema";
 
 const styles = theme => ({
-  root: {},
+  root: { width: "100%" },
   flex: {
     display: "flex",
     justifyContent: "space-between",
