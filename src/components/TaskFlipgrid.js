@@ -10,7 +10,7 @@ import Divider from "material-ui/Divider";
 import { flipGridSchema, resourceSchema } from "../config/taskFlipGridSchema";
 
 const styles = theme => ({
-  root: {},
+  root: { width: "100%" },
   flex: {
     display: "flex",
     justifyContent: "space-between",

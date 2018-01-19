@@ -1,3 +1,30 @@
+const validateFileName = () => {
+  // console.log("validateFileName is running");
+  // var string = {".jpg"}
+  // var re = new RegExp();
+  // if (re.test(string)) {
+  //   console.log("String is Valid");
+  // } else {
+  //   console.log("String is inValid");
+  // }
+
+  const regex = /(?:([^:/?#]+):)?(?:([^/?#]*))?([^?#]*\.(?:jpg|jpeg))(?:\?([^#]*))?(?:#(.*))?/g;
+  const str = ".jpg";
+  let m;
+
+  while ((m = regex.exec(str)) !== null) {
+    // This is necessary to avoid infinite loops with zero-width matches
+    if (m.index === regex.lastIndex) {
+      regex.lastIndex++;
+    }
+
+    // The result can be accessed through the `m`-variable.
+    m.forEach((match, groupIndex) => {
+      console.log(`Found match, group ${groupIndex}: ${match}`);
+    });
+  }
+};
+
 export const metaSchema = [
   {
     tag: "title",
@@ -48,8 +75,8 @@ export const metaSchema = [
   },
   {
     tag: "image",
-    label: "Image",
-    placeholder: "*.jpg or *.jpeg)",
-    type: "string"
+    label: "Image (.jpg only)",
+    type: "string",
+    rule: validateFileName()
   }
 ];

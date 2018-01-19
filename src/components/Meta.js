@@ -33,6 +33,14 @@ function Meta(props) {
     return valid.meta ? "green" : "lightgray";
   };
 
+  const validateFileName = () => {
+    console.log("rule");
+  };
+  // //RegExp (?:([^:/?#]+):)?(?://([^/?#]*))?([^?#]*\.(?:jpg|jpeg))(?:\?([^#]*))?(?:#(.*))?
+
+  // const validateJpg = () => {
+  //   console.log(Meta[7]);
+  // };
   return (
     <ExpansionPanel defaultExpanded={true}>
       <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>

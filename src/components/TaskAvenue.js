@@ -14,7 +14,7 @@ import {
 } from "../config/taskAvenueSchema";
 
 const styles = theme => ({
-  root: {},
+  root: { width: "100%" },
   flex: {
     display: "flex",
     justifyContent: "space-between",
