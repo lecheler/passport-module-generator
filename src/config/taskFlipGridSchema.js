@@ -14,17 +14,17 @@ export const flipGridSchema = [
   {
     tag: "question",
     label: "Flipgrid Question",
-    placeholder: "---",
+    placeholder: "Flipgrid Question",
     type: "string"
   }
 ];
 
 export const resourceSchema = [
-  { tag: "url", label: "URL", placeholder: "---", type: "string", default: "" },
+  { tag: "url", label: "URL", placeholder: "URL", type: "string", default: "" },
   {
     tag: "label",
     label: "Label",
-    placeholder: "---",
+    placeholder: "Label",
     type: "string",
     default: ""
   }

@@ -29,19 +29,19 @@ export const metaSchema = [
   {
     tag: "title",
     label: "Title",
-    placeholder: "---",
+    placeholder: "Title",
     type: "string"
   },
   {
     tag: "direction",
     label: "Direction",
-    placeholder: "---",
+    placeholder: "Direction",
     type: "string"
   },
   {
     tag: "languageID",
     label: "Program",
-    placeholder: "---",
+    placeholder: "Program",
     type: "dropdown",
     options: [
       { value: 3, display: "Chinese: Zhēn Bàng!" },
@@ -64,13 +64,13 @@ export const metaSchema = [
   {
     tag: "igURL",
     label: "Integration Guide URL",
-    placeholder: "---",
+    placeholder: "Integration Guide URL",
     type: "string"
   },
   {
     tag: "sgURL",
     label: "Student Guide URL",
-    placeholder: "---",
+    placeholder: "Student Guide URL",
     type: "string"
   },
   {

@@ -11,51 +11,63 @@ export const avenueSchema = [
     placeholder: "Enter the long directions for the task.",
     type: "string"
   },
-  { tag: "name", label: "Name", type: "string", placeholder: "---" },
+  { tag: "name", label: "Name", type: "string", placeholder: "Name" },
   {
     tag: "instructions",
     label: "Instructions",
-    placeholder: "---",
+    placeholder: "Instructions",
     type: "string"
   },
   {
     tag: "recordingTries",
     label: "Recording Tries",
-    placeholder: "---",
+    placeholder: "Recording Tries",
     type: "number",
     max: 10
   },
   {
     tag: "recordTime",
     label: "Record Time",
-    placeholder: "---",
+    placeholder: "Record Time",
     type: "time",
     interval: 30
   },
-  { tag: "views", label: "Views", placeholder: "---", type: "number", max: 6 },
+  {
+    tag: "views",
+    label: "Views",
+    placeholder: "Views",
+    type: "number",
+    max: 6
+  },
   {
     tag: "mediaTime",
     label: "Media Time",
-    placeholder: "---",
+    placeholder: "Media Time",
     type: "time",
     interval: 1
   },
   {
     tag: "mediaWhileRecording",
     label: "Media While Recording",
-    placeholder: "---",
+    placeholder: "Media While Recording",
     type: "dropdown",
     options: [{ value: 1, display: "Yes" }, { value: 0, display: "No" }]
   },
   {
     tag: "allowMobile",
     label: "Allow Mobile",
-    placeholder: "---",
+    placeholder: "Allow Mobile",
     type: "dropdown",
     options: [{ value: 1, display: "Yes" }, { value: 0, display: "No" }]
   },
-  { tag: "unit", label: "Unit", placeholder: "---", type: "number", max: 999 },
-  { tag: "level", label: "Level", placeholder: "---", type: "number", max: 999 }
+  { tag: "unit", label: "Unit", placeholder: "Unit", type: "number", max: 999 },
+  {
+    tag: "level",
+    label: "Level",
+    placeholder: "Level",
+    type: "number",
+    max: 999
+  }
 ];
 
 export const sliderSchema = [
@@ -64,44 +76,44 @@ export const sliderSchema = [
     label: "Label",
     type: "string",
     default: "",
-    placeholder: "---"
+    placeholder: "Label"
   },
-  { tag: "max", label: "Max", type: "string", default: "", placeholder: "---" }
+  { tag: "max", label: "Max", placeholder: "Max", type: "string", default: "" }
 ];
 
 export const assetSchema = [
   {
     tag: "type",
     label: "Type",
-    placeholder: "---",
+    placeholder: "Type",
     type: "string",
     default: ""
   },
   {
     tag: "extension",
     label: "Extension",
-    placeholder: "---",
+    placeholder: "Extension",
     type: "string",
     default: ""
   },
   {
     tag: "file",
     label: "File",
-    placeholder: "---",
+    placeholder: "File",
     type: "string",
     default: ""
   },
   {
     tag: "title",
     label: "Title",
-    placeholder: "---",
+    placeholder: "Title",
     type: "string",
     default: ""
   },
   {
     tag: "text",
     label: "Text",
-    placeholder: "---",
+    placeholder: "Text",
     type: "string",
     default: ""
   }

@@ -25,11 +25,11 @@ export const stimulusSchema = [
 ];
 
 export const resourceSchema = [
-  { tag: "url", label: "url", placeholder: "---", type: "string", default: "" },
+  { tag: "url", label: "URL", placeholder: "URL", type: "string", default: "" },
   {
     tag: "label",
     label: "Label",
-    placeholder: "---",
+    placeholder: "Label",
     type: "string",
     default: ""
   }

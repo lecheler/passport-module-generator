@@ -54,7 +54,7 @@ function TaskAvenueExisting(props) {
             tag={item.tag}
             label={item.label}
             placeholder={item.placeholder}
-            value={taskContent[item.label]}
+            value={taskContent[item.tag]}
             options={item.options}
             handleChange={handleUpdate}
             type={item.type}

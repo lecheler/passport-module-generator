@@ -57,7 +57,7 @@ function TaskStimulus(props) {
             label={item.label}
             tag={item.tag}
             placeholder={item.placeholder}
-            value={taskContent[item.label]}
+            value={taskContent[item.tag]}
             options={item.options}
             handleChange={handleUpdate}
             type={item.type}

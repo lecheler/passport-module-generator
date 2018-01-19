@@ -15,8 +15,7 @@ export const avenueExistingSchema = [
   {
     tag: "avenueTaskID",
     label: "Avenue Task ID",
-    placeholder: "---",
+    placeholder: "Avenue Task ID",
     type: "string"
   }
-  // update existing xml container to handle direction and short description.
 ];
