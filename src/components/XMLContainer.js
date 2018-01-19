@@ -84,6 +84,8 @@ const formatTasks = tasksArray => {
         return {
           task: [
             { _attr: { type: task.type } },
+            { shortDirection: task.shortDirection },
+            { direction: task.direction },
             { name: task.name },
             { instructions: task.instructions },
             { recordingTries: task.recordingTries },

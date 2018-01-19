@@ -15,6 +15,8 @@ export const DefaultTasks = {
   },
   avenue: {
     type: "avenue",
+    shortDirection: "",
+    direction: "",
     name: "",
     instructions: "",
     recordingTries: "",

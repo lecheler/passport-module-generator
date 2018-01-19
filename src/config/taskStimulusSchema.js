@@ -6,6 +6,12 @@ export const stimulusSchema = [
     type: "string"
   },
   {
+    tag: "direction",
+    label: "Task Direction",
+    placeholder: "Enter the long directions for the task.",
+    type: "string"
+  },
+  {
     tag: "responseType",
     label: "Task Type",
     type: "dropdown",
@@ -15,12 +21,6 @@ export const stimulusSchema = [
       { value: "both", display: "Both" },
       { value: "none", display: "None" }
     ]
-  },
-  {
-    tag: "direction",
-    label: "Task Direction",
-    placeholder: "Enter the long directions for the task.",
-    type: "string"
   }
 ];
 
@@ -28,7 +28,7 @@ export const resourceSchema = [
   { tag: "url", label: "url", placeholder: "---", type: "string", default: "" },
   {
     tag: "label",
-    label: "label",
+    label: "Label",
     placeholder: "---",
     type: "string",
     default: ""

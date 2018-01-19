@@ -6,24 +6,24 @@ export const flipGridSchema = [
     type: "string"
   },
   {
-    tag: "question",
-    label: "Flipgrid Question",
-    placeholder: "---",
-    type: "string"
-  },
-  {
     tag: "direction",
     label: "Task Direction",
     placeholder: "Enter the long directions for the task.",
+    type: "string"
+  },
+  {
+    tag: "question",
+    label: "Flipgrid Question",
+    placeholder: "---",
     type: "string"
   }
 ];
 
 export const resourceSchema = [
-  { tag: "url", label: "url", placeholder: "---", type: "string", default: "" },
+  { tag: "url", label: "URL", placeholder: "---", type: "string", default: "" },
   {
     tag: "label",
-    label: "label",
+    label: "Label",
     placeholder: "---",
     type: "string",
     default: ""
