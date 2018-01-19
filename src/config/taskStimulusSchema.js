@@ -1,17 +1,27 @@
 export const stimulusSchema = [
   {
     tag: "shortDirection",
-    label: "shortDirection",
-    placeholder: "---",
+    label: "Task Title",
+    placeholder: "Enter the short directions for the task",
     type: "string"
   },
   {
     tag: "responseType",
-    label: "responseType",
-    placeholder: "---",
-    type: "string"
+    label: "Task Type",
+    type: "dropdown",
+    options: [
+      { value: "text", display: "Text" },
+      { value: "file", display: "File" },
+      { value: "both", display: "Both" },
+      { value: "none", display: "None" }
+    ]
   },
-  { tag: "direction", label: "direction", placeholder: "---", type: "string" }
+  {
+    tag: "direction",
+    label: "Task Direction",
+    placeholder: "Enter the long directions for the task.",
+    type: "string"
+  }
 ];
 
 export const resourceSchema = [

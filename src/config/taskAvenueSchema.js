@@ -20,7 +20,7 @@ export const avenueSchema = [
     type: "time",
     interval: 30
   },
-  { tag: "views", label: "views", type: "number", max: 6, placeholder: "---" },
+  { tag: "views", label: "views", placeholder: "---", type: "number", max: 6 },
   {
     tag: "mediaTime",
     label: "mediaTime",
@@ -32,13 +32,15 @@ export const avenueSchema = [
     tag: "mediaWhileRecording",
     label: "mediaWhileRecording",
     placeholder: "---",
-    type: "bool"
+    type: "dropdown",
+    options: [{ value: 1, display: "Yes" }, { value: 0, display: "No" }]
   },
   {
     tag: "allowMobile",
     label: "allowMobile",
     placeholder: "---",
-    type: "bool"
+    type: "dropdown",
+    options: [{ value: 1, display: "Yes" }, { value: 0, display: "No" }]
   },
   { tag: "unit", label: "unit", placeholder: "---", type: "number", max: 999 },
   { tag: "level", label: "level", placeholder: "---", type: "number", max: 999 }

@@ -58,7 +58,7 @@ export const metaSchema = [
   {
     tag: "level",
     label: "Level",
-    placeholder: "---",
+    placeholder: "Program Level",
     type: "string"
   },
   {
@@ -76,6 +76,7 @@ export const metaSchema = [
   {
     tag: "image",
     label: "Image (.jpg only)",
+    placeholder: "Copy/paste the file name of the module cover image",
     type: "string",
     rule: validateFileName()
   }

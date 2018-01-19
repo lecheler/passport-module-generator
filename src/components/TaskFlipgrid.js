@@ -58,6 +58,7 @@ function TaskFlipgrid(props) {
             label={item.label}
             placeholder={item.placeholder}
             value={taskContent[item.label]}
+            options={item.options}
             handleChange={handleUpdate}
             type={item.type}
             key={index}
@@ -95,7 +96,7 @@ function TaskFlipgrid(props) {
 }
 
 TaskFlipgrid.propTypes = {
-  classes: PropTypes.number.isRequired,
+  classes: PropTypes.object.isRequired,
   taskUtils: PropTypes.object.isRequired,
   taskContent: PropTypes.object.isRequired,
   catIndex: PropTypes.number.isRequired,

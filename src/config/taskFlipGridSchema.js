@@ -1,12 +1,22 @@
 export const flipGridSchema = [
   {
     tag: "shortDirection",
-    label: "shortDirection",
+    label: "Task Title",
+    placeholder: "Enter the short directions for the task.",
+    type: "string"
+  },
+  {
+    tag: "question",
+    label: "Flipgrid Question",
     placeholder: "---",
     type: "string"
   },
-  { tag: "question", label: "question", placeholder: "---", type: "string" },
-  { tag: "direction", label: "direction", placeholder: "---", type: "string" }
+  {
+    tag: "direction",
+    label: "Task Direction",
+    placeholder: "Enter the long directions for the task.",
+    type: "string"
+  }
 ];
 
 export const resourceSchema = [

@@ -2,13 +2,13 @@ export const scoreSchema = [
   {
     tag: "label",
     label: "Score Label",
-    placeholder: "---",
+    placeholder: "Score Label",
     type: "string"
   },
   {
     tag: "max",
     label: "Max Score",
-    placeholder: "max 999",
+    placeholder: "Numeric Point Value",
     type: "number",
     max: 999
   }

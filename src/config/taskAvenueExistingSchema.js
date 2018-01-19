@@ -2,8 +2,8 @@ export const avenueExistingSchema = [
   // { label: "type", type: "string", default: "avenue" },
   {
     tag: "shortDirection",
-    label: "shortDirection",
-    placeholder: "---",
+    label: "Task Title",
+    placeholder: "Enter the short directions for the task.",
     type: "string"
   },
   {
@@ -13,5 +13,10 @@ export const avenueExistingSchema = [
     type: "string"
   },
   // update existing xml container to handle direction and short description.
-  { tag: "direction", label: "direction", placeholder: "---", type: "string" }
+  {
+    tag: "direction",
+    label: "Task Direction",
+    placeholder: "Enter the long directions for the task.",
+    type: "string"
+  }
 ];

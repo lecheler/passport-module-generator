@@ -58,6 +58,7 @@ function TaskStimulus(props) {
             tag={item.tag}
             placeholder={item.placeholder}
             value={taskContent[item.label]}
+            options={item.options}
             handleChange={handleUpdate}
             type={item.type}
             key={index}
@@ -95,7 +96,7 @@ function TaskStimulus(props) {
 }
 
 TaskStimulus.propTypes = {
-  classes: PropTypes.number.isRequired,
+  classes: PropTypes.object.isRequired,
   taskUtils: PropTypes.object.isRequired,
   taskContent: PropTypes.object.isRequired,
   catIndex: PropTypes.number.isRequired,
