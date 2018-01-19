@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "material-ui/styles";
-import InputString from "./InputString";
+import SmartInput from "./SmartInput";
 import IconButton from "material-ui/IconButton";
 import DeleteIcon from "material-ui-icons/Delete";
 
@@ -47,11 +47,12 @@ function Repeater(props) {
 
   const repeaterInputs = repeaterSchema.map((item, index) => {
     return (
-      <InputString
+      <SmartInput
         tag={item.tag}
         label={item.label}
         placeholder={item.placeholder}
         value={value[item.label]}
+        type={item.type}
         handleChange={handleRepeaterUpdate}
         key={index}
       />

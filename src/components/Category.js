@@ -4,7 +4,7 @@ import FlipMove from "react-flip-move";
 import { withStyles } from "material-ui/styles";
 import Paper from "material-ui/Paper";
 import Divider from "material-ui/Divider";
-import InputString from "./InputString";
+import SmartInput from "./SmartInput";
 import DeleteCategory from "./DeleteCategory";
 import AddScore from "./AddScore";
 import AddTask from "./AddTask";
@@ -73,11 +73,12 @@ class Category extends Component {
             )}
           </div>
           <Divider />
-          <InputString
+          <SmartInput
             tag={categorySchema.tag}
             label={categorySchema.label}
             placeholder={categorySchema.placeholder}
             handleChange={this.updateCatTitle}
+            type="string"
             value={catContent.title}
           />
           <Divider />
@@ -132,7 +133,7 @@ class Category extends Component {
 
 Category.propTypes = {
   classes: PropTypes.object.isRequired,
-  catIndex: PropTypes.object.isRequired,
+  catIndex: PropTypes.number.isRequired,
   catContent: PropTypes.object.isRequired,
   scoringUtils: PropTypes.object.isRequired,
   taskUtils: PropTypes.object.isRequired,

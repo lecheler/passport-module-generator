@@ -85,11 +85,11 @@ function Task(props) {
         />
         <Typography className={classes.heading}>
           {props.taskContent.shortDirection ? (
-            `Short Direction: ${props.taskContent.shortDirection}`
+            props.taskContent.shortDirection
           ) : props.taskContent.name ? (
-            `Name: ${props.taskContent.name}`
+            props.taskContent.name
           ) : props.taskContent.avenueTaskId ? (
-            `Task ID: ${props.taskContent.avenueTaskId}`
+            props.taskContent.avenueTaskId
           ) : (
             "---"
           )}
@@ -101,7 +101,7 @@ function Task(props) {
 }
 
 Task.propTypes = {
-  classes: PropTypes.number.isRequired,
+  classes: PropTypes.object.isRequired,
   taskUtils: PropTypes.object.isRequired,
   taskContent: PropTypes.object.isRequired,
   catIndex: PropTypes.number.isRequired,

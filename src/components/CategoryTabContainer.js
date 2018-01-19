@@ -37,6 +37,10 @@ class CategoryTabContainer extends React.Component {
     value: 0
   };
 
+  handleAddCategory = () => {
+    this.setState({ value: this.props.categoryUtils.add() });
+  };
+
   handleChange = (event, value) => {
     this.setState({ value });
   };
@@ -86,7 +90,7 @@ class CategoryTabContainer extends React.Component {
 
             {content.categories.length < 4 ? (
               <AddCategoryButton
-                addCategory={categoryUtils.add}
+                addCategory={this.handleAddCategory}
                 categoryCount={content.categories.length}
               />
             ) : null}

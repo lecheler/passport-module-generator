@@ -1,17 +1,21 @@
 export const avenueExistingSchema = [
   // { label: "type", type: "string", default: "avenue" },
   {
-    tag: "avenueTaskID",
-    label: "avenueTaskID",
-    placeholder: "---",
+    tag: "shortDirection",
+    label: "Task Title",
+    placeholder: "Enter the short directions for the task.",
     type: "string"
   },
-  // update existing xml container to handle direction and short description.
-  { tag: "direction", label: "direction", placeholder: "---", type: "string" },
   {
-    tag: "shortDirection",
-    label: "shortDirection",
-    placeholder: "---",
+    tag: "direction",
+    label: "Task Direction",
+    placeholder: "Enter the long directions for the task.",
+    type: "string"
+  },
+  {
+    tag: "avenueTaskID",
+    label: "Avenue Task ID",
+    placeholder: "Avenue Task ID",
     type: "string"
   }
 ];

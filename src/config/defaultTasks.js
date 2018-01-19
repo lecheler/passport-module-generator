@@ -1,20 +1,24 @@
+// Used for setting default state values when creating a new task
+
 export const DefaultTasks = {
   flipGrid: {
     type: "flipgrid",
-    question: "",
-    direction: "",
     shortDirection: "",
+    direction: "",
+    question: "",
     resources: []
   },
   stimulus: {
     type: "stimulus",
-    responseType: "",
-    direction: "",
     shortDirection: "",
+    direction: "",
+    responseType: "",
     resources: []
   },
   avenue: {
     type: "avenue",
+    shortDirection: "",
+    direction: "",
     name: "",
     instructions: "",
     recordingTries: "",
@@ -23,15 +27,15 @@ export const DefaultTasks = {
     mediaTime: "",
     mediaWhileRecording: "",
     allowMobile: "",
-    sliders: [],
-    assets: [],
     level: "",
-    unit: ""
+    unit: "",
+    sliders: [],
+    assets: []
   },
   avenueExisting: {
     type: "avenue-existing",
-    avenueTaskId: "",
+    shortDirection: "",
     direction: "",
-    shortDescription: ""
+    avenueTaskID: ""
   }
 };

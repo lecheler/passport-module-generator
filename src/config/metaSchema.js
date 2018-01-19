@@ -16,16 +16,19 @@ export const metaSchema = [
   {
     tag: "title",
     label: "Title",
+    placeholder: "Title",
     type: "string"
   },
   {
     tag: "direction",
     label: "Direction",
+    placeholder: "Direction",
     type: "string"
   },
   {
     tag: "languageID",
     label: "Program",
+    placeholder: "Program",
     type: "dropdown",
     options: [
       { value: 3, display: "Chinese: Zhēn Bàng!" },
@@ -42,21 +45,25 @@ export const metaSchema = [
   {
     tag: "level",
     label: "Level",
+    placeholder: "Program Level",
     type: "string"
   },
   {
     tag: "igURL",
     label: "Integration Guide URL",
+    placeholder: "Integration Guide URL",
     type: "string"
   },
   {
     tag: "sgURL",
     label: "Student Guide URL",
+    placeholder: "Student Guide URL",
     type: "string"
   },
   {
     label: "Image (hint: file must end in .jpg)",
     tag: "image",
+    placeholder: "Copy/paste the file name of the module cover image",
     type: "string"
   }
 ];

@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "material-ui/styles";
-import InputString from "./InputString";
+import SmartInput from "./SmartInput";
 import IconButton from "material-ui/IconButton";
 import DeleteIcon from "material-ui-icons/Delete";
 import Repeater from "./Repeater";
@@ -59,12 +59,14 @@ function TaskAvenue(props) {
       </div>
       {avenueSchema.map((item, index) => {
         return (
-          <InputString
+          <SmartInput
             tag={item.tag}
             label={item.label}
             placeholder={item.placeholder}
-            value={taskContent[item.label]}
+            value={taskContent[item.tag]}
+            options={item.options}
             handleChange={handleUpdate}
+            type={item.type}
             key={index}
           />
         );
@@ -128,7 +130,7 @@ function TaskAvenue(props) {
 }
 
 TaskAvenue.propTypes = {
-  classes: PropTypes.number.isRequired,
+  classes: PropTypes.object.isRequired,
   taskUtils: PropTypes.object.isRequired,
   taskContent: PropTypes.object.isRequired,
   catIndex: PropTypes.number.isRequired,

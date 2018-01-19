@@ -33,11 +33,27 @@ function SmartInput(props) {
         );
         break;
       case "number":
-        return <InputField label={label} handleChange={handleChange} />;
+        return (
+          <InputString
+            tag={tag}
+            label={label}
+            placeholder={placeholder}
+            value={value}
+            handleChange={handleChange}
+          />
+        );
         break;
-      // case "complexstring":
-      //   return <InputField label={label} handleChange={handleChange} />;
-      //   break;
+      case "time":
+        return (
+          <InputString
+            tag={tag}
+            label={label}
+            placeholder={placeholder}
+            value={value}
+            handleChange={handleChange}
+          />
+        );
+        break;
     }
   };
 
