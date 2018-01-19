@@ -4,10 +4,14 @@ import { withStyles } from "material-ui/styles";
 import InputString from "./InputString";
 import IconButton from "material-ui/IconButton";
 import DeleteIcon from "material-ui-icons/Delete";
-import InputDropdown from "./InputDropdown";
 import Repeater from "./Repeater";
 import AddRepeater from "./AddRepeater";
 import Divider from "material-ui/Divider";
+import {
+  avenueSchema,
+  assetSchema,
+  sliderSchema
+} from "../config/taskAvenueSchema";
 
 const styles = theme => ({
   root: {},
@@ -27,43 +31,17 @@ const styles = theme => ({
   }
 });
 
-const inputArray = [
-  { label: "name", type: "string" },
-  { label: "instructions", type: "string" },
-  { label: "recordingTries", type: "number", max: 10 },
-  { label: "recordTime", type: "time", interval: 30 },
-  { label: "views", type: "number", max: 6 },
-  { label: "mediaTime", type: "time", interval: 1 },
-  { label: "mediaWhileRecording", type: "bool" },
-  { label: "allowMobile", type: "bool" },
-  { label: "unit", type: "number", max: 999 },
-  { label: "level", type: "number", max: 999 }
-];
-
-const sliderSchema = [
-  { label: "label", type: "string", default: "" },
-  { label: "max", type: "string", default: "" }
-];
-
-const assetSchema = [
-  { label: "type", type: "string", default: "" },
-  { label: "extension", type: "string", default: "" },
-  { label: "file", type: "string", default: "" },
-  { label: "title", type: "string", default: "" },
-  { label: "text", type: "string", default: "" }
-];
-
 function TaskAvenue(props) {
-  const { taskIndex, catIndex, tasks, taskContent, classes } = props;
+  const { taskIndex, catIndex, taskUtils, taskContent, classes } = props;
 
   const handleUpdate = input => {
     let updateObject = {};
-    updateObject[input.label] = input.value;
-    props.tasks.update(catIndex, taskIndex, updateObject);
+    updateObject[input.tag] = input.value;
+    taskUtils.update(catIndex, taskIndex, updateObject);
   };
 
   const handleDelete = () => {
-    props.tasks.remove(catIndex, taskIndex);
+    taskUtils.delete(catIndex, taskIndex);
   };
 
   return (
@@ -79,15 +57,15 @@ function TaskAvenue(props) {
           <DeleteIcon />
         </IconButton>
       </div>
-      {inputArray.map((item, index) => {
+      {avenueSchema.map((item, index) => {
         return (
           <InputString
+            tag={item.tag}
             label={item.label}
-            handleChange={handleUpdate}
-            placeholder={item.label}
-            value={taskContent.label}
-            key={index}
+            placeholder={item.placeholder}
             value={taskContent[item.label]}
+            handleChange={handleUpdate}
+            key={index}
           />
         );
       })}
@@ -98,13 +76,13 @@ function TaskAvenue(props) {
       {taskContent.sliders.map((slider, repeaterIndex) => {
         return (
           <Repeater
-            tasks={tasks}
+            taskUtils={taskUtils}
             catIndex={catIndex}
             taskIndex={taskIndex}
             repeaterIndex={repeaterIndex}
             repeaterSchema={sliderSchema}
             key={repeaterIndex}
-            type="sliders"
+            repeaterType="sliders"
             value={slider}
           />
         );
@@ -112,10 +90,10 @@ function TaskAvenue(props) {
 
       {taskContent.sliders.length < 4 ? (
         <AddRepeater
-          tasks={tasks}
+          taskUtils={taskUtils}
           catIndex={catIndex}
           taskIndex={taskIndex}
-          type="sliders"
+          repeaterType="sliders"
           name="Slider"
         />
       ) : null}
@@ -125,12 +103,12 @@ function TaskAvenue(props) {
       {taskContent.assets.map((asset, repeaterIndex) => {
         return (
           <Repeater
-            tasks={tasks}
+            taskUtils={taskUtils}
             catIndex={catIndex}
             taskIndex={taskIndex}
             repeaterIndex={repeaterIndex}
             repeaterSchema={assetSchema}
-            type="assets"
+            repeaterType="assets"
             value={asset}
           />
         );
@@ -138,15 +116,23 @@ function TaskAvenue(props) {
 
       {taskContent.assets.length < 1 ? (
         <AddRepeater
-          tasks={tasks}
+          taskUtils={taskUtils}
           catIndex={catIndex}
           taskIndex={taskIndex}
-          type="assets"
+          repeaterType="assets"
           name="Asset"
         />
       ) : null}
     </div>
   );
 }
+
+TaskAvenue.propTypes = {
+  classes: PropTypes.number.isRequired,
+  taskUtils: PropTypes.object.isRequired,
+  taskContent: PropTypes.object.isRequired,
+  catIndex: PropTypes.number.isRequired,
+  taskIndex: PropTypes.number.isRequired
+};
 
 export default withStyles(styles)(TaskAvenue);

@@ -16,43 +16,43 @@ const styles = theme => ({
   }
 });
 
-const repeaterArray = [];
-
 function Repeater(props) {
   const {
     classes,
     catIndex,
     taskIndex,
     repeaterIndex,
-    type,
+    repeaterType,
     repeaterSchema,
-    value
+    value,
+    taskUtils
   } = props;
 
   const handleRepeaterUpdate = input => {
     let updateObject = {};
-    updateObject[input.label] = input.value;
+    updateObject[input.tag] = input.value;
 
-    props.tasks.updateRepeater(
+    taskUtils.updateRepeater(
       catIndex,
       taskIndex,
       repeaterIndex,
       updateObject,
-      type
+      repeaterType
     );
   };
 
   const handleDeleteRepeater = () => {
-    props.tasks.removeRepeater(catIndex, taskIndex, repeaterIndex, type);
+    taskUtils.deleteRepeater(catIndex, taskIndex, repeaterIndex, repeaterType);
   };
 
   const repeaterInputs = repeaterSchema.map((item, index) => {
     return (
       <InputString
+        tag={item.tag}
         label={item.label}
-        handleChange={handleRepeaterUpdate}
-        placeholder={item.label}
+        placeholder={item.placeholder}
         value={value[item.label]}
+        handleChange={handleRepeaterUpdate}
         key={index}
       />
     );
@@ -71,5 +71,13 @@ function Repeater(props) {
     </div>
   );
 }
+
+Repeater.propTypes = {
+  classes: PropTypes.object.isRequired,
+  catIndex: PropTypes.number.isRequired,
+  taskIndex: PropTypes.number.isRequired,
+  repeaterType: PropTypes.string.isRequired,
+  taskUtils: PropTypes.object.isRequired
+};
 
 export default withStyles(styles)(Repeater);

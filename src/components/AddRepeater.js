@@ -13,9 +13,9 @@ const styles = theme => ({
 });
 
 function AddRepeater(props) {
-  const { classes, catIndex, taskIndex, type, name } = props;
+  const { classes, catIndex, taskIndex, repeaterType, name, taskUtils } = props;
   const handleAddRepeater = () => {
-    props.tasks.addRepeater(catIndex, taskIndex, type);
+    taskUtils.addRepeater(catIndex, taskIndex, repeaterType);
   };
 
   return (
@@ -31,7 +31,8 @@ AddRepeater.propTypes = {
   classes: PropTypes.object.isRequired,
   catIndex: PropTypes.number.isRequired,
   taskIndex: PropTypes.number.isRequired,
-  type: PropTypes.string.isRequired
+  repeaterType: PropTypes.string.isRequired,
+  taskUtils: PropTypes.object.isRequired
 };
 
 export default withStyles(styles)(AddRepeater);

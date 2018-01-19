@@ -1,15 +1,9 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import FlipMove from "react-flip-move";
-import TaskAvenue from "./TaskAvenue";
-import TaskFlipgrid from "./TaskFlipgrid";
-import TaskStimulus from "./TaskStimulus";
-import InputDropdown from "./InputDropdown";
 import { withStyles } from "material-ui/styles";
 import Paper from "material-ui/Paper";
-import Grid from "material-ui/Grid";
 import Divider from "material-ui/Divider";
-import InputField from "./InputField";
 import InputString from "./InputString";
 import DeleteCategory from "./DeleteCategory";
 import AddScore from "./AddScore";
@@ -18,10 +12,10 @@ import Score from "./Score";
 import Task from "./Task";
 import Icon from "material-ui/Icon";
 import CheckCircle from "material-ui-icons/CheckCircle";
+import { categorySchema } from "../config/categorySchema";
 
 const styles = theme => ({
   root: {
-    // flexGrow: 1,
     marginTop: 30
   },
   paper: {
@@ -31,7 +25,6 @@ const styles = theme => ({
     color: theme.palette.text.secondary
   },
   deleteBar: {
-    // backgroundColor: "red",
     display: "flex",
     justifyContent: "space-between",
     marginBottom: "10px",
@@ -39,32 +32,12 @@ const styles = theme => ({
   }
 });
 
-// const validateCategoryContent = content => {
-//   const validateObject = object => {
-//     return Object.keys(object).every(key => {
-//       if (Array.isArray(object[key])) {
-//         return object[key].every(itemInArray => {
-//           return validateObject(itemInArray);
-//         });
-//       } else return object[key] ? true : false;
-//     });
-//   };
-//   const validScores = content.scoring.every(score => {
-//     return validateObject(score);
-//   });
-//   const validTasks = content.tasks.every(task => {
-//     return validateObject(task);
-//   });
-//   return content.title && validScores && validTasks ? "green" : "lightgray";
-// };
-
 class Category extends Component {
   isCategoryValid = () => {
     return this.props.validate(this.props.catContent) ? "green" : "lightgray";
   };
 
   updateCatTitle = e => {
-    // console.log(e);
     let newCategory = { ...this.props.catContent };
     newCategory.title = e.value;
     this.props.updateCategory(this.props.catIndex, newCategory);
@@ -75,13 +48,11 @@ class Category extends Component {
       classes,
       catIndex,
       catContent,
-      scoring,
-      tasks,
-      categoryCount,
-      validate
+      scoringUtils,
+      taskUtils,
+      categoryCount
     } = this.props;
 
-    // console.log("catContent", catContent);
     return (
       <div className={classes.root}>
         <Paper className={classes.paper}>
@@ -103,9 +74,10 @@ class Category extends Component {
           </div>
           <Divider />
           <InputString
-            label="Title"
+            tag={categorySchema.tag}
+            label={categorySchema.label}
+            placeholder={categorySchema.placeholder}
             handleChange={this.updateCatTitle}
-            placeholder="Title"
             value={catContent.title}
           />
           <Divider />
@@ -119,16 +91,16 @@ class Category extends Component {
           >
             {catContent.scoring.map((score, scoreIndex) => (
               <Score
-                scoring={this.props.scoring}
-                scoreContent={this.props.scoring.get(catIndex, scoreIndex)}
+                scoringUtils={scoringUtils}
+                scoreContent={scoringUtils.get(catIndex, scoreIndex)}
                 catIndex={catIndex}
                 scoreIndex={scoreIndex}
                 key={scoreIndex}
               />
             ))}
           </FlipMove>
-          {scoring.count(catIndex) < scoring.countMax ? (
-            <AddScore catIndex={catIndex} scoring={this.props.scoring} />
+          {scoringUtils.count(catIndex) < scoringUtils.countMax ? (
+            <AddScore catIndex={catIndex} scoringUtils={scoringUtils} />
           ) : null}
           <Divider />
           <h3>Tasks</h3>
@@ -140,8 +112,8 @@ class Category extends Component {
           >
             {catContent.tasks.map((score, taskIndex) => (
               <Task
-                tasks={tasks}
-                taskContent={tasks.get(catIndex, taskIndex)}
+                taskUtils={taskUtils}
+                taskContent={catContent.tasks[taskIndex]}
                 catIndex={catIndex}
                 taskIndex={taskIndex}
                 key={taskIndex}
@@ -149,8 +121,8 @@ class Category extends Component {
             ))}
           </FlipMove>
 
-          {tasks.count(catIndex) < tasks.countMax ? (
-            <AddTask catIndex={catIndex} tasks={this.props.tasks} />
+          {taskUtils.count(catIndex) < taskUtils.countMax ? (
+            <AddTask catIndex={catIndex} taskUtils={taskUtils} />
           ) : null}
         </Paper>
       </div>
@@ -159,7 +131,13 @@ class Category extends Component {
 }
 
 Category.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
+  catIndex: PropTypes.object.isRequired,
+  catContent: PropTypes.object.isRequired,
+  scoringUtils: PropTypes.object.isRequired,
+  taskUtils: PropTypes.object.isRequired,
+  categoryCount: PropTypes.number.isRequired,
+  validate: PropTypes.func.isRequired
 };
 
 export default withStyles(styles)(Category);

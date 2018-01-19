@@ -10,8 +10,8 @@ const styles = theme => ({
   },
   textField: {
     marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit
-    // width: 400
+    marginRight: theme.spacing.unit,
+    width: "100%"
   },
   menu: {
     // width: 400
@@ -25,7 +25,7 @@ function InputString(props) {
   const handleInputChange = e => {
     props.handleChange({
       value: e.target.value,
-      label: props.label,
+      tag: props.tag,
       type: props.type
     });
   };
@@ -35,9 +35,10 @@ function InputString(props) {
     <div className={classes.root}>
       <TextField
         label={props.label}
+        placeholder={props.placeholder}
+        value={props.value}
         multiline
         rowsMax="4"
-        value={props.value}
         onChange={e => handleInputChange(e)}
         className={classes.textField}
         margin="normal"

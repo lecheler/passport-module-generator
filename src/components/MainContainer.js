@@ -3,12 +3,9 @@ import PropTypes from "prop-types";
 import { withStyles } from "material-ui/styles";
 import Paper from "material-ui/Paper";
 import Grid from "material-ui/Grid";
-import InputDropdown from "./InputDropdown";
-import FlipMove from "react-flip-move";
 import CategoryTabContainer from "./CategoryTabContainer";
 import Meta from "./Meta";
 import XMLContainer from "./XMLContainer";
-import Category from "./Category";
 
 const styles = theme => ({
   root: {
@@ -29,34 +26,30 @@ const styles = theme => ({
 });
 
 function MainContainer(props) {
-  const { classes, content, categories, scoring, tasks, valid } = props;
-  // const anotherOption = [
-  //   { value: 1, display: "on" },
-  //   { value: 0, display: "off" }
-  // ];
+  const {
+    classes,
+    content,
+    categoryUtils,
+    scoringUtils,
+    taskUtils,
+    metaUtils,
+    valid
+  } = props;
 
   return (
     <div className={classes.root}>
       <Grid container spacing={24}>
         <Grid item xs />
         <Grid item xs={8} md={10}>
-          {/* <Paper className={classes.paper}>
-            <InputDropdown
-              options={languageIdOptions}
-              updateInputDropdown={props.updateInputDropdown}
-              handleChange={props.updateInputDropdown}
-            />
-          </Paper> */}
           <Paper className={classes.paper}>
-            <Meta metaUpdates={props.metaUpdates} content={props.content} />
+            <Meta metaUtils={metaUtils} content={content} valid={valid} />
           </Paper>
           <CategoryTabContainer
             content={content}
-            categories={categories}
-            scoring={scoring}
-            tasks={tasks}
+            categoryUtils={categoryUtils}
+            scoringUtils={scoringUtils}
+            taskUtils={taskUtils}
           />
-
           <Paper className={classes.paperBottom}>
             <XMLContainer content={content} valid={valid} />
           </Paper>
@@ -68,7 +61,13 @@ function MainContainer(props) {
 }
 
 MainContainer.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
+  content: PropTypes.object.isRequired,
+  categoryUtils: PropTypes.object.isRequired,
+  scoringUtils: PropTypes.object.isRequired,
+  taskUtils: PropTypes.object.isRequired,
+  metaUtils: PropTypes.object.isRequired,
+  valid: PropTypes.bool.isRequired
 };
 
 export default withStyles(styles)(MainContainer);

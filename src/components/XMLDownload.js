@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Button from "material-ui/Button";
-import AddIcon from "material-ui-icons/Add";
 import { withStyles } from "material-ui/styles";
 import Paper from "material-ui/Paper";
 
@@ -58,7 +57,8 @@ function XMLDownload(props) {
 
 XMLDownload.propTypes = {
   classes: PropTypes.object.isRequired,
-  handleDownload: PropTypes.func.isRequired
+  handleDownload: PropTypes.func.isRequired,
+  valid: PropTypes.bool.isRequired
 };
 
 export default withStyles(styles)(XMLDownload);

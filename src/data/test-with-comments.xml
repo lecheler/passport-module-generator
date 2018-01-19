@@ -1,3 +1,5 @@
+<!-- Auto select category when a new one is added -->
+<!-- First category is coming through as 2 ... not 1 -->
 <modules>
     <module languageID="{Language_ID}" level="{Level}">
         <title>            {Module_Title}        </title>
@@ -18,10 +20,12 @@
                 <tasks>
                     <!-- Must have at least 1 task per category -->
                     <!-- If {Task_Type} == 'stimulus' -->
+                    <!-- responseType options: [text, file, both, none] -->
                     <task type="stimulus" responseType="{Response_Type}">
                         <direction>                            {Task_Directions}                        </direction>
                         <shortDirection>                            {Task_Short_Direction}                        </shortDirection>
                         <resources type="{HTTP_Protocol}">
+                            <!-- 1) Validate URL and 2) update type from input instead of hard-coding-->
                             <resource url="{Resource_URL}">{Resource_Label}</resource>
                             <!-- {Repeater} -->
                         </resources>

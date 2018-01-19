@@ -2,10 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 import InputField from "./InputField";
 import InputDropdown from "./InputDropdown";
+import InputString from "./InputString";
 
 function SmartInput(props) {
   const { classes } = props;
-  const { label, handleChange, type, options } = props.metaItem;
+  const { tag, label, placeholder, value, handleChange, type, options } = props;
 
   // run check to see if this is a dropdown or input field.
   const checkInput = () => {
@@ -13,14 +14,23 @@ function SmartInput(props) {
       case "dropdown":
         return (
           <InputDropdown
-            label="Program"
+            tag={tag}
+            label={label}
             options={options}
             handleChange={handleChange}
           />
         );
         break;
       case "string":
-        return <InputField label={label} handleChange={handleChange} />;
+        return (
+          <InputString
+            tag={tag}
+            label={label}
+            placeholder={placeholder}
+            value={value}
+            handleChange={handleChange}
+          />
+        );
         break;
       case "number":
         return <InputField label={label} handleChange={handleChange} />;

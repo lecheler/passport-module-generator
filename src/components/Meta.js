@@ -5,6 +5,7 @@ import MenuItem from "material-ui/Menu/MenuItem";
 import TextField from "material-ui/TextField";
 import InputField from "./InputField";
 import InputDropdown from "./InputDropdown";
+import { metaSchema } from "../config/metaSchema";
 
 import ExpansionPanel, {
   ExpansionPanelSummary,
@@ -24,68 +25,12 @@ const styles = {
 };
 
 function Meta(props) {
-  const { classes, content, metaUpdates } = props;
-  const { valid } = props;
+  const { classes, content, metaUtils, valid } = props;
 
   // SmartInput iterates over array
-  const metaContent = [
-    {
-      label: "Title",
-      tag: "title",
-      type: "string",
-      handleChange: metaUpdates.updateTitle
-    },
-    {
-      label: "Direction",
-      tag: "direction",
-      type: "string",
-      handleChange: metaUpdates.updateDirection
-    },
-    {
-      label: "Language ID",
-      tag: "languageID",
-      type: "dropdown",
-      handleChange: metaUpdates.updateLanguageId,
-      options: [
-        { value: 3, display: "Chinese: Zhēn Bàng!" },
-        { value: 155, display: "Chinese: Zhēn Bàng! 2nd Edition" },
-        { value: 4, display: "French: T`es branché ?" },
-        { value: 2, display: "German: Deutsch Aktuell 6th Edition" },
-        { value: 133, display: "German: Deutsch Aktuell 7th Edition" },
-        { value: 170, display: "Mirrors and Windows" },
-        { value: 169, display: "Mirrors and Windows: CCSS" },
-        { value: 1, display: "Spanish: ¡Aventura!" },
-        { value: 55, display: "Spanish: ¡Qué chévere!" }
-      ]
-    },
-    {
-      label: "Level",
-      tag: "level",
-      type: "number",
-      handleChange: metaUpdates.updateLevel
-    },
-    {
-      label: "Integration Guide URL",
-      tag: "igURL",
-      type: "string",
-      handleChange: metaUpdates.updateigURL
-    },
-    {
-      label: "Student Guide URL",
-      tag: "sgURL",
-      type: "string",
-      handleChange: metaUpdates.updatesgURL
-    },
-    {
-      label: "Image (.jpg or .png)",
-      tag: "image",
-      type: "string",
-      handleChange: metaUpdates.updateImage
-    }
-  ];
 
   const validateMetaContent = () => {
-    return content.valid.meta ? "green" : "lightgray";
+    return valid.meta ? "green" : "lightgray";
   };
 
   // //RegExp (?:([^:/?#]+):)?(?://([^/?#]*))?([^?#]*\.(?:jpg|jpeg))(?:\?([^#]*))?(?:#(.*))?
@@ -111,12 +56,17 @@ function Meta(props) {
         </div>
       </ExpansionPanelSummary>
       <ExpansionPanelDetails className={classes.details}>
-        {metaContent.map((metaItem, metaIndex) => {
+        {metaSchema.map((metaItem, metaIndex) => {
           return (
             <SmartInput
-              metaItem={metaItem}
+              tag={metaItem.tag}
+              label={metaItem.label}
+              placeholder={metaItem.placeholder}
+              value={metaItem.value}
+              options={metaItem.options}
+              type={metaItem.type}
+              handleChange={metaUtils.update}
               key={metaIndex}
-              //validatejpg={validateJpg(metaItem[7])}
             />
           );
         })}

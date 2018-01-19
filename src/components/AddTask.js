@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Button from "material-ui/Button";
-import AddIcon from "material-ui-icons/Add";
 import { withStyles } from "material-ui/styles";
 
 const styles = theme => ({
@@ -16,22 +15,22 @@ const styles = theme => ({
 });
 
 function AddTask(props) {
-  const { classes, catIndex, tasks } = props;
+  const { classes, catIndex, taskUtils } = props;
 
   const handleAddStimulus = () => {
-    tasks.addStimulus(catIndex);
+    taskUtils.add(catIndex, "stimulus");
   };
 
   const handleAddFlipGrid = () => {
-    tasks.addFlipGrid(catIndex);
+    taskUtils.add(catIndex, "flipGrid");
   };
 
   const handleAddAvenue = () => {
-    tasks.addAvenue(catIndex);
+    taskUtils.add(catIndex, "avenue");
   };
 
   const handleAddExistingAvenue = () => {
-    tasks.addExistingAvenue(catIndex);
+    taskUtils.add(catIndex, "avenueExisting");
   };
 
   return (
@@ -42,7 +41,11 @@ function AddTask(props) {
         color="default"
         onClick={handleAddStimulus}
       >
-        <img src="./stimulus.svg" className={classes.logo} />
+        <img
+          src="./stimulus.svg"
+          className={classes.logo}
+          alt="stimulus icon"
+        />
         <div>Stimulus</div>
       </Button>
       <Button
@@ -51,7 +54,11 @@ function AddTask(props) {
         color="default"
         onClick={handleAddFlipGrid}
       >
-        <img src="./flipgrid.svg" className={classes.logo} />
+        <img
+          src="./flipgrid.svg"
+          className={classes.logo}
+          alt="flipgrid icon"
+        />
         <div>FlipGrid</div>
       </Button>
       <Button
@@ -60,7 +67,7 @@ function AddTask(props) {
         color="default"
         onClick={handleAddAvenue}
       >
-        <img src="./avenue.svg" className={classes.logo} />
+        <img src="./avenue.svg" className={classes.logo} alt="avenue icon" />
         <div>Avenue</div>
       </Button>
       <Button
@@ -69,7 +76,11 @@ function AddTask(props) {
         color="default"
         onClick={handleAddExistingAvenue}
       >
-        <img src="./avenue-existing.svg" className={classes.logoLite} />
+        <img
+          src="./avenue-existing.svg"
+          className={classes.logoLite}
+          alt="avenue-existing icon"
+        />
         <div>Avenue</div>
         <div>(Existing)</div>
       </Button>
@@ -80,7 +91,7 @@ function AddTask(props) {
 AddTask.propTypes = {
   classes: PropTypes.object.isRequired,
   catIndex: PropTypes.number.isRequired,
-  tasks: PropTypes.object.isRequired
+  taskUtils: PropTypes.object.isRequired
 };
 
 export default withStyles(styles)(AddTask);

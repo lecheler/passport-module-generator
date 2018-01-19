@@ -4,7 +4,6 @@ import { withStyles } from "material-ui/styles";
 import TaskAvenue from "./TaskAvenue";
 import TaskFlipgrid from "./TaskFlipgrid";
 import TaskStimulus from "./TaskStimulus";
-import InputDropdown from "./InputDropdown";
 import TaskAvenueExisting from "./TaskAvenueExisting";
 import ExpansionPanel, {
   ExpansionPanelSummary,
@@ -28,44 +27,41 @@ const styles = theme => ({
 });
 
 function Task(props) {
-  const { classes, tasks, taskContent, catIndex, taskIndex } = props;
+  const { classes, taskUtils, taskContent, catIndex, taskIndex } = props;
 
   const displayTask = () => {
     switch (props.taskContent.type) {
       case "stimulus":
         return (
           <TaskStimulus
-            tasks={tasks}
+            taskUtils={taskUtils}
             taskContent={taskContent}
             catIndex={catIndex}
             taskIndex={taskIndex}
           />
         );
-        break;
       case "flipgrid":
         return (
           <TaskFlipgrid
-            tasks={tasks}
+            taskUtils={taskUtils}
             taskContent={taskContent}
             catIndex={catIndex}
             taskIndex={taskIndex}
           />
         );
-        break;
       case "avenue":
         return (
           <TaskAvenue
-            tasks={tasks}
+            taskUtils={taskUtils}
             taskContent={taskContent}
             catIndex={catIndex}
             taskIndex={taskIndex}
           />
         );
-        break;
       case "avenue-existing":
         return (
           <TaskAvenueExisting
-            tasks={tasks}
+            taskUtils={taskUtils}
             taskContent={taskContent}
             catIndex={catIndex}
             taskIndex={taskIndex}
@@ -82,15 +78,21 @@ function Task(props) {
         <Typography className={classes.heading}>
           Task: {props.taskIndex + 1}{" "}
         </Typography>
-        <img src={`${props.taskContent.type}.svg`} className={classes.logo} />
+        <img
+          src={`${props.taskContent.type}.svg`}
+          className={classes.logo}
+          alt="task icon"
+        />
         <Typography className={classes.heading}>
-          {props.taskContent.shortDirection
-            ? `Short Direction: ${props.taskContent.shortDirection}`
-            : props.taskContent.name
-              ? `Name: ${props.taskContent.name}`
-              : props.taskContent.avenueTaskId
-                ? `Task ID: ${props.taskContent.avenueTaskId}`
-                : "---"}
+          {props.taskContent.shortDirection ? (
+            `Short Direction: ${props.taskContent.shortDirection}`
+          ) : props.taskContent.name ? (
+            `Name: ${props.taskContent.name}`
+          ) : props.taskContent.avenueTaskId ? (
+            `Task ID: ${props.taskContent.avenueTaskId}`
+          ) : (
+            "---"
+          )}
         </Typography>
       </ExpansionPanelSummary>
       <ExpansionPanelDetails>{displayTask()}</ExpansionPanelDetails>
@@ -99,6 +101,10 @@ function Task(props) {
 }
 
 Task.propTypes = {
+  classes: PropTypes.number.isRequired,
+  taskUtils: PropTypes.object.isRequired,
+  taskContent: PropTypes.object.isRequired,
+  catIndex: PropTypes.number.isRequired,
   taskIndex: PropTypes.number.isRequired
 };
 

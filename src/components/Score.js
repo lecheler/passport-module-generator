@@ -4,6 +4,7 @@ import { withStyles } from "material-ui/styles";
 import InputString from "./InputString";
 import IconButton from "material-ui/IconButton";
 import DeleteIcon from "material-ui-icons/Delete";
+import { scoreSchema } from "../config/scoreSchema";
 
 const styles = theme => ({
   root: {
@@ -17,35 +18,33 @@ const styles = theme => ({
 });
 
 function Score(props) {
-  const { classes, scoring, catIndex, scoreIndex } = props;
-  const scoreCount = scoring.count(catIndex);
+  const { classes, scoreContent, catIndex, scoreIndex, scoringUtils } = props;
+  const scoreCount = scoringUtils.count(catIndex);
 
-  const handleMaxUpdate = input => {
-    scoring.update(catIndex, scoreIndex, { max: input.value });
-  };
-
-  const handleLabelUpdate = input => {
-    scoring.update(catIndex, scoreIndex, { label: input.value });
+  const handleScoreUpdate = input => {
+    let updateObject = {};
+    updateObject[input.tag] = input.value;
+    scoringUtils.update(catIndex, scoreIndex, updateObject);
   };
 
   const handleDelete = () => {
-    scoring.remove(catIndex, scoreIndex);
+    scoringUtils.delete(catIndex, scoreIndex);
   };
 
   return (
     <div className={classes.root}>
-      <InputString
-        label={`Score ${scoreIndex + 1}`}
-        handleChange={handleLabelUpdate}
-        placeholder="Score Label"
-        value={props.scoreContent.label}
-      />
-      <InputString
-        label="Max"
-        handleChange={handleMaxUpdate}
-        placeholder="Score"
-        value={props.scoreContent.max}
-      />
+      {scoreSchema.map((item, index) => {
+        return (
+          <InputString
+            tag={item.tag}
+            label={item.label}
+            placeholder={item.placeholder}
+            value={scoreContent[item.label]}
+            handleChange={handleScoreUpdate}
+            key={index}
+          />
+        );
+      })};
       {scoreCount > 1 ? (
         <IconButton
           className={classes.button}
@@ -60,5 +59,13 @@ function Score(props) {
     </div>
   );
 }
+
+Score.propTypes = {
+  classes: PropTypes.object.isRequired,
+  scoringUtils: PropTypes.object.isRequired,
+  scoreContent: PropTypes.object.isRequired,
+  catIndex: PropTypes.number.isRequired,
+  scoreIndex: PropTypes.number.isRequired
+};
 
 export default withStyles(styles)(Score);

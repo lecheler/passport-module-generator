@@ -4,10 +4,10 @@ import { withStyles } from "material-ui/styles";
 import InputString from "./InputString";
 import IconButton from "material-ui/IconButton";
 import DeleteIcon from "material-ui-icons/Delete";
-import InputDropdown from "./InputDropdown";
 import AddRepeater from "./AddRepeater";
 import Repeater from "./Repeater";
 import Divider from "material-ui/Divider";
+import { flipGridSchema, resourceSchema } from "../config/taskFlipGridSchema";
 
 const styles = theme => ({
   root: {},
@@ -24,28 +24,17 @@ const styles = theme => ({
   }
 });
 
-const inputArray = [
-  { label: "question", type: "string" },
-  { label: "direction", type: "string" },
-  { label: "shortDirection", type: "string" }
-];
-
-const resourceSchema = [
-  { label: "url", type: "string", default: "" },
-  { label: "label", type: "string", default: "" }
-];
-
 function TaskFlipgrid(props) {
-  const { taskIndex, catIndex, tasks, taskContent, classes } = props;
+  const { taskIndex, catIndex, taskUtils, taskContent, classes } = props;
 
   const handleUpdate = input => {
     let updateObject = {};
-    updateObject[input.label] = input.value;
-    tasks.update(catIndex, taskIndex, updateObject);
+    updateObject[input.tag] = input.value;
+    taskUtils.update(catIndex, taskIndex, updateObject);
   };
 
   const handleDelete = () => {
-    tasks.remove(catIndex, taskIndex);
+    taskUtils.delete(catIndex, taskIndex);
   };
 
   return (
@@ -62,14 +51,15 @@ function TaskFlipgrid(props) {
         </IconButton>
       </div>
 
-      {inputArray.map((item, index) => {
+      {flipGridSchema.map((item, index) => {
         return (
           <InputString
+            tag={item.tag}
             label={item.label}
-            handleChange={handleUpdate}
-            placeholder={item.label}
-            key={index}
+            placeholder={item.placeholder}
             value={taskContent[item.label]}
+            handleChange={handleUpdate}
+            key={index}
           />
         );
       })}
@@ -80,12 +70,12 @@ function TaskFlipgrid(props) {
       {taskContent.resources.map((resource, repeaterIndex) => {
         return (
           <Repeater
-            tasks={tasks}
+            taskUtils={taskUtils}
             catIndex={catIndex}
             taskIndex={taskIndex}
             repeaterIndex={repeaterIndex}
             repeaterSchema={resourceSchema}
-            type="resources"
+            repeaterType="resources"
             value={resource}
             key={repeaterIndex}
           />
@@ -93,14 +83,22 @@ function TaskFlipgrid(props) {
       })}
 
       <AddRepeater
-        tasks={tasks}
+        taskUtils={taskUtils}
         catIndex={catIndex}
         taskIndex={taskIndex}
-        type="resources"
+        repeaterType="resources"
         name="Resource"
       />
     </div>
   );
 }
+
+TaskFlipgrid.propTypes = {
+  classes: PropTypes.number.isRequired,
+  taskUtils: PropTypes.object.isRequired,
+  taskContent: PropTypes.object.isRequired,
+  catIndex: PropTypes.number.isRequired,
+  taskIndex: PropTypes.number.isRequired
+};
 
 export default withStyles(styles)(TaskFlipgrid);

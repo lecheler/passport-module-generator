@@ -6,16 +6,15 @@ import { withStyles } from "material-ui/styles";
 
 const styles = theme => ({
   root: {
-    // flexGrow: 1,
     marginTop: 30
   },
   button: {}
 });
 
 function DeleteCategory(props) {
-  const { classes, catIndex } = props;
+  const { classes, catIndex, deleteCategory } = props;
   const handleDelete = () => {
-    props.deleteCategory(catIndex);
+    deleteCategory(catIndex);
   };
 
   return (
