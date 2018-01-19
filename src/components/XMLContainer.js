@@ -143,7 +143,12 @@ function XMLContainer(props) {
             { title: props.content.title },
             { direction: props.content.direction },
             { banner: "" },
-            { image: props.content.image },
+            {
+              image: props.content.image.slice(
+                0,
+                props.content.image.indexOf(".")
+              )
+            },
             { igUrl: props.content.igURL },
             { sgUrl: props.content.sgURL },
             {
@@ -154,6 +159,8 @@ function XMLContainer(props) {
       ]
     }
   ];
+
+  // props.content.image.slice(props.content.image.indexOf('.')); line 146
 
   let xmlContent = XML(contentToFormat);
   let { title } = props.content;

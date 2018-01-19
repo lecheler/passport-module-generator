@@ -1,27 +1,14 @@
-const validateFileName = () => {
-  // console.log("validateFileName is running");
-  // var string = {".jpg"}
-  // var re = new RegExp();
-  // if (re.test(string)) {
-  //   console.log("String is Valid");
-  // } else {
-  //   console.log("String is inValid");
-  // }
-
-  const regex = /(?:([^:/?#]+):)?(?:([^/?#]*))?([^?#]*\.(?:jpg|jpeg))(?:\?([^#]*))?(?:#(.*))?/g;
-  const str = ".jpg";
-  let m;
-
-  while ((m = regex.exec(str)) !== null) {
-    // This is necessary to avoid infinite loops with zero-width matches
-    if (m.index === regex.lastIndex) {
-      regex.lastIndex++;
-    }
-
-    // The result can be accessed through the `m`-variable.
-    m.forEach((match, groupIndex) => {
-      console.log(`Found match, group ${groupIndex}: ${match}`);
-    });
+// run check to see if file name has.jpg or .jpeg extension, then remove .jpg or .jpeg
+export const validateImageFileName = imageString => {
+  console.log("imagestring", imageString);
+  var string = imageString;
+  var re = /(?:([^:/?#]+):)?(?:([^/?#]*))?([^?#]*\.(?:jpg|jpeg))(?:\?([^#]*))?(?:#(.*))?/g;
+  if (re.test(string)) {
+    console.log("String is Valid");
+    return true;
+  } else {
+    console.log("String is inValid");
+    return false;
   }
 };
 
@@ -68,9 +55,8 @@ export const metaSchema = [
     type: "string"
   },
   {
-    label: "Image (.jpg only)",
+    label: "Image (hint: file must end in .jpg)",
     tag: "image",
-    type: "string",
-    rule: validateFileName()
+    type: "string"
   }
 ];

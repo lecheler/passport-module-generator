@@ -8,7 +8,7 @@ import {
   deleteCategory,
   validateCategory
 } from "./utils/categories";
-
+import { validateImageFileName } from "./config/metaSchema";
 import { addScore, updateScore, deleteScore } from "./utils/scoring";
 
 import {
@@ -56,7 +56,7 @@ class App extends Component {
       level: this.state.level,
       igURL: this.state.igURL,
       sgURL: this.state.sgURL,
-      image: this.state.image
+      image: validateImageFileName(this.state.image)
     };
     console.log(metaContent);
     return Object.keys(metaContent).every(key => {
@@ -198,7 +198,7 @@ class App extends Component {
 
   metaUtils = {
     update: metaObject => {
-      console.log(metaObject);
+      // console.log(metaObject); f
       this.setState(prevState => {
         return updateMeta(prevState, metaObject);
       });

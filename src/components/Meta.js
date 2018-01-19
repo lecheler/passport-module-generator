@@ -28,19 +28,10 @@ function Meta(props) {
   const { classes, content, metaUtils, valid } = props;
 
   // SmartInput iterates over array
-
   const validateMetaContent = () => {
     return valid.meta ? "green" : "lightgray";
   };
 
-  const validateFileName = () => {
-    console.log("rule");
-  };
-  // //RegExp (?:([^:/?#]+):)?(?://([^/?#]*))?([^?#]*\.(?:jpg|jpeg))(?:\?([^#]*))?(?:#(.*))?
-
-  // const validateJpg = () => {
-  //   console.log(Meta[7]);
-  // };
   return (
     <ExpansionPanel defaultExpanded={true}>
       <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
@@ -65,7 +56,7 @@ function Meta(props) {
               tag={metaItem.tag}
               label={metaItem.label}
               placeholder={metaItem.placeholder}
-              value={metaItem.value}
+              value={content[metaItem.tag]}
               options={metaItem.options}
               type={metaItem.type}
               handleChange={metaUtils.update}
