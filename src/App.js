@@ -94,6 +94,8 @@ class App extends Component {
   categoryUtils = {
     add: () => {
       this.setState(prevState => addCategory(prevState));
+      // return length to AddCategory to switch recently added Category
+      return this.state.categories.length;
     },
     update: (catIndex, newCategory) => {
       this.setState(prevState =>

@@ -1,12 +1,12 @@
 export const flipGridSchema = [
-  { tag: "question", label: "question", placeholder: "---", type: "string" },
-  { tag: "direction", label: "direction", placeholder: "---", type: "string" },
   {
     tag: "shortDirection",
     label: "shortDirection",
     placeholder: "---",
     type: "string"
-  }
+  },
+  { tag: "question", label: "question", placeholder: "---", type: "string" },
+  { tag: "direction", label: "direction", placeholder: "---", type: "string" }
 ];
 
 export const resourceSchema = [

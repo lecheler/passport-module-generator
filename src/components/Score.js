@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "material-ui/styles";
-import InputString from "./InputString";
+import SmartInput from "./SmartInput";
 import IconButton from "material-ui/IconButton";
 import DeleteIcon from "material-ui-icons/Delete";
 import { scoreSchema } from "../config/scoreSchema";
@@ -35,12 +35,13 @@ function Score(props) {
     <div className={classes.root}>
       {scoreSchema.map((item, index) => {
         return (
-          <InputString
+          <SmartInput
             tag={item.tag}
             label={item.label}
             placeholder={item.placeholder}
             value={scoreContent[item.label]}
             handleChange={handleScoreUpdate}
+            type={item.type}
             key={index}
           />
         );

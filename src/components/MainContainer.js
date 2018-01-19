@@ -67,7 +67,7 @@ MainContainer.propTypes = {
   scoringUtils: PropTypes.object.isRequired,
   taskUtils: PropTypes.object.isRequired,
   metaUtils: PropTypes.object.isRequired,
-  valid: PropTypes.bool.isRequired
+  valid: PropTypes.object.isRequired
 };
 
 export default withStyles(styles)(MainContainer);

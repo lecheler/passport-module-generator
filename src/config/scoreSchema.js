@@ -8,7 +8,7 @@ export const scoreSchema = [
   {
     tag: "max",
     label: "Max Score",
-    placeholder: "---",
+    placeholder: "max 999",
     type: "number",
     max: 999
   }

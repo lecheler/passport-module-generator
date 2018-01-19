@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "material-ui/styles";
-import InputString from "./InputString";
+import SmartInput from "./SmartInput";
 import IconButton from "material-ui/IconButton";
 import DeleteIcon from "material-ui-icons/Delete";
 import AddRepeater from "./AddRepeater";
@@ -53,12 +53,13 @@ function TaskStimulus(props) {
 
       {stimulusSchema.map((item, index) => {
         return (
-          <InputString
+          <SmartInput
             label={item.label}
             tag={item.tag}
             placeholder={item.placeholder}
             value={taskContent[item.label]}
             handleChange={handleUpdate}
+            type={item.type}
             key={index}
           />
         );

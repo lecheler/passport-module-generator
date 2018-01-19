@@ -58,7 +58,7 @@ function XMLDownload(props) {
 XMLDownload.propTypes = {
   classes: PropTypes.object.isRequired,
   handleDownload: PropTypes.func.isRequired,
-  valid: PropTypes.bool.isRequired
+  valid: PropTypes.object.isRequired
 };
 
 export default withStyles(styles)(XMLDownload);
