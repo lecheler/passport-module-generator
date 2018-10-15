@@ -36,10 +36,13 @@ export const metaSchema = [
       { value: 4, display: "French: T`es branché ?" },
       { value: 2, display: "German: Deutsch Aktuell 6th Edition" },
       { value: 133, display: "German: Deutsch Aktuell 7th Edition" },
-      { value: 170, display: "Mirrors and Windows" },
-      { value: 169, display: "Mirrors and Windows: CCSS" },
+      { value: 170, display: "Mirrors and Windows ©2016" },
+      { value: 169, display: "Mirrors and Windows ©2016: Common Core" },
       { value: 1, display: "Spanish: ¡Aventura!" },
-      { value: 55, display: "Spanish: ¡Qué chévere!" }
+      { value: 55, display: "Spanish: ¡Qué chévere!" },
+      { value: 315, display: "Mirrors and Windows ©2020" },
+      { value: 313, display: "Mirrors and Windows ©2020: Common Core" },
+      { value: 311, display: "Mirrors and Windows ©2020: Texas" }
     ]
   },
   {
