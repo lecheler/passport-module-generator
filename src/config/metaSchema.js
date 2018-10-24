@@ -38,7 +38,7 @@ export const metaSchema = [
       { value: 290, display: "French: T`es branché? 2nd Edition" },
       { value: 2, display: "German: Deutsch Aktuell 6th Edition" },
       { value: 133, display: "German: Deutsch Aktuell 7th Edition" },
-      { value: 170, display: "Italian: Amici d'Italia" },
+      { value: 291, display: "Italian: Amici d'Italia" },
       { value: 170, display: "Mirrors and Windows ©2016" },
       { value: 169, display: "Mirrors and Windows ©2016: Common Core" },
       { value: 315, display: "Mirrors and Windows ©2020" },
