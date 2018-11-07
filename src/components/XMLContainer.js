@@ -34,7 +34,7 @@ const formatResources = resourcesArray => {
     { _attr: { type: "http" } },
     ...resourcesArray.map(resource => {
       return {
-        resource: [{ _attr: { url: resource.url } }, resource.label]
+        resource: [{ _attr: { url: resource.url } }, resource.label.split("'").join("`")]
       };
     })
   ];
@@ -164,11 +164,13 @@ function XMLContainer(props) {
 
   // props.content.image.slice(props.content.image.indexOf('.')); line 146
 
+
   let xmlContent = XML(contentToFormat);
   let { title } = props.content;
-
+  console.log("content to format", contentToFormat)
   const downloadXMLFile = filename =>
     fileDownload(beautify(xmlContent), `${title}.xml`);
+  console.log("zxml: ", xmlContent)
 
   return (
     <div className="xmlContainer">
